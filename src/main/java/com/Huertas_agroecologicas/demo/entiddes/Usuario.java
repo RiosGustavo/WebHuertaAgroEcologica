@@ -6,6 +6,7 @@ package com.Huertas_agroecologicas.demo.entiddes;
 
 import com.Huertas_agroecologicas.demo.enumeraciones.Rol;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -54,5 +55,9 @@ public class Usuario {
 
     @Temporal(TemporalType.DATE)
     protected Date fechaAlta;
+    
+     
+    @Column(name = "reset_password_token")
+    protected String resetPasswordToken;
 
 }

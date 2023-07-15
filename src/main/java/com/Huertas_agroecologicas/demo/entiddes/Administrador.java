@@ -20,9 +20,7 @@ public class Administrador extends Usuario{
     public Administrador() {
     }
 
-    public Administrador(String id, String email, String password, Rol roles, Boolean altaBaja, Imagen imagen, Date fechaAlta) {
-        super(id, email, password, roles, altaBaja, imagen, fechaAlta);
-    }
+  
     
     
     
