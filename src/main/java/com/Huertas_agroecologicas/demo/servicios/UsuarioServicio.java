@@ -83,6 +83,45 @@ public class UsuarioServicio implements UserDetailsService {
         
 
     }
+    ///// METODO PARA CAMBIAR LA CONTRASEÑA DEL USUARIO SI DESEA
+    @Transactional
+    public void cambiarClave(String claveActual, String id, String clave, String clave2)throws MiException  {
+        
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+        
+        if(respuesta.isPresent()){
+            if (clave.isEmpty() || clave == null){
+                throw new MiException ("La contraseña no puede ser vacía.");
+            }
+            
+            if(clave.length() < 8){
+                throw new MiException  ("La contraseña nueva debe se de mas de 8 caracteres");
+            }
+            
+            if (!clave.equals(clave2)) {
+                throw new MiException("Las contraseñas no coinciden. Por favor introduzcalas correctamente.");
+            }
+            
+            Usuario usuario = respuesta.get();
+            
+            
+            /// CON ESTE SE CODIFICA ELPASSWORD INGRESADO POR EL USUARIO
+             String encodedPassword = usuario.getPassword();
+             
+              if (bCryptPasswordEncoder.matches(claveActual, encodedPassword)) {
+                usuario.setPassword(new BCryptPasswordEncoder().encode(clave));
+
+                usuarioRepositorio.save(usuario);
+            } else {
+                throw new MiException("La contraseña actual no es válida.");
+            }
+            
+            
+            
+        }
+    }
+    
+    
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
