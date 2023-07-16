@@ -17,15 +17,15 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ConsumidorRepositorio extends JpaRepository<Consumidor,String> {
-    
+//    
      @Query("SELECT consu FROM Consumidor consu WHERE (:termino IS NULL OR CONCAT(consu.nombreConsumidor, consu.direccion, consu.dni ,  consu.email) LIKE %:termino%)")
     public List<Consumidor> search(@Param("termino") String termino);
-
-    
-    
-     @Query("SELECT consu FROM Consumidor consu WHERE consu.cosechas.idCosecha :idCosecha")
-    public List<Consumidor> consumidoresPorCosecha(@Param("idCosecha") String idCosecha);
-    
+//
+//    
+////    
+//     @Query("SELECT consu FROM Consumidor consu WHERE consu.cosechas.idCosecha :idCosecha")
+//    public List<Consumidor> consumidoresPorCosecha(@Param("idCosecha") String idCosecha);
+//    
     @Query("SELECT consu FROM Comentario consu WHERE consu.huerta.idHuerta = :idHuerta ")
     public List<Consumidor> consumidoresPorHuerta(@Param("idHuerta") String idHuerta);
     

@@ -37,9 +37,9 @@ public interface CosechaRepositorio extends JpaRepository<Cosecha, String> {
     
      @Query("SELECT co FROM Cosecha co WHERE co.stock =  :stock")
     public List<Cosecha> buscarPorStock(@Param("stock") Integer stock);
-    
-     @Query("SELECT co FROM Cosecha co WHERE co.huertas =  :huertas")
-    public List<Cosecha> buscarPorHuertas(@Param("huertas") Huerta huertas);
+//    
+//     @Query("SELECT co FROM Cosecha co WHERE co.huertas.nombrehuerta =  :nombrehuerta")
+//    public List<Cosecha> buscarPorHuertas(@Param("nombrehuerta") String nombrehuerta);
     
     
 

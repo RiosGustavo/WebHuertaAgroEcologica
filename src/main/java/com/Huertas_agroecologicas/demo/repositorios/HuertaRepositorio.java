@@ -23,8 +23,7 @@ public interface HuertaRepositorio extends JpaRepository<Huerta, String> {
     @Query("SELECT hu FROM Huerta hu WHERE hu.idHuerta = :idHuerta")
     public Huerta buscarPorId(@Param("idHuerta") String idHuerta);
 
-    @Query("SELECT hu FROM Huerta hu WHERE hu.titulo LIKE %:titulo%")
-    public List<Huerta> buscarPorTitulo(@Param("titulo") String titulo);
+
 
     @Query(value = "select * from Huerta order by fecha_alta desc", nativeQuery = true)
     List<Huerta> findAllOrderByfecha_altaDesc();
@@ -39,11 +38,11 @@ public interface HuertaRepositorio extends JpaRepository<Huerta, String> {
     public List<Huerta> huertasPorProductor(@Param("id") String id);
 
 
-    @Query("SELECT hu FROM Huerta hu WHERE hu.cosecha.nombreCosecha = :nombreCosecha")
-    public List<Huerta> cosechasPorHuerta(@Param("nombreCosecha") String nombreCosecha);
+//    @Query("SELECT hu FROM Huerta hu WHERE hu.cosechas.idCosecha =:idCosecha")
+//    public List<Huerta> cosechasPorHuerta(@Param("idCosecha") String idCosecha);
 
-    @Query("SELECT hu FROM Huerta hu WHERE hu.nombreProductor = :nombreProductor")
-    public List<Huerta> buscarPorNombreProductor(@Param("nombreProductor") String nombreProductor);
+    @Query("SELECT hu FROM Huerta hu WHERE hu.productor.id = :id")
+    public List<Huerta> buscarPorNombreProductor(@Param("id") String id);
 
     List<Huerta> findByAltaBajaTrue();
 

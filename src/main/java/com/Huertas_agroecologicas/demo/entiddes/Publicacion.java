@@ -38,8 +38,8 @@ public class Publicacion {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
 
     private String idPublicacion;
-    
-     private String titulo;
+
+    private String titulo;
     private String descripcion;
 
     @Column(length = 65535, columnDefinition = "text")
@@ -53,10 +53,10 @@ public class Publicacion {
     private Imagen imagen;
     private String video;
     private Boolean altaBaja;
-    
+
     @OneToOne
     private Huerta huerta;
-    
+
     @OneToOne
     private Cosecha cosecha;
 

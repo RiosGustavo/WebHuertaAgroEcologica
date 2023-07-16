@@ -31,13 +31,13 @@ public interface ProductorRepositorio extends JpaRepository<Productor, String> {
     public Productor buscarPorDireccion(@Param("direccion") String direccion);
     
      //// FALTA IMPLENTAR EN EL SERVICIO DE Productor
-     @Query("SELECT pro FROM Productor pro WHERE ((:termino IS NULL OR LOWER(pro.nombreProductor) LIKE %:termino%) OR "
-            + "(:termino IS NULL OR pro.fechaAlta LIKE %:termino%) OR "
-            + "(:termino IS NULL OR pro.rubro LIKE %:termino%) OR "
-            + "(:termino IS NULL OR pro.cuit LIKE %:termino%) OR "
-            + "(:termino IS NULL OR pro.email LIKE %:termino%) OR "
-            + "(:termino IS NULL OR LOWER(pro.id) LIKE %:termino%))")
-    List<Productor> buscarProductorsPorTermino(@Param("termino") String termino);
+//     @Query("SELECT pro FROM Productor pro WHERE ((:termino IS NULL OR LOWER(pro.nombreProductor) LIKE %:termino%) OR "
+//            + "(:termino IS NULL OR pro.fechaAlta LIKE %:termino%) OR "
+//            + "(:termino IS NULL OR pro.rubro LIKE %:termino%) OR "
+//            + "(:termino IS NULL OR pro.cuit LIKE %:termino%) OR "
+//            + "(:termino IS NULL OR pro.email LIKE %:termino%) OR "
+//            + "(:termino IS NULL OR LOWER(pro.id) LIKE %:termino%))")
+//    List<Productor> buscarProductorPorTermino(@Param("termino") String termino);
     
     
 }
