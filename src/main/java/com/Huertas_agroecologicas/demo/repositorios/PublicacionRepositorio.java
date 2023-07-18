@@ -21,25 +21,44 @@ public interface PublicacionRepositorio extends JpaRepository<Publicacion, Strin
     @Query("SELECT pu FROM Publicacion pu WHERE pu.altaBaja = true")
     public List<Publicacion> listadoPublicacionesActivas();
 //
+
     @Query("SELECT pu FROM Publicacion pu WHERE pu.titulo LIKE %:titulo%")
     public List<Publicacion> buscarPorTitulo(@Param("titulo") String titulo);
 //
+
     @Query(value = "SELECT * FROM Publicacion order by fecha_alta desc", nativeQuery = true)
     //// esta linea esta implementada en el servicio de publicacion y aca se llama
     List<Publicacion> findAllOrderByfecha_altaDesc();
 //
 //    /// falta implemntar el la siguiente linea en el servicio
+
     @Query("SELECT pu FROM Publicacion pu WHERE pu.huerta.idHuerta = :idHuerta AND pu.altaBaja = true")
-    public List<Publicacion> publicacionesActivasPorHuerta (@Param("idHuerta") String idHuerta  );
-    
-     // falta implemntar el la siguiente linea en el servicio
-     @Query("SELECT pu FROM Publicacion pu WHERE pu.huerta.nombrehuerta = :nombrehuerta")
-    public List<Publicacion> buscarPorHuerta (@Param("nombrehuerta") String nombrehuerta );
-    
-    
+    public List<Publicacion> publicacionesActivasPorHuerta(@Param("idHuerta") String idHuerta);
+
+    @Query("SELECT pu FROM Publicacion pu WHERE pu.cosecha.idCosecha = :idCosecha AND pu.altaBaja = true")
+    public List<Publicacion> publicacionesActivasPorCosecha(@Param("idCosecha") String idCosecha);
+
+    // falta implemntar el la siguiente linea en el servicio
+    @Query("SELECT pu FROM Publicacion pu WHERE pu.huerta.idHuerta = :idHuertaa")
+    public List<Publicacion> buscarPorHuerta(@Param("idHuerta") String idHuerta);
+
     @Query("SELECT pu FROM Publicacion pu WHERE pu.cosecha.idCosecha = idCosecha")
-     public List<Publicacion> buscarPorCosecha (@Param("idCosecha") String idCosecha  );
+    public List<Publicacion> buscarPorCosecha(@Param("idCosecha") String idCosecha);
+
+    //////////////////////////////////////
+    @Query("SELECT hu FROM Publicacion hu WHERE (:termino IS NULL OR CONCAT(hu.titulo, hu.descripcion) LIKE %:termino%) "
+            + "AND (:estado IS NULL OR hu.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE hu.altaBaja END) "
+            + "ORDER BY CASE WHEN :orden = 'asc' THEN hu.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN hu.fechaAlta END DESC")
+    public List<Publicacion> search(@Param("termino") String termino, @Param("estado") String estado, @Param("orden") String orden);
+
+    @Query("SELECT hu FROM Publicacion hu WHERE (:estado IS NULL OR hu.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE hu.altaBaja END) "
+            + "ORDER BY CASE WHEN :orden = 'asc' THEN hu.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN hu.fechaAlta END DESC")
+    public List<Publicacion> search2(@Param("estado") String estado, @Param("orden") String orden);
+    //////////////////////////
     
-    
-    
+    @Query("SELECT co FROM Publicacion co WHERE (:termino IS NULL OR CONCAT(co.titulo, co.descripcion) LIKE %:termino%) "
+            + "AND (:estado IS NULL OR co.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE co.altaBaja END) "
+            + "ORDER BY CASE WHEN :orden = 'asc' THEN co.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN co.fechaAlta END DESC")
+    public List<Publicacion> search3(@Param("termino") String termino, @Param("estado") String estado, @Param("orden") String orden);
+
 }

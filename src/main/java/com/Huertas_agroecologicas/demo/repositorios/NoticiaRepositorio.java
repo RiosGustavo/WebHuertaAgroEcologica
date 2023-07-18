@@ -26,5 +26,8 @@ public interface NoticiaRepositorio extends JpaRepository<Noticia, String> {
 
     @Query("SELECT ca FROM Noticia ca WHERE ca.titulo LIKE %:titulo%")
     public List<Noticia> buscarPorTitulo(@Param("titulo") String titulo);
+    
+    @Query("SELECT no FROM Noticia no WHERE no.blogger.id = :id")
+    public List<Noticia> noticiasPorBlogger(@Param("id") String id);
 
 }
