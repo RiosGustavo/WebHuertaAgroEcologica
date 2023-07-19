@@ -51,6 +51,6 @@ public class Comentario {
     private Huerta huerta;
 
     @ManyToOne
-    private Cosecha cosecha;
+    private Cultivo cultivo;
 
 }

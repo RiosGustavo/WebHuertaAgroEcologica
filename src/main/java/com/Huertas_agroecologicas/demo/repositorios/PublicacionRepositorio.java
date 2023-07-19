@@ -35,15 +35,15 @@ public interface PublicacionRepositorio extends JpaRepository<Publicacion, Strin
     @Query("SELECT pu FROM Publicacion pu WHERE pu.huerta.idHuerta = :idHuerta AND pu.altaBaja = true")
     public List<Publicacion> publicacionesActivasPorHuerta(@Param("idHuerta") String idHuerta);
 
-    @Query("SELECT pu FROM Publicacion pu WHERE pu.cosecha.idCosecha = :idCosecha AND pu.altaBaja = true")
-    public List<Publicacion> publicacionesActivasPorCosecha(@Param("idCosecha") String idCosecha);
+    @Query("SELECT pu FROM Publicacion pu WHERE pu.cosecha.idCultivo = :idCultivo AND pu.altaBaja = true")
+    public List<Publicacion> publicacionesActivasPorCultivo(@Param("idCultivo") String idCultivo);
 
     // falta implemntar el la siguiente linea en el servicio
     @Query("SELECT pu FROM Publicacion pu WHERE pu.huerta.idHuerta = :idHuertaa")
     public List<Publicacion> buscarPorHuerta(@Param("idHuerta") String idHuerta);
 
-    @Query("SELECT pu FROM Publicacion pu WHERE pu.cosecha.idCosecha = idCosecha")
-    public List<Publicacion> buscarPorCosecha(@Param("idCosecha") String idCosecha);
+    @Query("SELECT pu FROM Publicacion pu WHERE pu.cosecha.idCultivo = idCultivo")
+    public List<Publicacion> buscarPorCultivo(@Param("idCultivo") String idCultivo);
 
     //////////////////////////////////////
     @Query("SELECT hu FROM Publicacion hu WHERE (:termino IS NULL OR CONCAT(hu.titulo, hu.descripcion) LIKE %:termino%) "

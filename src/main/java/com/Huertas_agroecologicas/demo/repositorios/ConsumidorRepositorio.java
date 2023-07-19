@@ -23,8 +23,8 @@ public interface ConsumidorRepositorio extends JpaRepository<Consumidor,String> 
 //
 //    
 ////    
-//     @Query("SELECT consu FROM Consumidor consu WHERE consu.cosechas.idCosecha :idCosecha")
-//    public List<Consumidor> consumidoresPorCosecha(@Param("idCosecha") String idCosecha);
+//     @Query("SELECT consu FROM Consumidor consu WHERE consu.cosechas.idCultivo :idCultivo")
+//    public List<Consumidor> consumidoresPorCultivo(@Param("idCultivo") String idCultivo);
 //    
     @Query("SELECT consu FROM Comentario consu WHERE consu.huerta.idHuerta = :idHuerta ")
     public List<Consumidor> consumidoresPorHuerta(@Param("idHuerta") String idHuerta);

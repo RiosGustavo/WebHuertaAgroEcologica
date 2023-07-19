@@ -18,8 +18,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ComentarioRepositorio extends JpaRepository<Comentario,String> {
     
-     @Query("SELECT co FROM Comentario co WHERE co.cosecha.idCosecha = :idCosecha AND co.altaBaja = true ORDER BY co.fechaPublicacion DESC")
-    public List<Comentario> comentariosPorCosecha(@Param("idCosecha") String idCosecha);
+     @Query("SELECT co FROM Comentario co WHERE co.cultivo.idCultivo = :idCultivo AND co.altaBaja = true ORDER BY co.fechaPublicacion DESC")
+    public List<Comentario> comentariosPorCultivo(@Param("idCultivo") String idCultivo);
     
     @Query("SELECT co FROM Comentario co WHERE co.huerta.idHuerta = :idHuerta AND co.altaBaja = true ORDER BY co.fechaPublicacion DESC")
     public List<Comentario> comentariosPorHuerta(@Param("idHuerta") String idHuerta);

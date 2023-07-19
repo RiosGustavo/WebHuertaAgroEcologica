@@ -26,17 +26,15 @@ import lombok.ToString;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @ToString
 public class Productor extends Usuario {
-    
+
     private String nombreProductor;
     private String dni;
     private String direccion;
-    
-       @OneToOne
+
+    @OneToOne
     private Huerta huerta;
-    
-     @OneToMany
-    private List<Cosecha> cosechas;
-    
-    
-    
+
+    @OneToMany
+    private List<Cultivo> cultivos;
+
 }

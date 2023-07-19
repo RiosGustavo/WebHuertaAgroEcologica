@@ -58,6 +58,6 @@ public class Publicacion {
     private Huerta huerta;
 
     @OneToOne
-    private Cosecha cosecha;
+    private Cultivo cultivo;
 
 }

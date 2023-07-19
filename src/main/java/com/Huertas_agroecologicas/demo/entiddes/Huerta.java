@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -38,11 +39,16 @@ public class Huerta {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idHuerta;
-    private String nombrehuerta;
+    private String nombreHuerta;
     private String cuerpo;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date fechaAlta;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date fechaBaja;
 
     private Boolean altaBaja;
 
@@ -51,13 +57,10 @@ public class Huerta {
 
     @OneToOne
     private Productor productor;
-    
+
     @ManyToMany
-    private List<Cosecha> cosechas;
-    
-    
-    @OneToMany
-    private List<Estadistica> estadisticas;
+    private List<Cultivo> cultivos;
+
     @OneToMany
     private List<Publicacion> publicaciones;
     @OneToMany

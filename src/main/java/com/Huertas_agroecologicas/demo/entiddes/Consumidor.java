@@ -31,7 +31,7 @@ public class Consumidor extends Usuario {
     private String dni;
     private String email;
     @ManyToMany
-    private List<Cosecha> cosechas;
+    private List<Cultivo> cultivos;
     @ManyToMany
     private List<Huerta> huertas;
 

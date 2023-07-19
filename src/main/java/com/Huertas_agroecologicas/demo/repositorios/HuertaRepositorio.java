@@ -4,7 +4,7 @@
  */
 package com.Huertas_agroecologicas.demo.repositorios;
 
-import com.Huertas_agroecologicas.demo.entiddes.Cosecha;
+import com.Huertas_agroecologicas.demo.entiddes.Cultivo;
 import com.Huertas_agroecologicas.demo.entiddes.Huerta;
 import java.util.Date;
 import java.util.List;
@@ -36,14 +36,23 @@ public interface HuertaRepositorio extends JpaRepository<Huerta, String> {
 
     @Query("SELECT hu FROM Huerta hu WHERE hu.productor.id = :id")
     public List<Huerta> huertasPorProductor(@Param("id") String id);
+    
+     @Query("SELECT hu FROM Huerta hu WHERE hu.nombreHuerta = :nombreHuerta")
+    public List<Huerta> buscarPorHuerta (@Param("nombreHuerta") String nombreHuerta);
 
-
-//    @Query("SELECT hu FROM Huerta hu WHERE hu.cosechas.idCosecha =:idCosecha")
-//    public List<Huerta> cosechasPorHuerta(@Param("idCosecha") String idCosecha);
-
-    @Query("SELECT hu FROM Huerta hu WHERE hu.productor.id = :id")
-    public List<Huerta> buscarPorNombreProductor(@Param("id") String id);
 
     List<Huerta> findByAltaBajaTrue();
+    
+     
+    @Query("SELECT hu FROM Huerta hu WHERE (:termino IS NULL OR CONCAT(hu.nombreHuerta, hu.cuerpo, hu.productor.nombreProductor) LIKE %:termino%) "
+            + "AND (:estado IS NULL OR hu.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE hu.altaBaja END) "
+            + "ORDER BY CASE WHEN :orden = 'asc' THEN hu.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN hu.fechaAlta END DESC")
+    public  List<Huerta> search(@Param("termino") String termino, @Param("estado") String estado, @Param("orden") String orden);
+
+    @Query("SELECT hu FROM Huerta hu WHERE (:estado IS NULL OR hu.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE hu.altaBaja END) "
+            + "ORDER BY CASE WHEN :orden = 'asc' THEN hu.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN hu.fechaAlta END DESC")
+    public  List<Huerta> search2(@Param("estado") String estado, @Param("orden") String orden);
+     
+    
 
 }

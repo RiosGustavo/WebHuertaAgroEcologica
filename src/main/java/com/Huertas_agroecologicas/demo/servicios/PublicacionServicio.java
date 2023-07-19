@@ -4,12 +4,11 @@
  */
 package com.Huertas_agroecologicas.demo.servicios;
 
-import com.Huertas_agroecologicas.demo.entiddes.Cosecha;
+import com.Huertas_agroecologicas.demo.entiddes.Cultivo;
 import com.Huertas_agroecologicas.demo.entiddes.Huerta;
 import com.Huertas_agroecologicas.demo.entiddes.Imagen;
 import com.Huertas_agroecologicas.demo.entiddes.Publicacion;
 import com.Huertas_agroecologicas.demo.excepciones.MiException;
-import com.Huertas_agroecologicas.demo.repositorios.CosechaRepositorio;
 import com.Huertas_agroecologicas.demo.repositorios.HuertaRepositorio;
 import com.Huertas_agroecologicas.demo.repositorios.ImagenRepositorio;
 import com.Huertas_agroecologicas.demo.repositorios.PublicacionRepositorio;
@@ -23,6 +22,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import com.Huertas_agroecologicas.demo.repositorios.CultivoRepositorio;
 
 /**
  *
@@ -41,16 +41,16 @@ public class PublicacionServicio {
     private HuertaRepositorio huertaRepositorio;
 
     @Autowired
-    private CosechaRepositorio cosechaRepositorio;
+    private CultivoRepositorio cultivohaRepositorio;
 
     @Transactional
-    public void crearPublicacion(MultipartFile archivo, String titulo, String descripcion, String cuerpo, String youtubeUrl, String idHuerta, String idCosecha) throws MiException, Exception {
+    public void crearPublicacion(MultipartFile archivo, String titulo, String descripcion, String cuerpo, String youtubeUrl, String idHuerta, String idCultivo) throws MiException, Exception {
 
         validar(archivo, titulo, descripcion, cuerpo);
 
         Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
 
-        Optional<Cosecha> respuestaCosecha = cosechaRepositorio.findById(idCosecha);
+        Optional<Cultivo> respuestaCultivo = cultivohaRepositorio.findById(idCultivo);
 
         Publicacion publicacion = new Publicacion();
 
@@ -73,8 +73,8 @@ public class PublicacionServicio {
             publicacion.setHuerta(respuestaHuerta.get());
         }
 
-        if (respuestaCosecha.isPresent()) {
-            publicacion.setCosecha(respuestaCosecha.get());
+        if (respuestaCultivo.isPresent()) {
+            publicacion.setCultivo(respuestaCultivo.get());
         }
 
         publicacionRepositorio.save(publicacion);
@@ -139,10 +139,10 @@ public class PublicacionServicio {
     }
 
     @Transactional
-    public List<Publicacion> publicacionesCosecha(String idCosecha) {
+    public List<Publicacion> publicacionesCultivo(String idCultivo) {
 
         List<Publicacion> publicaciones = new ArrayList();
-        publicaciones = publicacionRepositorio.buscarPorCosecha(idCosecha);
+        publicaciones = publicacionRepositorio.buscarPorCultivo(idCultivo);
         return publicaciones;
     }
 
@@ -156,10 +156,10 @@ public class PublicacionServicio {
     }
     
      @Transactional
-    public List<Publicacion> publicacionesPorCosechaActivas(String idCosecha) {
+    public List<Publicacion> publicacionesPorCultivoActivas(String idCultivo) {
         List<Publicacion> publicaciones = new ArrayList();
 
-        publicaciones = publicacionRepositorio.publicacionesActivasPorCosecha(idCosecha);
+        publicaciones = publicacionRepositorio.publicacionesActivasPorCultivo(idCultivo);
 
         return publicaciones;
     }

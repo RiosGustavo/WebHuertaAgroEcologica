@@ -32,15 +32,15 @@ import org.hibernate.annotations.GenericGenerator;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @ToString
-public class Cosecha {
+public class Cultivo {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
 
-    private String idCosecha;
+    private String idCultivo;
 
-    private String nombreCosecha;
+    private String nombreCultivo;
     private String descripcion;
     private Integer precio;
     private Integer stock;
@@ -62,6 +62,8 @@ public class Cosecha {
     
      @OneToMany
     private List<Publicacion> publicaciones;
+     @OneToMany
+    private List<Estadistica> estadisticas;
 
 
 }
