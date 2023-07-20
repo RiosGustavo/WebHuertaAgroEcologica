@@ -57,7 +57,7 @@ public class Noticia {
     private Boolean altaBaja;
     
     @ManyToOne
-    private Blogger blogger;
+    private Productor Productor;
     
     
 }

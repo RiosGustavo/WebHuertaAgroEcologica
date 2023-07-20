@@ -37,10 +37,20 @@ public interface CultivoRepositorio extends JpaRepository<Cultivo, String> {
     
      @Query("SELECT co FROM Cultivo co WHERE co.stock =  :stock")
     public List<Cultivo> buscarPorStock(@Param("stock") Integer stock);
-//    
-//     @Query("SELECT co FROM Cultivo co WHERE co.huertas.nombrehuerta =  :nombrehuerta")
-//    public List<Cultivo> buscarPorHuertas(@Param("nombrehuerta") String nombrehuerta);
     
+     @Query("SELECT co FROM Cultivo co WHERE co.huertas.idHuerta =  :idHuerta")
+    public List<Cultivo> buscarPorHuertas(@Param("idHuerta") String idHuerta);
     
+     @Query("SELECT co FROM Cultivo co WHERE (:termino IS NULL OR CONCAT(co.nombreCultivo, co.descripcion, co.precio, co.stock) LIKE %:termino%) "
+            + "AND (:estado IS NULL OR co.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE co.altaBaja END) "
+            + "ORDER BY CASE WHEN :orden = 'asc' THEN co.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN co.fechaAlta END DESC")
+    public  List<Cultivo> search(@Param("termino") String termino, @Param("estado") String estado, @Param("orden") String orden);
+
+    @Query("SELECT co FROM Cultivo co WHERE (:estado IS NULL OR co.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE co.altaBaja END) "
+            + "ORDER BY CASE WHEN :orden = 'asc' THEN co.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN co.fechaAlta END DESC")
+    public  List<Cultivo> search2(@Param("estado") String estado, @Param("orden") String orden);
+    
+     List<Cultivo> findByAltaBajaTrue();
+     
 
 }

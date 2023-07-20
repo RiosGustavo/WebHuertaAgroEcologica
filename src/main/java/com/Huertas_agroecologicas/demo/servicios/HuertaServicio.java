@@ -106,8 +106,8 @@ public class HuertaServicio {
     }
     
     @Transactional
-    public Huerta getOne(String id){
-        return huertaRepositorio.getOne(id);
+    public Huerta getOne(String idHuerta){
+        return huertaRepositorio.getOne(idHuerta);
     }
     
     @Transactional
@@ -128,22 +128,22 @@ public class HuertaServicio {
    
     public List<Huerta> search(String termino, String estado, String orden) {
 
-        List<Huerta> campanas = new ArrayList();
-        campanas = huertaRepositorio.search(termino, estado, orden);
-        return campanas;
+        List<Huerta> huertas = new ArrayList();
+        huertas = huertaRepositorio.search(termino, estado, orden);
+        return huertas;
     }
 
     public List<Huerta> search2(String estado, String orden) {
 
-        List<Huerta> campanas = new ArrayList();
-        campanas = huertaRepositorio.search2(estado, orden);
-        return campanas;
+        List<Huerta> huertas = new ArrayList();
+        huertas = huertaRepositorio.search2(estado, orden);
+        return huertas;
     }
 
-    public List<Huerta> buscarHuertasPorHuerta(String NombreHuerta) {
+    public List<Huerta> buscarHuertasPorNombreHuerta(String nombreHuerta) {
 
         List<Huerta> huertas = new ArrayList();
-        huertas = huertaRepositorio.buscarPorHuerta(NombreHuerta);
+        huertas = huertaRepositorio.buscarPorHuerta(nombreHuerta);
         return huertas;
     }
     

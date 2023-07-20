@@ -7,6 +7,7 @@ package com.Huertas_agroecologicas.demo.servicios;
 import com.Huertas_agroecologicas.demo.entiddes.Blogger;
 import com.Huertas_agroecologicas.demo.entiddes.Imagen;
 import com.Huertas_agroecologicas.demo.entiddes.Noticia;
+import com.Huertas_agroecologicas.demo.entiddes.Productor;
 import com.Huertas_agroecologicas.demo.entiddes.Usuario;
 import com.Huertas_agroecologicas.demo.excepciones.MiException;
 import com.Huertas_agroecologicas.demo.repositorios.ImagenRepositorio;
@@ -65,9 +66,10 @@ public class NoticiaServicio {
         if (respuesta.isPresent()) {
             Usuario usuario = respuesta.get();
 
-            if (usuario.getRoles().toString().equalsIgnoreCase("BLOG")) {
-                Blogger blo = (Blogger) respuesta.get();
-                noticia.setBlogger(blo);
+            if (usuario.getRoles().toString().equalsIgnoreCase("PRO")) {
+                Productor pro = (Productor) respuesta.get();
+               noticia.setProductor(pro);
+                
             }
 
         }

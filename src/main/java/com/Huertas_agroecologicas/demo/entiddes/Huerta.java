@@ -6,6 +6,7 @@ package com.Huertas_agroecologicas.demo.entiddes;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -40,6 +41,7 @@ public class Huerta {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idHuerta;
     private String nombreHuerta;
+     @Column(length = 65535, columnDefinition = "text")
     private String cuerpo;
 
     @Temporal(TemporalType.DATE)

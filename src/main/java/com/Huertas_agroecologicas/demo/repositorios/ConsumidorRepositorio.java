@@ -18,15 +18,26 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ConsumidorRepositorio extends JpaRepository<Consumidor,String> {
 //    
-     @Query("SELECT consu FROM Consumidor consu WHERE (:termino IS NULL OR CONCAT(consu.nombreConsumidor, consu.direccion, consu.dni ,  consu.email) LIKE %:termino%)")
-    public List<Consumidor> search(@Param("termino") String termino);
-//
-//    
-////    
-//     @Query("SELECT consu FROM Consumidor consu WHERE consu.cosechas.idCultivo :idCultivo")
-//    public List<Consumidor> consumidoresPorCultivo(@Param("idCultivo") String idCultivo);
-//    
-    @Query("SELECT consu FROM Comentario consu WHERE consu.huerta.idHuerta = :idHuerta ")
+     @Query("SELECT consu FROM Consumidor consu WHERE (:termino IS NULL OR CONCAT(consu.nombreConsumidor, consu.direccion, consu.dni ,  consu.email) LIKE %:termino%)"
+            + "AND (:estado IS NULL OR consu.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE consu.altaBaja END) "
+            + "ORDER BY CASE WHEN :orden = 'asc' THEN consu.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN consu.fechaAlta END DESC")
+    public List<Consumidor> search(@Param("termino") String termino, @Param("estado") String estado, @Param("orden") String orden);
+     
+    
+    @Query("SELECT consu FROM Productor consu WHERE (:estado IS NULL OR consu.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE consu.altaBaja END) "
+            + "ORDER BY CASE WHEN :orden = 'asc' THEN consu.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN consu.fechaAlta END DESC")
+    public List<Consumidor> search2(@Param("estado") String estado, @Param("orden") String orden);
+
+    
+  
+     @Query("SELECT consu FROM Consumidor consu WHERE consu.cultivos.idCultivo :idCultivo")
+    public List<Consumidor> consumidoresPorCultivo(@Param("idCultivo") String idCultivo);
+    
+    @Query("SELECT consu FROM Consumidor consu WHERE consu.huertas.idHuerta = :idHuerta ")
     public List<Consumidor> consumidoresPorHuerta(@Param("idHuerta") String idHuerta);
+    
+   
+    
+    
     
 }

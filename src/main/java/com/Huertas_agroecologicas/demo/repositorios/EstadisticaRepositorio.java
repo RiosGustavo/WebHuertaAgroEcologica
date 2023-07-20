@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.Huertas_agroecologicas.demo.repositorios;
 
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author User
  */
 @Repository
-public interface EstadistaRepositorio extends JpaRepository<Estadistica,String>{
+public interface EstadisticaRepositorio extends JpaRepository<Estadistica,String> {
     
 }

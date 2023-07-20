@@ -6,6 +6,7 @@ package com.Huertas_agroecologicas.demo.entiddes;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -41,12 +43,20 @@ public class Cultivo {
     private String idCultivo;
 
     private String nombreCultivo;
+    
+     @Column(length = 65535, columnDefinition = "text")
     private String descripcion;
+     
     private Integer precio;
     private Integer stock;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date fechaAlta;
+    
+     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date fechaBaja;
 
     private Boolean altaBaja;
 
