@@ -4,29 +4,13 @@
  */
 package com.Huertas_agroecologicas.demo.entiddes;
 
-import com.Huertas_agroecologicas.demo.enumeraciones.Rol;
-import java.util.Date;
 import javax.persistence.Entity;
-
 
 /**
  *
  * @author User
  */
 @Entity
-
-public class Administrador extends Usuario{
-
-    public Administrador() {
-    }
-
-  
-    
-    
-    
-    
-    
-    
-    
+public class Producto {
     
 }

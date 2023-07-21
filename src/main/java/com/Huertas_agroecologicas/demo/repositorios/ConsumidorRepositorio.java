@@ -17,6 +17,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ConsumidorRepositorio extends JpaRepository<Consumidor,String> {
+    
+     @Query("SELECT consu FROM Usuario consu WHERE consu.email = :email")
+    public Consumidor buscarPorEmail(@Param("email") String email);
+    
 //    
      @Query("SELECT consu FROM Consumidor consu WHERE (:termino IS NULL OR CONCAT(consu.nombreConsumidor, consu.direccion, consu.dni ,  consu.email) LIKE %:termino%)"
             + "AND (:estado IS NULL OR consu.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE consu.altaBaja END) "
@@ -24,7 +28,7 @@ public interface ConsumidorRepositorio extends JpaRepository<Consumidor,String> 
     public List<Consumidor> search(@Param("termino") String termino, @Param("estado") String estado, @Param("orden") String orden);
      
     
-    @Query("SELECT consu FROM Productor consu WHERE (:estado IS NULL OR consu.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE consu.altaBaja END) "
+    @Query("SELECT consu FROM Consumidor consu WHERE (:estado IS NULL OR consu.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE consu.altaBaja END) "
             + "ORDER BY CASE WHEN :orden = 'asc' THEN consu.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN consu.fechaAlta END DESC")
     public List<Consumidor> search2(@Param("estado") String estado, @Param("orden") String orden);
 

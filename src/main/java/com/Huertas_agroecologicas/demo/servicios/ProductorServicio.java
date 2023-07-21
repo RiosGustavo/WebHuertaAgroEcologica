@@ -43,11 +43,11 @@ public class ProductorServicio {
     private ImagenServicio imagenServicio;
 
     @Transactional
-    public void registrarProductor(MultipartFile archivo, String idHuerta, String IdCosecha, String nombreProductor, String dni,
+    public void registrarProductor(MultipartFile archivo, String idHuerta, String idCultivo, String nombreProductor, String dni,
             String direccion, String email, String password, String password2) throws MiException, Exception {
 
         Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
-        Optional<Cultivo> respuestaCosecha = cultivoRepositorio.findById(IdCosecha);
+        Optional<Cultivo> respuestaCosecha = cultivoRepositorio.findById(idCultivo);
 
         if (respuestaHuerta.isPresent() && respuestaCosecha.isPresent()) {
 
@@ -86,7 +86,7 @@ public class ProductorServicio {
     }
 
     @Transactional
-    public void modificarProductor(MultipartFile archivo, String id, String idHuerta, String IdCosecha, String nombreProductor, String dni,
+    public void modificarProductor(MultipartFile archivo, String id, String idHuerta, String idCultivo, String nombreProductor, String dni,
             String direccion) throws MiException, Exception {
 
         Optional<Productor> respuesta = productorRepositorio.findById(id);
@@ -102,7 +102,7 @@ public class ProductorServicio {
             Productor productor = respuesta.get();
 
             Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
-            Optional<Cultivo> respuestaCosecha = cultivoRepositorio.findById(IdCosecha);
+            Optional<Cultivo> respuestaCosecha = cultivoRepositorio.findById(idCultivo);
 
             if (respuestaHuerta.isPresent()) {
                 Huerta huerta = respuestaHuerta.get();

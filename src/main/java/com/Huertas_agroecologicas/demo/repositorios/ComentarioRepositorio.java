@@ -24,4 +24,7 @@ public interface ComentarioRepositorio extends JpaRepository<Comentario,String> 
     @Query("SELECT co FROM Comentario co WHERE co.huerta.idHuerta = :idHuerta AND co.altaBaja = true ORDER BY co.fechaPublicacion DESC")
     public List<Comentario> comentariosPorHuerta(@Param("idHuerta") String idHuerta);
     
+     @Query("SELECT co FROM Comentario co WHERE co.consumidor.id = :id AND co.altaBaja = true ORDER BY co.fechaPublicacion DESC")
+    public List<Comentario> comentariosPorConsumidor(@Param("id") String id);
+    
 }

@@ -46,6 +46,9 @@ public class Comentario {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date fechaPublicacion;
+    
+    @ManyToOne
+    private Consumidor consumidor;
 
     @ManyToOne
     private Huerta huerta;

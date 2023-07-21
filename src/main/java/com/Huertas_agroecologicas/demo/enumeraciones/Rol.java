@@ -12,7 +12,6 @@ public enum Rol {
     ADM,
     PRO,
     CON,
-    USER,
     BLOG;
     
 }

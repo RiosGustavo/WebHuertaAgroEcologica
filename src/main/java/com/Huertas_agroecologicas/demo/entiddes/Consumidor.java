@@ -7,6 +7,7 @@ package com.Huertas_agroecologicas.demo.entiddes;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,10 +30,13 @@ public class Consumidor extends Usuario {
     private String nombreConsumidor;
     private String direccion;
     private String dni;
-    private String email;
+   
     @ManyToMany
     private List<Cultivo> cultivos;
     @ManyToMany
     private List<Huerta> huertas;
+    
+   
+    
 
 }
