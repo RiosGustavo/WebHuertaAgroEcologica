@@ -43,19 +43,19 @@ public class ProductorServicio {
     private ImagenServicio imagenServicio;
 
     @Transactional
-    public void registrarProductor(MultipartFile archivo, String idHuerta, String idCultivo, String nombreProductor, String dni,
+    public void registrarProductor(MultipartFile archivo, String nombreProductor, String dni,
             String direccion, String email, String password, String password2) throws MiException, Exception {
 
-        Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
-        Optional<Cultivo> respuestaCosecha = cultivoRepositorio.findById(idCultivo);
+//        Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
+//        Optional<Cultivo> respuestaCosecha = cultivoRepositorio.findById(idCultivo);
 
-        if (respuestaHuerta.isPresent() && respuestaCosecha.isPresent()) {
+    //    if (respuestaHuerta.isPresent() && respuestaCosecha.isPresent()) {
 
             validar(archivo, nombreProductor, dni, direccion, email, password, password2);
 
-            Huerta huerta = respuestaHuerta.get();
-            Cultivo cultivo = respuestaCosecha.get();
-            List<Cultivo> cultivos = new ArrayList();
+//            Huerta huerta = respuestaHuerta.get();
+//            Cultivo cultivo = respuestaCosecha.get();
+//            List<Cultivo> cultivos = new ArrayList();
 
             Productor productor = new Productor();
 
@@ -63,8 +63,8 @@ public class ProductorServicio {
             productor.setDni(dni);
             productor.setDireccion(direccion);
             productor.setEmail(email);
-            productor.setHuerta(huerta);
-            productor.setCultivos(cultivos);
+//            productor.setHuerta(huerta);
+//            productor.setCultivos(cultivos);
             
             productor.setAltaBaja(Boolean.FALSE);
             productor.setFechaAlta(new Date());
@@ -81,12 +81,12 @@ public class ProductorServicio {
 
             productorRepositorio.save(productor);
 
-        }
+       // }
 
     }
 
     @Transactional
-    public void modificarProductor(MultipartFile archivo, String id, String idHuerta, String idCultivo, String nombreProductor, String dni,
+    public void modificarProductor(MultipartFile archivo, String id,  String nombreProductor, String dni,
             String direccion) throws MiException, Exception {
 
         Optional<Productor> respuesta = productorRepositorio.findById(id);
@@ -101,19 +101,19 @@ public class ProductorServicio {
 
             Productor productor = respuesta.get();
 
-            Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
-            Optional<Cultivo> respuestaCosecha = cultivoRepositorio.findById(idCultivo);
+//            Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
+//            Optional<Cultivo> respuestaCultivo = cultivoRepositorio.findById(idCultivo);
 
-            if (respuestaHuerta.isPresent()) {
-                Huerta huerta = respuestaHuerta.get();
-                productor.setHuerta(huerta);
-            }
-
-            if (respuestaCosecha.isPresent()) {
-                Cultivo cultivo = respuestaCosecha.get();
-                List<Cultivo> cultivos = new ArrayList();
-                 productor.setCultivos(cultivos);
-            }
+//            if (respuestaHuerta.isPresent()) {
+//                Huerta huerta = respuestaHuerta.get();
+//                productor.setHuerta(huerta);
+//            }
+//
+//            if (respuestaCultivo.isPresent()) {
+//                Cultivo cultivo = respuestaCultivo.get();
+//                List<Cultivo> cultivos = new ArrayList();
+//                 productor.setCultivos(cultivos);
+//            }
 
             productor.setNombreProductor(nombreProductor);
             productor.setDni(dni);
@@ -146,16 +146,16 @@ public class ProductorServicio {
     
      public List<Productor> search(String termino, String estado,String orden) {
 
-        List<Productor> empresas = new ArrayList();
-        empresas = productorRepositorio. search(termino, estado,orden);
-        return empresas;
+        List<Productor> productores = new ArrayList();
+        productores = productorRepositorio. search(termino, estado,orden);
+        return productores;
     }
     
     public List<Productor> search2(String estado,String orden) {
 
-        List<Productor> empresas = new ArrayList();
-        empresas = productorRepositorio. search2(estado,orden);
-        return empresas;
+        List<Productor> productores = new ArrayList();
+        productores = productorRepositorio. search2(estado,orden);
+        return productores;
     }
     
     @Transactional

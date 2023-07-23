@@ -111,7 +111,7 @@ public class CultivoServicio {
     public List<Cultivo> listarCultivos() {
         List<Cultivo> cultivos = new ArrayList();
 
-        cultivos = cultivoRepositorio.findAll();
+        cultivos = (List<Cultivo>) cultivoRepositorio.findAll();
 
         return cultivos;
     }
@@ -170,14 +170,14 @@ public class CultivoServicio {
         }
     }
     
-    
-     public List<Cultivo> cultivosPorHuerta(String idHuerta) {
-
-        List<Cultivo> cultivos = new ArrayList();
-
-        cultivos = cultivoRepositorio.buscarPorHuertas(idHuerta);
-        return cultivos;
-    }
+//    
+//     public List<Cultivo> cultivosPorHuerta(String idHuerta) {
+//
+//        List<Cultivo> cultivos = new ArrayList();
+//
+//        cultivos = ( List<Cultivo>) cultivoRepositorio.buscarPorHuertas(idHuerta);
+//        return cultivos;
+//    }
     
     
     

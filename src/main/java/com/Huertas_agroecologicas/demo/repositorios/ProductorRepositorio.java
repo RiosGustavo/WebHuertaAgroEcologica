@@ -20,15 +20,15 @@ public interface ProductorRepositorio extends JpaRepository<Productor, String> {
 
     @Query("SELECT pro FROM Usuario pro WHERE pro.email = :email")
     public Productor buscarPorEmail(@Param("email") String email);
-
-    @Query("SELECT pro FROM Productor pro WHERE pro.nombreProductor = :nombreProductor")
-    public Productor buscarPorNombre(@Param("nombreProductor") String nombreProductor);
-
-    @Query("SELECT pro FROM Productor pro WHERE pro.dni = :dni")
-    public Productor buscarPorCuit(@Param("dni") String dni);
-
-    @Query("SELECT pro FROM Productor pro WHERE pro.direccion = :direccion")
-    public Productor buscarPorDireccion(@Param("direccion") String direccion);
+//
+//    @Query("SELECT pro FROM Productor pro WHERE pro.nombreProductor = :nombreProductor")
+//    public Productor buscarPorNombre(@Param("nombreProductor") String nombreProductor);
+//
+//    @Query("SELECT pro FROM Productor pro WHERE pro.dni = :dni")
+//    public Productor buscarPorCuit(@Param("dni") String dni);
+//
+//    @Query("SELECT pro FROM Productor pro WHERE pro.direccion = :direccion")
+//    public Productor buscarPorDireccion(@Param("direccion") String direccion);
 
     
      @Query("SELECT pro FROM Productor pro WHERE (:termino IS NULL OR CONCAT(pro.nombreProductor, pro.direccion, pro.email) LIKE %:termino%) "

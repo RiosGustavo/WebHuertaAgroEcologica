@@ -28,15 +28,12 @@ import lombok.ToString;
 public class Consumidor extends Usuario {
 
     private String nombreConsumidor;
-    private String direccion;
     private String dni;
-   
+    private String direccion;
+
     @ManyToMany
     private List<Cultivo> cultivos;
     @ManyToMany
     private List<Huerta> huertas;
-    
-   
-    
 
 }

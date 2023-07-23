@@ -33,12 +33,12 @@ public interface ConsumidorRepositorio extends JpaRepository<Consumidor,String> 
     public List<Consumidor> search2(@Param("estado") String estado, @Param("orden") String orden);
 
     
-  
-     @Query("SELECT consu FROM Consumidor consu WHERE consu.cultivos.idCultivo :idCultivo")
-    public List<Consumidor> consumidoresPorCultivo(@Param("idCultivo") String idCultivo);
-    
-    @Query("SELECT consu FROM Consumidor consu WHERE consu.huertas.idHuerta = :idHuerta ")
-    public List<Consumidor> consumidoresPorHuerta(@Param("idHuerta") String idHuerta);
+//  
+//     @Query("SELECT consu FROM Consumidor consu WHERE consu.cultivos.idCultivo :idCultivo")
+//    public List<Consumidor> consumidoresPorCultivo(@Param("idCultivo") String idCultivo);
+//    
+//    @Query("SELECT consu FROM Consumidor consu WHERE consu.huertas.idHuerta = :idHuerta ")
+//    public List<Consumidor> consumidoresPorHuerta(@Param("idHuerta") String idHuerta);
     
    
     

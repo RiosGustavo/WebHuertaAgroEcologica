@@ -30,6 +30,7 @@ public class Blogger extends Usuario {
     private String dni;
     private Integer voto;
     private String direccion;
+    
     @OneToMany
     private List<Noticia> noticias;
 

@@ -66,9 +66,9 @@ public class NoticiaServicio {
         if (respuesta.isPresent()) {
             Usuario usuario = respuesta.get();
 
-            if (usuario.getRoles().toString().equalsIgnoreCase("PRO")) {
-                Productor pro = (Productor) respuesta.get();
-               noticia.setProductor(pro);
+            if (usuario.getRoles().toString().equalsIgnoreCase("BLOG")) {
+                Blogger blog = (Blogger) respuesta.get();
+               noticia.setBloger(blog);
                 
             }
 

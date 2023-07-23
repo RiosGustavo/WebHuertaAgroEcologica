@@ -64,7 +64,7 @@ public class Cultivo {
     @OneToOne
     private Imagen imagen;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "cultivos")
     private List<Huerta> huertas;
 
     @OneToMany

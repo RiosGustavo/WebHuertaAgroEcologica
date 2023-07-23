@@ -44,21 +44,21 @@ public class ConsumidorServicio {
     private ImagenServicio imagenServicio;
 
     @Transactional
-    public void registrarConsumidor(MultipartFile archivo, String idHuerta, String idCultivo, String nombreConsumidor, String dni,
+    public void registrarConsumidor(MultipartFile archivo,  String nombreConsumidor, String dni,
             String direccion, String email, String password, String password2) throws MiException, Exception {
 
-        Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
-        Optional<Cultivo> irespuestaCultivo = cultivoRepositorio.findById(idCultivo);
+//        Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
+//        Optional<Cultivo> irespuestaCultivo = cultivoRepositorio.findById(idCultivo);
 
-        if (respuestaHuerta.isPresent() && irespuestaCultivo.isPresent()) {
+        
 
             validar(archivo, nombreConsumidor, dni, direccion, email, password, password2);
 
-            Huerta huerta = respuestaHuerta.get();
-            List<Huerta> huertas = new ArrayList();
-
-            Cultivo cultivo = irespuestaCultivo.get();
-            List<Cultivo> cultivos = new ArrayList();
+//            Huerta huerta = respuestaHuerta.get();
+//            List<Huerta> huertas = new ArrayList();
+//
+//            Cultivo cultivo = irespuestaCultivo.get();
+//            List<Cultivo> cultivos = new ArrayList();
 
             Consumidor consumidor = new Consumidor();
 
@@ -66,8 +66,8 @@ public class ConsumidorServicio {
             consumidor.setDni(dni);
             consumidor.setDireccion(direccion);
             consumidor.setEmail(email);
-            consumidor.setHuertas(huertas);
-            consumidor.setCultivos(cultivos);
+//            consumidor.setHuertas(huertas);
+//            consumidor.setCultivos(cultivos);
 
             consumidor.setAltaBaja(Boolean.FALSE);
             consumidor.setFechaAlta(new Date());
@@ -84,7 +84,7 @@ public class ConsumidorServicio {
 
             consumidorRepositorio.save(consumidor);
 
-        }
+        
 
     }
     
@@ -144,22 +144,22 @@ public class ConsumidorServicio {
     @Transactional
     public List<Consumidor> listarConsumidores() {
         List<Consumidor> consumidores = new ArrayList();
-        consumidores = consumidorRepositorio.findAll();
+        consumidores =  consumidorRepositorio.findAll();
         return consumidores;
     }
     
      public List<Consumidor> search(String termino, String estado,String orden) {
 
-        List<Consumidor> empresas = new ArrayList();
-        empresas = consumidorRepositorio. search(termino, estado,orden);
-        return empresas;
+        List<Consumidor> consumidores = new ArrayList();
+        consumidores = consumidorRepositorio. search(termino, estado,orden);
+        return consumidores;
     }
     
     public List<Consumidor> search2(String estado,String orden) {
 
-        List<Consumidor> empresas = new ArrayList();
-        empresas = consumidorRepositorio. search2(estado,orden);
-        return empresas;
+        List<Consumidor> consumidores = new ArrayList();
+        consumidores = consumidorRepositorio. search2(estado,orden);
+        return consumidores;
     }
     
     @Transactional

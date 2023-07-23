@@ -38,8 +38,11 @@ public interface CultivoRepositorio extends JpaRepository<Cultivo, String> {
      @Query("SELECT co FROM Cultivo co WHERE co.stock =  :stock")
     public List<Cultivo> buscarPorStock(@Param("stock") Integer stock);
     
-     @Query("SELECT co FROM Cultivo co WHERE co.huertas.idHuerta =  :idHuerta")
-    public List<Cultivo> buscarPorHuertas(@Param("idHuerta") String idHuerta);
+     @Query("SELECT c FROM Cultivo c JOIN c.huertas h WHERE h.idHuerta = :idHuerta")
+    public List<Cultivo> buscarPorHuertas(@Param("idHuerta") Long idHuerta);
+    
+//     @Query("SELECT co FROM Cultivo co JOIN co.huertas hu WHERE  hu IN :huertas")
+//    public List<Cultivo> buscarPorHuertas(@Param("idHuerta") String idHuerta);
     
      @Query("SELECT co FROM Cultivo co WHERE (:termino IS NULL OR CONCAT(co.nombreCultivo, co.descripcion, co.precio, co.stock) LIKE %:termino%) "
             + "AND (:estado IS NULL OR co.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE co.altaBaja END) "

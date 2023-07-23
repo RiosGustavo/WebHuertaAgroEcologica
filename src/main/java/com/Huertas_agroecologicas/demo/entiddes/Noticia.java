@@ -56,8 +56,10 @@ public class Noticia {
     private String video;
     private Boolean altaBaja;
     
+   
+    
     @ManyToOne
-    private Productor Productor;
+    private Blogger bloger;
     
     
 }

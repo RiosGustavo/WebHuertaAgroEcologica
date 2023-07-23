@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -61,10 +63,14 @@ public class Huerta {
     private Productor productor;
 
     @ManyToMany
+    @JoinTable(name = "huerta_cultivo",
+               joinColumns = @JoinColumn(name = "huerta_id"),
+               inverseJoinColumns = @JoinColumn(name = "cultivo_id"))
     private List<Cultivo> cultivos;
 
     @OneToMany
     private List<Publicacion> publicaciones;
+    
     @OneToMany
     private List<Comentario> comentarios;
 
