@@ -4,6 +4,8 @@
  */
 package com.Huertas_agroecologicas.demo.repositorios;
 
+import com.Huertas_agroecologicas.demo.entiddes.Cultivo;
+import com.Huertas_agroecologicas.demo.entiddes.Huerta;
 import com.Huertas_agroecologicas.demo.entiddes.Productor;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,14 +23,13 @@ public interface ProductorRepositorio extends JpaRepository<Productor, String> {
     @Query("SELECT pro FROM Usuario pro WHERE pro.email = :email")
     public Productor buscarPorEmail(@Param("email") String email);
 //
-//    @Query("SELECT pro FROM Productor pro WHERE pro.nombreProductor = :nombreProductor")
-//    public Productor buscarPorNombre(@Param("nombreProductor") String nombreProductor);
+   @Query("SELECT cu FROM Cultivo cu  JOIN cu.productor pro WHERE pro.id = :id")
+    public List<Cultivo> buscarCultivoPorProductor(@Param("id") String id);
+    
+    @Query("SELECT hu FROM Huerta hu  JOIN hu.productor pro WHERE pro.id = :id")
+    public List<Huerta> buscarHuertaPorProductor(@Param("id") String id);
 //
-//    @Query("SELECT pro FROM Productor pro WHERE pro.dni = :dni")
-//    public Productor buscarPorCuit(@Param("dni") String dni);
-//
-//    @Query("SELECT pro FROM Productor pro WHERE pro.direccion = :direccion")
-//    public Productor buscarPorDireccion(@Param("direccion") String direccion);
+//  
 
     
      @Query("SELECT pro FROM Productor pro WHERE (:termino IS NULL OR CONCAT(pro.nombreProductor, pro.direccion, pro.email) LIKE %:termino%) "

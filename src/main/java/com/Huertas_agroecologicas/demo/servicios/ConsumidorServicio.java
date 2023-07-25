@@ -148,6 +148,29 @@ public class ConsumidorServicio {
         return consumidores;
     }
     
+    
+    
+    public List<Consumidor> consumidoresPorHuerta(String idHuerta) {
+        
+        List<Consumidor> consumidores = new ArrayList();
+        
+        consumidores = consumidorRepositorio.findByHuertasId(idHuerta);
+        
+        return consumidores;
+    }
+    
+    public List<Consumidor> consumidoresPorCultivo(String idCultivo) {
+        
+        List<Consumidor> consumidores = new ArrayList();
+        
+        consumidores = consumidorRepositorio.findByCultivosId(idCultivo);
+        
+        return consumidores;
+    }
+    
+    
+    
+    
      public List<Consumidor> search(String termino, String estado,String orden) {
 
         List<Consumidor> consumidores = new ArrayList();

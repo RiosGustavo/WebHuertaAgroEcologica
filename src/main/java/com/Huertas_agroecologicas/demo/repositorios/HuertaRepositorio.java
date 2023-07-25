@@ -22,6 +22,12 @@ public interface HuertaRepositorio extends JpaRepository<Huerta, String> {
 
     @Query("SELECT hu FROM Huerta hu WHERE hu.idHuerta = :idHuerta")
     public Huerta buscarPorId(@Param("idHuerta") String idHuerta);
+    
+    /// la consulta realiza un JOIN con la lista de consumidores de Huerta (hu.consumidores) 
+    ///y filtra las huertas que están asociadas al Consumidor con el id especificado.
+    
+     @Query("SELECT hu FROM Huerta hu  JOIN hu.consumidores WHERE consu.id = :id")
+    public List<Huerta> buscarHuertaPorConsumior(@Param("id") String id);
 
 
 
@@ -36,6 +42,8 @@ public interface HuertaRepositorio extends JpaRepository<Huerta, String> {
 
     @Query("SELECT hu FROM Huerta hu WHERE hu.productor.id = :id")
     public List<Huerta> huertasPorProductor(@Param("id") String id);
+    
+
     
      @Query("SELECT hu FROM Huerta hu WHERE hu.nombreHuerta = :nombreHuerta")
     public List<Huerta> buscarPorHuerta (@Param("nombreHuerta") String nombreHuerta);

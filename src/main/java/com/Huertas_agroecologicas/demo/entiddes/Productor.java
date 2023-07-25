@@ -5,6 +5,7 @@
 package com.Huertas_agroecologicas.demo.entiddes;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -31,10 +32,14 @@ public class Productor extends Usuario {
     private String dni;
     private String direccion;
 
-    @OneToOne
+    /// con la opción cascade = CascadeType.ALL, se logrará que cuando se persista, 
+    ///actualice o elimine un Productor, también se realice la misma operación en la Huerta asociada.
+    
+    ///Con orphanRemoval = true, cuando se elimine el Productor, se eliminará también la Huerta asociada, en caso de que no tenga otra relación.
+    @OneToOne(mappedBy = "productor", cascade = CascadeType.ALL, orphanRemoval = true)
     private Huerta huerta;
 
-    @OneToMany
+    @OneToMany(mappedBy = "productor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cultivo> cultivos;
 
 }

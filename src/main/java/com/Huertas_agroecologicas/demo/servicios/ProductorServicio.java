@@ -184,6 +184,25 @@ public class ProductorServicio {
     }
     
     
+    public List<Huerta> obtenerHuertasPorProductor(String id){
+        
+        List<Huerta> huertas = new ArrayList();
+        
+        huertas = huertaRepositorio.huertasPorProductor(id);
+        
+        return huertas;
+        
+    }
+    
+    public List<Cultivo> obtenerCultivosPorProductor(String id){
+        
+        List<Cultivo> cultivos = new ArrayList();
+        
+        cultivos = cultivoRepositorio.buscarCultivoPorProductor(id);
+        
+        return cultivos;
+        
+    }
     
     
     

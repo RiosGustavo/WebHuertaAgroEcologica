@@ -138,12 +138,21 @@ public class CultivoServicio {
         return cultivos;
     }
 
-    public List<Cultivo> buscarHuertasPorNombreCultivo(String nombreCultivo) {
-
+    public List<Cultivo> cultivosPorConsumidor(String id){
+        
         List<Cultivo> cultivos = new ArrayList();
-        cultivos = cultivoRepositorio.buscarPorNombreCultivo(nombreCultivo);
-
+        
+        cultivos = cultivoRepositorio.buscarCultivoPorConsumior(id);
+        
         return cultivos;
+    }
+    
+    
+    public List<Huerta> buscarHuertasPorIdCultivo(String idCultivo){
+        List<Huerta> huertas = new ArrayList();
+        huertas = cultivoRepositorio.buscarHuertasPorCultivo(idCultivo) ;
+        
+        return huertas;
     }
 
     @Transactional
@@ -170,14 +179,14 @@ public class CultivoServicio {
         }
     }
     
-//    
-//     public List<Cultivo> cultivosPorHuerta(String idHuerta) {
-//
-//        List<Cultivo> cultivos = new ArrayList();
-//
-//        cultivos = ( List<Cultivo>) cultivoRepositorio.buscarPorHuertas(idHuerta);
-//        return cultivos;
-//    }
+    
+     public List<Cultivo> cultivosPorHuerta(String idHuerta) {
+
+        List<Cultivo> cultivos = new ArrayList();
+
+        cultivos = ( List<Cultivo>) cultivoRepositorio.buscarPorHuertas(idHuerta);
+        return cultivos;
+    }
     
     
     

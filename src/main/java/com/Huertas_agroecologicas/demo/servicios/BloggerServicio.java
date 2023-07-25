@@ -58,6 +58,28 @@ public class BloggerServicio {
         return blog;
 
     }
+    
+    @Transactional
+    public Consumidor bloggerAconsumidor(String id){
+        
+        Blogger blogger = bloggerRepositorio.findById(id).get();
+        Consumidor consumidor = new Consumidor();
+        
+        consumidor.setNombreConsumidor(blogger.getNombreApellido());
+        consumidor.setDni(blogger.getDni());
+        consumidor.setDireccion(blogger.getDireccion());
+        consumidor.setEmail(blogger.getEmail());
+        consumidor.setFechaAlta(new Date());
+        consumidor.setAltaBaja(Boolean.TRUE);
+        consumidor.setPassword(blogger.getPassword());
+        consumidor.setRoles(Rol.CON);
+        consumidor.setImagen(blogger.getImagen());
+        
+        consumidorRepositorio.save(consumidor);
+        bloggerRepositorio.deleteById(id);
+        
+        return consumidor;
+    }
 
     
     @Transactional

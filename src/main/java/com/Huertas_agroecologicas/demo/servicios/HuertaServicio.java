@@ -10,6 +10,7 @@ import com.Huertas_agroecologicas.demo.entiddes.Imagen;
 import com.Huertas_agroecologicas.demo.entiddes.Productor;
 import com.Huertas_agroecologicas.demo.entiddes.Usuario;
 import com.Huertas_agroecologicas.demo.excepciones.MiException;
+import com.Huertas_agroecologicas.demo.repositorios.ConsumidorRepositorio;
 import com.Huertas_agroecologicas.demo.repositorios.CultivoRepositorio;
 import com.Huertas_agroecologicas.demo.repositorios.HuertaRepositorio;
 import com.Huertas_agroecologicas.demo.repositorios.ProductorRepositorio;
@@ -49,6 +50,9 @@ public class HuertaServicio {
 
     @Autowired
     private PublicacionRepositorio publicacionRepositorio;
+    
+    @Autowired
+    private ConsumidorRepositorio consumidorRepositorio;
 
     @Transactional
     public void crearHuerta(MultipartFile archivo, String nombreHuerta, String cuerpo, String id) throws MiException, Exception {
@@ -178,7 +182,19 @@ public class HuertaServicio {
         huertas = huertaRepositorio.huertasPorProductor(id);
         return huertas;
     }
+    
+    
+    public List<Huerta> huertasPorConsumidor(String id){
+        
+        List<Huerta> huertas = new ArrayList();
+        
+        huertas = huertaRepositorio.buscarHuertaPorConsumior(id);
+        
+        return huertas;
+    }
  
+    
+    
     public void validar(MultipartFile archivo, String nombreHuerta, String cuerpo) throws Exception {
 
         if (nombreHuerta.isEmpty() || nombreHuerta == null) {

@@ -32,8 +32,16 @@ public interface ConsumidorRepositorio extends JpaRepository<Consumidor,String> 
             + "ORDER BY CASE WHEN :orden = 'asc' THEN consu.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN consu.fechaAlta END DESC")
     public List<Consumidor> search2(@Param("estado") String estado, @Param("orden") String orden);
 
+    ///Spring Data JPA detectará la relación @ManyToMany entre Consumidor y Cultivo y generará automáticamente la consulta para buscar los consumidores por el id del cultivo.
     
-//  
+    public List<Consumidor> findByCultivosId(String IdCultivo);
+    
+    /// Spring Data JPA detectará la relación @ManyToMany entre Consumidor y Huerta y generará automáticamente la consulta para buscar los consumidores por el id de la Huerta.
+    public List<Consumidor> findByHuertasId(String IdHuerta);
+    
+    //// Al utilizar los métodos de consulta generados automáticamente por Spring Data JPA, te evitas la necesidad de escribir consultas personalizadas en las anotaciones @Query 
+    //y te facilita el acceso a las relaciones ManyToMany de forma más sencilla y segura.
+  
 //     @Query("SELECT consu FROM Consumidor consu WHERE consu.cultivos.idCultivo :idCultivo")
 //    public List<Consumidor> consumidoresPorCultivo(@Param("idCultivo") String idCultivo);
 //    

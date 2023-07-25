@@ -4,6 +4,7 @@
  */
 package com.Huertas_agroecologicas.demo.entiddes;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -60,12 +61,13 @@ public class Huerta {
     protected Imagen imagen;
 
     @OneToOne
+    @JoinColumn(name ="id")
     private Productor productor;
 
     @ManyToMany
     @JoinTable(name = "huerta_cultivo",
-               joinColumns = @JoinColumn(name = "huerta_id"),
-               inverseJoinColumns = @JoinColumn(name = "cultivo_id"))
+               joinColumns = @JoinColumn(name = "idHuerta"),
+               inverseJoinColumns = @JoinColumn(name = "idCultivo"))
     private List<Cultivo> cultivos;
 
     @OneToMany
@@ -73,5 +75,8 @@ public class Huerta {
     
     @OneToMany
     private List<Comentario> comentarios;
+    
+    @ManyToMany(mappedBy = "huertas")
+    private List<Consumidor> consumidores;
 
 }

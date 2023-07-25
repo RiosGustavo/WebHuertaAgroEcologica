@@ -6,6 +6,8 @@ package com.Huertas_agroecologicas.demo.entiddes;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import lombok.AccessLevel;
@@ -31,9 +33,24 @@ public class Consumidor extends Usuario {
     private String dni;
     private String direccion;
 
+    
+    
     @ManyToMany
+    @JoinTable(name = "consumidor_Cultivo",
+            joinColumns = @JoinColumn(name = "idConsumidor"),
+            inverseJoinColumns = @JoinColumn(name = "idCultivo"))
     private List<Cultivo> cultivos;
+    
+    
     @ManyToMany
+     @JoinTable(name = "consumidor_huerta",
+            joinColumns = @JoinColumn(name = "idConsumidor"),
+            inverseJoinColumns = @JoinColumn(name = "idHuerta"))
     private List<Huerta> huertas;
+    
+    
+    //// hemos utilizado las anotaciones @ManyToMany, @JoinTable, @JoinColumn, @Entity e @Id para establecer 
+    /// la relación Many-to-Many entre Consumidor, Huerta y Cultivo. La tabla de unión entre Consumidor y Huerta se llama consumidor_huerta, 
+    ///y la tabla de unión entre Consumidor y Cultivo se llama consumidor_cultivo.
 
 }

@@ -10,7 +10,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -43,24 +45,23 @@ public class Cultivo {
     private String idCultivo;
 
     private String nombreCultivo;
-    
-     @Column(length = 65535, columnDefinition = "text")
+
+    @Column(length = 65535, columnDefinition = "text")
     private String descripcion;
-     
+
     private Integer precio;
     private Integer stock;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date fechaAlta;
-    
-     @Temporal(TemporalType.DATE)
+
+    @Temporal(TemporalType.DATE)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date fechaBaja;
 
     private Boolean altaBaja;
 
-   
     @OneToOne
     private Imagen imagen;
 
@@ -69,11 +70,18 @@ public class Cultivo {
 
     @OneToMany
     private List<Comentario> comentarios;
-    
-     @OneToMany
-    private List<Publicacion> publicaciones;
-     @OneToMany
-    private List<Estadistica> estadisticas;
 
+    @OneToMany
+    private List<Publicacion> publicaciones;
+
+    @OneToMany
+    private List<Estadistica> estadisticas;
+    
+    @ManyToMany(mappedBy = "cultivos")
+    private List<Consumidor> consumidores;
+    
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Productor productor;
 
 }
