@@ -158,7 +158,7 @@ public class CultivoControlador {
             
             Cultivo cultivo = cultivoServicio.getOne(idCultivo);
             
-            List<Huerta> huertas = cultivoServicio.buscarHuertasPorIdCultivo(idCultivo);
+         List<Huerta> huertas = cultivoServicio.buscarHuertasPorIdCultivo(idCultivo);
             List<Publicacion> publicaciones = publicacionservicio.publicacionesPorCultivoActivas(idCultivo);
             
             List<Consumidor> consumidores = consumidorServicio.consumidoresPorCultivo(idCultivo);

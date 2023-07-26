@@ -30,7 +30,7 @@ public interface CultivoRepositorio extends JpaRepository<Cultivo, String> {
     ///Con esta corrección, la consulta realiza un JOIN con la lista de consumidores de Cultivo (cu.consumidores) 
     /// y filtra los cultivos que están asociados al Consumidor con el id especificado.
 
-    @Query("SELECT cu FROM Cultivo cu  JOIN cu.consumidores WHERE consu.id = :id")
+    @Query("SELECT cu FROM Cultivo cu  JOIN cu.consumidores consu WHERE consu.id = :id")
     public List<Cultivo> buscarCultivoPorConsumior(@Param("id") String id);
 
     @Query("SELECT co FROM Cultivo co WHERE co.altaBaja = true")
@@ -51,9 +51,9 @@ public interface CultivoRepositorio extends JpaRepository<Cultivo, String> {
     @Query("SELECT c FROM Cultivo c JOIN c.huertas h WHERE h.idHuerta = :idHuerta")
     public List<Cultivo> buscarPorHuertas(@Param("idHuerta") String idHuerta);
 
-    @Query("SELECT hu FROM Huerta hu JOIN hu.cultivos c WHERE  c.idCultivo :idCultivo ")
+    @Query("SELECT hu FROM Huerta hu JOIN hu.cultivos c WHERE  c.idCultivo = :idCultivo ")
     public List<Huerta> buscarHuertasPorCultivo(@Param("idCultivo") String idCultivo);
-//    
+    
 
     @Query("SELECT co FROM Cultivo co WHERE (:termino IS NULL OR CONCAT(co.nombreCultivo, co.descripcion, co.precio, co.stock) LIKE %:termino%) "
             + "AND (:estado IS NULL OR co.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE co.altaBaja END) "

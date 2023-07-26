@@ -86,12 +86,12 @@ public class ProductorServicio {
     }
 
     @Transactional
-    public void modificarProductor(MultipartFile archivo, String id,  String nombreProductor, String dni,
+    public void modificarProductor(MultipartFile archivo, String idProductor,  String nombreProductor, String dni,
             String direccion) throws MiException, Exception {
 
-        Optional<Productor> respuesta = productorRepositorio.findById(id);
+        Optional<Productor> respuesta = productorRepositorio.findById(idProductor);
 
-        if (id == null || id.isEmpty()) {
+        if (idProductor == null || idProductor.isEmpty()) {
             throw new MiException("Debe ingrear un id del productor");
 
         }
@@ -133,8 +133,8 @@ public class ProductorServicio {
     }
 
     @Transactional
-    public Productor getOne(String id) {
-        return productorRepositorio.getOne(id);
+    public Productor getOne(String idProductor) {
+        return productorRepositorio.getOne(idProductor);
     }
 
     @Transactional
@@ -159,9 +159,9 @@ public class ProductorServicio {
     }
     
     @Transactional
-    public void darDeBajaProductor(String id) throws MiException{
+    public void darDeBajaProductor(String idProuctor) throws MiException{
         
-       Optional<Productor> respuesta = productorRepositorio.findById(id);
+       Optional<Productor> respuesta = productorRepositorio.findById(idProuctor);
        
        if(respuesta.isPresent()){
            Productor productor = respuesta.get();
@@ -172,9 +172,9 @@ public class ProductorServicio {
     
     
      @Transactional
-    public void darDeAltaProductor(String id) throws MiException{
+    public void darDeAltaProductor(String idProductor) throws MiException{
         
-       Optional<Productor> respuesta = productorRepositorio.findById(id);
+       Optional<Productor> respuesta = productorRepositorio.findById(idProductor);
        
        if(respuesta.isPresent()){
            Productor productor = respuesta.get();
@@ -184,21 +184,21 @@ public class ProductorServicio {
     }
     
     
-    public List<Huerta> obtenerHuertasPorProductor(String id){
+    public List<Huerta> obtenerHuertasPorProductor(String idProductor){
         
         List<Huerta> huertas = new ArrayList();
         
-        huertas = huertaRepositorio.huertasPorProductor(id);
+        huertas = huertaRepositorio.huertasPorProductor(idProductor);
         
         return huertas;
         
     }
     
-    public List<Cultivo> obtenerCultivosPorProductor(String id){
+    public List<Cultivo> obtenerCultivosPorProductor(String idProductor){
         
         List<Cultivo> cultivos = new ArrayList();
         
-        cultivos = cultivoRepositorio.buscarCultivoPorProductor(id);
+        cultivos = cultivoRepositorio.buscarCultivoPorProductor(idProductor);
         
         return cultivos;
         

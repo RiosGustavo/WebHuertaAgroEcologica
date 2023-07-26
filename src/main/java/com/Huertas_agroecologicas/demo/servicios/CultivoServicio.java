@@ -103,8 +103,8 @@ public class CultivoServicio {
     }
 
     @Transactional
-    public Cultivo getOne(String id) {
-        return cultivoRepositorio.getOne(id);
+    public Cultivo getOne(String idCultivo) {
+        return cultivoRepositorio.getOne(idCultivo);
     }
 
     @Transactional
@@ -138,11 +138,11 @@ public class CultivoServicio {
         return cultivos;
     }
 
-    public List<Cultivo> cultivosPorConsumidor(String id){
+    public List<Cultivo> cultivosPorConsumidor(String idCultivo){
         
         List<Cultivo> cultivos = new ArrayList();
         
-        cultivos = cultivoRepositorio.buscarCultivoPorConsumior(id);
+        cultivos = cultivoRepositorio.buscarCultivoPorConsumior(idCultivo);
         
         return cultivos;
     }

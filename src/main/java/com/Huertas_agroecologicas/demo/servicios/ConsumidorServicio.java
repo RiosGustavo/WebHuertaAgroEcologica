@@ -94,6 +94,7 @@ public class ConsumidorServicio {
             String direccion) throws MiException, Exception {
 
         Optional<Consumidor> respuesta = consumidorRepositorio.findById(id);
+               
 
         if (id == null || id.isEmpty()) {
             throw new MiException("Debe ingrear un id del consumidor");
@@ -154,7 +155,8 @@ public class ConsumidorServicio {
         
         List<Consumidor> consumidores = new ArrayList();
         
-        consumidores = consumidorRepositorio.findByHuertasId(idHuerta);
+        consumidores = consumidorRepositorio.consumidoresPorHuerta(idHuerta);
+               
         
         return consumidores;
     }
@@ -163,7 +165,8 @@ public class ConsumidorServicio {
         
         List<Consumidor> consumidores = new ArrayList();
         
-        consumidores = consumidorRepositorio.findByCultivosId(idCultivo);
+        consumidores = consumidorRepositorio.consumidoresPorCultivo(idCultivo);
+                
         
         return consumidores;
     }

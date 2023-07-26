@@ -33,20 +33,20 @@ public interface ConsumidorRepositorio extends JpaRepository<Consumidor,String> 
     public List<Consumidor> search2(@Param("estado") String estado, @Param("orden") String orden);
 
     ///Spring Data JPA detectará la relación @ManyToMany entre Consumidor y Cultivo y generará automáticamente la consulta para buscar los consumidores por el id del cultivo.
-    
-    public List<Consumidor> findByCultivosId(String IdCultivo);
-    
-    /// Spring Data JPA detectará la relación @ManyToMany entre Consumidor y Huerta y generará automáticamente la consulta para buscar los consumidores por el id de la Huerta.
-    public List<Consumidor> findByHuertasId(String IdHuerta);
+//    
+//    public List<Consumidor> findByCultivosId(String idCultivo);
+//    
+//    /// Spring Data JPA detectará la relación @ManyToMany entre Consumidor y Huerta y generará automáticamente la consulta para buscar los consumidores por el id de la Huerta.
+//    public List<Consumidor> findByHuertasId(String idHuerta);
     
     //// Al utilizar los métodos de consulta generados automáticamente por Spring Data JPA, te evitas la necesidad de escribir consultas personalizadas en las anotaciones @Query 
     //y te facilita el acceso a las relaciones ManyToMany de forma más sencilla y segura.
   
-//     @Query("SELECT consu FROM Consumidor consu WHERE consu.cultivos.idCultivo :idCultivo")
-//    public List<Consumidor> consumidoresPorCultivo(@Param("idCultivo") String idCultivo);
-//    
-//    @Query("SELECT consu FROM Consumidor consu WHERE consu.huertas.idHuerta = :idHuerta ")
-//    public List<Consumidor> consumidoresPorHuerta(@Param("idHuerta") String idHuerta);
+     @Query("SELECT consu FROM Consumidor consu JOIN consu.cultivos cult WHERE cult.idCultivo = :idCultivo")
+    public List<Consumidor> consumidoresPorCultivo(@Param("idCultivo") String idCultivo);
+    
+    @Query("SELECT consu FROM Consumidor consu JOIN consu.huertas h WHERE h.idHuerta = :idHuerta ")
+    public List<Consumidor> consumidoresPorHuerta(@Param("idHuerta") String idHuerta);
     
    
     

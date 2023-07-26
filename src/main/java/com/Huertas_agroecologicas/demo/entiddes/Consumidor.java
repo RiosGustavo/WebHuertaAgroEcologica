@@ -5,7 +5,9 @@
 package com.Huertas_agroecologicas.demo.entiddes;
 
 import java.util.List;
+import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -24,6 +26,7 @@ import lombok.ToString;
  * @author User
  */
 @Entity
+@AttributeOverride(name = "id", column = @Column(name = "idConsumidor"))
 @Getter
 @Setter
 @AllArgsConstructor

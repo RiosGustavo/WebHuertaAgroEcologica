@@ -62,8 +62,12 @@ public class Publicacion {
     private Usuario Usuario;
     
      @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "idProductor")
     private Productor productor;
+     
+      @ManyToOne
+     @JoinColumn(name = "idConsumidor")
+    private Consumidor consumidor;
      
      
     

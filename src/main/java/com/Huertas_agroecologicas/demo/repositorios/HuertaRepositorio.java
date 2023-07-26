@@ -26,7 +26,7 @@ public interface HuertaRepositorio extends JpaRepository<Huerta, String> {
     /// la consulta realiza un JOIN con la lista de consumidores de Huerta (hu.consumidores) 
     ///y filtra las huertas que están asociadas al Consumidor con el id especificado.
     
-     @Query("SELECT hu FROM Huerta hu  JOIN hu.consumidores WHERE consu.id = :id")
+     @Query("SELECT hu FROM Huerta hu  JOIN hu.consumidores consu WHERE consu.id = :id")
     public List<Huerta> buscarHuertaPorConsumior(@Param("id") String id);
 
 

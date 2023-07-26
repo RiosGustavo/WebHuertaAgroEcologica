@@ -55,7 +55,7 @@ public class Comentario {
     
     
     @ManyToOne
-    @JoinColumn(name = "id")
+   @JoinColumn(name = "idConsumidor" )
     private Consumidor consumidor;
 
     @ManyToOne
