@@ -44,7 +44,7 @@ public class Huerta {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idHuerta;
     private String nombreHuerta;
-     @Column(length = 65535, columnDefinition = "text")
+    @Column(length = 65535, columnDefinition = "text")
     private String cuerpo;
 
     @Temporal(TemporalType.DATE)
@@ -58,24 +58,24 @@ public class Huerta {
     private Boolean altaBaja;
 
     @OneToOne
-    protected Imagen imagen;
+    private Imagen imagen;
 
     @OneToOne
-    @JoinColumn(name ="id")
+    @JoinColumn(name = "id")
     private Productor productor;
 
     @ManyToMany
     @JoinTable(name = "huerta_cultivo",
-               joinColumns = @JoinColumn(name = "idHuerta"),
-               inverseJoinColumns = @JoinColumn(name = "idCultivo"))
+            joinColumns = @JoinColumn(name = "idHuerta"),
+            inverseJoinColumns = @JoinColumn(name = "idCultivo"))
     private List<Cultivo> cultivos;
 
     @OneToMany
     private List<Publicacion> publicaciones;
-    
+
     @OneToMany
     private List<Comentario> comentarios;
-    
+
     @ManyToMany(mappedBy = "huertas")
     private List<Consumidor> consumidores;
 

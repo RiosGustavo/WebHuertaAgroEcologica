@@ -35,7 +35,7 @@ public class Imagen {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
 
-    protected String id;
+    private String id;
     
     
     private String mime;

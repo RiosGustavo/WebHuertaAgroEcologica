@@ -90,7 +90,7 @@ public class ConsumidorServicio {
     
     
        @Transactional
-    public void modificarConsumidor(MultipartFile archivo, String id, String idHuerta, String idCultivo, String nombreConsumidor, String dni,
+    public void modificarConsumidor(MultipartFile archivo, String id,  String nombreConsumidor, String dni,
             String direccion) throws MiException, Exception {
 
         Optional<Consumidor> respuesta = consumidorRepositorio.findById(id);
@@ -105,18 +105,18 @@ public class ConsumidorServicio {
 
             Consumidor consumidor = respuesta.get();
 
-            Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
-            Optional<Cultivo> respuestaCosecha = cultivoRepositorio.findById(idCultivo);
+//            Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
+//            Optional<Cultivo> respuestaCosecha = cultivoRepositorio.findById(idCultivo);
 
-            if (respuestaHuerta.isPresent()) {
-                Huerta huertas = respuestaHuerta.get();
-                consumidor.setHuertas((List<Huerta>) huertas);
-            }
-
-            if (respuestaCosecha.isPresent()) {
-                Cultivo cultivos = respuestaCosecha.get();
-                 consumidor.setCultivos((List<Cultivo>) cultivos);
-            }
+//            if (respuestaHuerta.isPresent()) {
+//                Huerta huertas = respuestaHuerta.get();
+//                consumidor.setHuertas((List<Huerta>) huertas);
+//            }
+//
+//            if (respuestaCosecha.isPresent()) {
+//                Cultivo cultivos = respuestaCosecha.get();
+//                 consumidor.setCultivos((List<Cultivo>) cultivos);
+//            }
 
             consumidor.setNombreConsumidor(nombreConsumidor);
             consumidor.setDni(dni);

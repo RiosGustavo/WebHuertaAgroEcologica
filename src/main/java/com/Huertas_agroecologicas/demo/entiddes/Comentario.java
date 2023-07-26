@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -46,14 +47,23 @@ public class Comentario {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date fechaPublicacion;
+
     
     @ManyToOne
+    @JoinColumn(name = "id")
+    private Usuario Usuario;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "id")
     private Consumidor consumidor;
 
     @ManyToOne
+    @JoinColumn(name = "idHuerta")
     private Huerta huerta;
 
     @ManyToOne
+    @JoinColumn(name = "idCultivo")
     private Cultivo cultivo;
 
 }

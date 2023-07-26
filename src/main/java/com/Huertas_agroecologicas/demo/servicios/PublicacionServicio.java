@@ -4,11 +4,14 @@
  */
 package com.Huertas_agroecologicas.demo.servicios;
 
+import com.Huertas_agroecologicas.demo.entiddes.Consumidor;
 import com.Huertas_agroecologicas.demo.entiddes.Cultivo;
 import com.Huertas_agroecologicas.demo.entiddes.Huerta;
 import com.Huertas_agroecologicas.demo.entiddes.Imagen;
 import com.Huertas_agroecologicas.demo.entiddes.Publicacion;
+import com.Huertas_agroecologicas.demo.entiddes.Usuario;
 import com.Huertas_agroecologicas.demo.excepciones.MiException;
+import com.Huertas_agroecologicas.demo.repositorios.ConsumidorRepositorio;
 import com.Huertas_agroecologicas.demo.repositorios.HuertaRepositorio;
 import com.Huertas_agroecologicas.demo.repositorios.ImagenRepositorio;
 import com.Huertas_agroecologicas.demo.repositorios.PublicacionRepositorio;
@@ -23,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.Huertas_agroecologicas.demo.repositorios.CultivoRepositorio;
+import com.Huertas_agroecologicas.demo.repositorios.UsuarioRepositorio;
 
 /**
  *
@@ -33,6 +37,9 @@ public class PublicacionServicio {
 
     @Autowired
     private PublicacionRepositorio publicacionRepositorio;
+    
+    @Autowired
+    private UsuarioRepositorio usuarioRepositorio;
 
     @Autowired
     private ImagenServicio imagenServicio;
@@ -42,16 +49,24 @@ public class PublicacionServicio {
 
     @Autowired
     private CultivoRepositorio cultivohaRepositorio;
+    
+    @Autowired
+    private ConsumidorRepositorio consumidorRepositorio;
 
     @Transactional
-    public void crearPublicacion(MultipartFile archivo, String titulo, String descripcion, String cuerpo, String youtubeUrl, String idHuerta, String idCultivo) throws MiException, Exception {
+    public void crearPublicacion(MultipartFile archivo, String titulo, String descripcion, String cuerpo, 
+            String youtubeUrl, Usuario usuario ,String idHuerta, String idCultivo) throws MiException, Exception {
 
-        validar(archivo, titulo, descripcion, cuerpo);
-
+        
+        if (usuario.getRoles().equals("ROLE_ADM") || usuario.getRoles().equals("ROLE_PRO") || usuario.getRoles().equals("ROLE_CON")) {
+            
+            
         Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
-
         Optional<Cultivo> respuestaCultivo = cultivohaRepositorio.findById(idCultivo);
-
+        Optional<Usuario> respuestaUsuario = usuarioRepositorio.findById(usuario.getId());
+        
+        
+        
         Publicacion publicacion = new Publicacion();
 
         publicacion.setTitulo(titulo);
@@ -72,13 +87,17 @@ public class PublicacionServicio {
         if (respuestaHuerta.isPresent()) {
             publicacion.setHuerta(respuestaHuerta.get());
         }
-
         if (respuestaCultivo.isPresent()) {
             publicacion.setCultivo(respuestaCultivo.get());
         }
-
+        
+        if (respuestaUsuario.isPresent()) {
+            publicacion.setUsuario(usuario);
+                    
+        }
+        
         publicacionRepositorio.save(publicacion);
-
+        }
     }
 
     /// CON ESTE METODO OBTENEMOS EL IDENTIFICADOR DEL VIDEO DE YOUTUBE EL CUAL QUEREMOS AGREGAR A LA NOTICIA

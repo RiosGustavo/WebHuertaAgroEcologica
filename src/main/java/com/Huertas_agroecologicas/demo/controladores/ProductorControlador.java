@@ -67,7 +67,7 @@ public class ProductorControlador {
         try {
             productorServicio.modificarProductor(archivo, id, NombreProductor, dni, direccion);
             modelo.put("exito", "datos actualizados correctamente");
-            modelo.addAttribute("proudctor", productor);
+            modelo.addAttribute("productor", productor);
             
             return "perfil_productor.html";
         } catch (Exception e) {

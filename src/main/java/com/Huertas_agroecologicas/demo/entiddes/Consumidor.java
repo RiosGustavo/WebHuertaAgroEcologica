@@ -5,10 +5,12 @@
 package com.Huertas_agroecologicas.demo.entiddes;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -33,6 +35,9 @@ public class Consumidor extends Usuario {
     private String dni;
     private String direccion;
 
+    @OneToMany(mappedBy = "consumidor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Publicacion> publicaciones;
+    
     
     
     @ManyToMany
@@ -48,6 +53,7 @@ public class Consumidor extends Usuario {
             inverseJoinColumns = @JoinColumn(name = "idHuerta"))
     private List<Huerta> huertas;
     
+        
     
     //// hemos utilizado las anotaciones @ManyToMany, @JoinTable, @JoinColumn, @Entity e @Id para establecer 
     /// la relación Many-to-Many entre Consumidor, Huerta y Cultivo. La tabla de unión entre Consumidor y Huerta se llama consumidor_huerta, 

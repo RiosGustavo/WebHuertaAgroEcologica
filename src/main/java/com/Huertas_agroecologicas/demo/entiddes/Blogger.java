@@ -28,7 +28,6 @@ public class Blogger extends Usuario {
 
     private String nombreApellido;
     private String dni;
-    private Integer voto;
     private String direccion;
     
     @OneToMany

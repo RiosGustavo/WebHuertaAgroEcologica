@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -53,11 +55,24 @@ public class Publicacion {
     private Imagen imagen;
     private String video;
     private Boolean altaBaja;
-
-    @OneToOne
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Usuario Usuario;
+    
+     @ManyToOne
+    @JoinColumn(name = "id")
+    private Productor productor;
+     
+     
+    
+    @ManyToOne
+    @JoinColumn(name = "idHuerta")
     private Huerta huerta;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "idCultivo")
     private Cultivo cultivo;
 
 }
