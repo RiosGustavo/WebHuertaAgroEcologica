@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Huertas Agroecologicas</title>
+    <link rel="stylesheet" href="../css/login.css" />
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+    <!-- Fontawesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container w-75 mt-4 mb-3 rounded shadow">
+        <!--  Crea un contenedor con clases de Bootstrap que define el ancho del 75% (w-75) 
+            y agrega márgenes arriba (mt-4) y abajo (mb-3). También agrega esquinas redondeadas (rounded) 
+            y sombras (shadow)..-->
+        <div class="row align-items-lg-strech"> <!-- Crea una fila de Bootstrap que alinea los 
+            elementos verticalmente en dispositivos grandes (align-items-lg-stretch).-->
+            <div class="row bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6"></div> <!--Esta etiqueta crea una columna con un fondo (bg)
+                 que será visible solo en dispositivos grandes (d-lg-block) y se ocultará en dispositivos más pequeños (d-none).
+                  La columna tendrá un ancho de 5 columnas en dispositivos medianos (col-md-5) y grandes (col-lg-5) 
+                  y un ancho de 6 columnas en dispositivos extra grandes (col-xl-6).-->
+            <div class="col bg-white p-3 rounded-end"> <!--Crea una columna de Bootstrap con fondo blanco (bg-white), espaciado interno (p-3) 
+                y bordes redondeados en el extremo derecho (rounded-end).-->
+                <div th:replace="/fragments/msjes-error-exito :: div"></div> <!-- Reemplaza esta etiqueta <div> con el contenido del fragmento "div" 
+                    ubicado en el archivo "/fragments/msjes-error-exito.html". Los fragmentos permiten reutilizar ciertos componentes de la página en diferentes lugares.-->
+                <h2 class="fw-bold text-center py-5"> ¡Bienvenido!</h2> <!--Crea un encabezado (<h2>) centrado y en negrita (fw-bold) que muestra el mensaje 
+                    "¡Bienvenido!" con un espaciado superior e inferior de 5 unidades (py-5).-->
+
+                <!--LOGIN-->
+
+                <form th:action="@{/loginCheck}" method="POST"> <!--Inicia un formulario con un atributo th:action que apunta a la ruta "/loginCheck" y un método method="POST". -->
+
+                    <div class="mb-3"> <!--Crea un contenedor con margen inferior (mb-3).-->
+                        <label for="email" class="form-label"> correo electronico</label> <!-- Crea una etiqueta <label> con el texto "correo electrónico"
+                             que se asocia al campo de entrada con el atributo for="email".-->
+                        <input type="email" class="form-control" name="email" th:value="${email}"> <!-- Crea un campo de entrada de tipo email con la clase form-control de Bootstrap 
+                            y un atributo name="email" que permite que el valor del campo se envíe al servidor como "email". Utiliza una expresión de Thymeleaf ${email} para establecer el valor del campo, 
+                            que probablemente provenga de una variable en el controlador.-->
+                    </div>
+
+                    <div class="mb-3"> <!--Crea un contenedor con margen inferior (mb-3).-->
+                        <label for="password" class="form-label"> Contraseña </label> <!--Crea una etiqueta <label> con el texto "Contraseña" 
+                            que se asocia al campo de entrada con el atributo for="password".-->
+                        <div class="input-group"> <!-- Crea un grupo de entrada de Bootstrap.-->
+                            <input type="password" class="form-control" name="password" id="passwordInput" />
+                            <!-- Crea un campo de entrada de tipo contraseña con la clase form-control de Bootstrap y un atributo 
+                                name="password" que permite que el valor del campo se envíe al servidor como "password". 
+                                Además, tiene un atributo id="passwordInput" que se utilizará más adelante en el código JavaScript.-->
+                            <button class="btn btn-light" type="button" id="togglePassword">
+                                <!-- Crea un botón con la clase btn btn-light de Bootstrap y un atributo type="button".
+                                     Además, tiene un atributo id="togglePassword" que se utilizará más adelante en el código JavaScript.-->
+                                <i class="fa fa-eye"></i> <!--Crea un icono de Font Awesome con la clase fa fa-eye, que es un ícono de ojo-->
+                            </button>
+                        </div>
+                    </div>
+
+                    <!--Crea un enlace (<a>) que apunta a "/forgot_password" con el texto "¿Olvidaste tu contraseña?" 
+                        y una clase de texto primario (text-primary) y margen inferior (mb-3).-->
+                    <a href="/forgot_password" type="button" class="text-primary mb-3">¿Olvidaste tu contraseña?</a>
+
+                    <div class="d-grid mb-3"> <!--Crea un contenedor de cuadrícula con margen inferior.de 3-->
+                        <button type="submit" class="btn btn-primary"> <!-- Crea un botón de envío (type="submit") con la clase btn btn-primary de Bootstrap.-->
+                            Iniciar Sesion
+                        </button>
+                    </div>
+
+                    <div class="mb-3 text-center"> <!--Crea un contenedor con margen inferior y alinea el contenido al centro.-->
+                        <!--Crea un párrafo que pregunta si el usuario no es miembro de "Huerta Agroecológica" 
+                            y utiliza un span con clases de Bootstrap (fw-bold text-success) para resaltar el texto.-->
+                        <p>¿Todavia no eres miembro de <span class="fw-bold text-success"> Huerta Agroecologica</span>?
+                        </p>
+                        <!-- Crea un enlace (<a>) que apunta a "/registrar" con el texto "Registrarme".-->
+                        <a href="/registrar">Registrarme</a>
+                    </div>
+                </form>
+
+                <!-- LOGIN CON REDES SOCIALES-->
+
+                <div class="container w-100 my-5">
+                    <div class="row text-center">
+                        <div class="col-12">Iniciar sesión</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-outline-primary w-100 my-1">
+                                <div class="row align-items-center">
+                                    <div class="col-2 d-none d-md-block">
+                                        <i class="fab fa-facebook fa-lg mx-2"></i>
+                                    </div>
+                                    <div class="col-12 col-md-9 text-center">Facebook</div>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-outline-danger w-100 my-1">
+                                <div class="row align-items-center">
+                                    <div class="col-2 d-none d-md-block">
+                                        <i class="fab fa-google fa-lg mx-2"></i>
+                                    </div>
+                                    <div class="col-12 col-md-9 text-center">Google</div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+
+    <!-- MENSAJES PARA EL FORMULARIO -->
+    <script src="../js/mensajeFormulario.js" />
+    </script>
+    <Script>
+        const passwordInput = document.getElementById('passwordInput'); /// Crea una constante llamada passwordInput y la asigna al elemento del DOM con el id="passwordInput" (el campo de contraseña).
+        const togglePassword = document.getElementById('togglePassword'); /// Crea una constante llamada togglePassword y la asigna al elemento del DOM con el id="togglePassword" (el botón para mostrar/ocultar la contraseña).
+
+        //// Agrega un evento de clic al botón togglePassword. Cuando se haga clic en el botón, se ejecutará la función anónima definida dentro del bloque de código { ... }.
+        //// Crea una constante llamada type y la asigna al valor del atributo type del campo de contraseña. Si el atributo type es igual a 'password', 
+        /// la constante type será igual a 'text', lo que mostrará la contraseña. 
+        /// De lo contrario, type será igual a 'password', lo que ocultará la contraseña.
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type); //// Establece el atributo type del campo de contraseña al valor de la constante type. Esto mostrará u ocultará la contraseña según la lógica definida en el paso anterior
+            togglePassword.querySelector('i').classList.toggle('fa-eye');  ///Utiliza el método querySelector para seleccionar el icono de ojo (<i>) dentro del botón togglePassword y agrega o quita la clase 'fa-eye'.
+                                                                           ///  Esto cambiará el icono entre el ojo abierto y cerrado de Font Awesome.
+            togglePassword.querySelector('i').classList.toggle('fa-eye-slash')  /// Utiliza el método querySelector para seleccionar el icono de ojo (<i>) 
+                                                                                /// dentro del botón togglePassword y agrega o quita la clase 'fa-eye-slash'. Esto cambiará el icono entre el ojo abierto y cerrado de Font Awesome.
+
+        })
+    </Script>
+
+</body>
+
+</html>
