@@ -6,4 +6,622 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 21/07/2023, 7:28:46 p. m.
     Author     : User
 */
+/* RESET CSS*/
+
+html{
+    margin: 0;
+    padding:0;
+    border:0;
+    font-size: 100%;
+    font:inherit;
+    vertical-align: baseline;
+}
+
+body{
+    background-color: rgba(85,166,48,1)!important;
+}
+
+@font-face{
+    font-family: Rigtheous;
+    src: url(../fonts/Righteous-Regular.ttf);
+}
+
+@font-face {
+    font-family: "croogla";
+    src: url("../fonts/croogla.ttf") format("truetype");
+}
+
+.croogla{
+    font-family: "croogla",Arial, sans-serif;
+    font-size: 90px !important;
+    color: #80b918 !important;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    text-decoration: underline;
+       
+}
+
+.imagenNavbar {
+
+    width: 50px;
+    height: 50px;
+    margin-left: 0.5rem;
+    padding: auto;
+
+}
+
+/*.navbar: Esto selecciona cualquier elemento con la clase "navbar". Es probable que sea una clase que se utilice para crear una barra de navegación en un sitio web.
+
+.container-fluid: Esta clase se aplica a un elemento que tiene un ancho fluido, lo que significa que ocupará todo el ancho del contenedor que lo contiene.
+
+#navbarNav: Este selecciona un elemento con el ID "navbarNav". Un ID debe ser único en el documento HTML, por lo que solo debe haber un elemento con este ID en la página.
+
+.nav-item: Esto selecciona cualquier elemento con la clase "nav-item". Probablemente, estos elementos sean los elementos de la lista de navegación dentro de la barra de navegación.
+
+.nav-link:hover: Esto selecciona cualquier enlace con la clase "nav-link" cuando se coloca el cursor del ratón sobre él (cuando está en estado de "hover").
+
+Las siguientes líneas son las propiedades CSS aplicadas a los elementos seleccionados:
+
+text-decoration: underline !important;: Esta línea agrega un subrayado al texto del enlace cuando el cursor del ratón se coloca sobre él. El !important es una declaración que indica que esta regla tiene prioridad sobre otras reglas que puedan afectar al mismo elemento, incluso si se definen más tarde en el CSS.
+
+color: #80b918;: Esto establece el color del texto del enlace a un tono verde (#80b918) cuando el cursor del ratón se coloca sobre él.
+
+transition: 0.5s !important;: Esta línea aplica una transición suave de 0.5 segundos para cambiar de manera gradual las propiedades CSS (en este caso, el subrayado y el color del texto) cuando el cursor del ratón entra y sale del enlace. Nuevamente, el !important se utiliza para dar prioridad a esta regla sobre otras posibles transiciones definidas en otro lugar.
+
+En resumen, este código CSS se aplica a elementos específicos dentro de una barra de navegación y cambia la apariencia del enlace cuando se coloca el cursor del ratón sobre él, añadiendo un subrayado y cambiando el color del texto de manera suave.
+
+
+
+
+*/
+
+.navbar .container-fluid #navbarNav .nav-item .nav-link:hover {
+    text-decoration: underline !important;
+    color: #80b918;
+    transition: 0.5s !important;
+}
+
+footer .nav .item2 .link2 {
+    text-decoration: none !important;
+    color: #80b918 !important;
+    transition: 0.5s !important;
+}
+
+#navbarNavDarkDropdown .navbar-nav .nav-item .dropdown-menu a:hover {
+    text-decoration: underline !important;
+    color: #80b918;
+    transition: 0.5s !important;
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: #80b918;
+    transition: 0.5s;
+}
+
+/* PRESENTACION*/
+
+.text-center {
+    transition: height 0.3s ease;
+}
+
+.text-pre {
+    font-family: "croogla";
+    color: #80b918;
+    font-size: 70px;
+    text-shadow: #020201;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+.text-camp2 {
+    font-family: "croogla";
+    color: #80b918;
+    font-size: 50px;
+    text-shadow: #020201;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
+}
+
+.text-camp {
+    font-family: "croogla";
+    color: #80b918;
+    font-size: 50px;
+    text-shadow: #020201;
+    text-decoration: underline;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
+}
+
+.text-center .col-lg-7 .lead {
+    font-weight: bold;
+}
+
+#tituloPresentacion {
+    animation: mover-abajo-arriba 2s 1;
+}
+
+
+.huertaPost.mover-izquierda-derecha {
+    animation: mover-derecha-izquierda 5s 1, forwards;
+}
+
+.huertaPost.mover-derecha-izquierda {
+    animation: mover-izquierda-derecha 5s 1, forwards;
+}
+
+
+/*ACA SE CENTRA EL BOTON DE CARGAR MAS LISTAS*/
+
+#btn-cargar-mas {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding:10px;
+    margin-left: 70px;
+}
+
+/*FOOTER*/
+#footerClass .nav .nav-item .nav-link:hover {
+
+    color: #80b918 !important;
+    transition: 0.5s;
+}
+
+
+/*Boton para ir arriba*/
+
+/*footer #ir-arriba: Esta regla CSS selecciona un elemento con el ID "ir-arriba" que esté contenido dentro de un elemento "footer". Los selectores CSS se utilizan para aplicar estilos a elementos específicos en el documento HTML.
+
+display:none;: Esto oculta el elemento con ID "ir-arriba". Si el elemento estuviera visible por defecto, esta propiedad lo haría desaparecer.
+
+padding:10px !important;: Establece un espacio de relleno de 10 píxeles alrededor del contenido del elemento. El !important al final hace que esta propiedad tenga prioridad sobre otras reglas que puedan afectar el mismo elemento.
+
+background:#80b918;: Asigna un color de fondo al elemento con el ID "ir-arriba". En este caso, el color es un verde claro (#80b918).
+
+font-size:40px !important;: Establece el tamaño de fuente del texto dentro del elemento con ID "ir-arriba" a 40 píxeles. Al igual que en la línea anterior, el !important le da prioridad sobre otras reglas.
+
+color:#fff;: Establece el color del texto dentro del elemento con ID "ir-arriba" en blanco (#fff), lo que significa que el texto será de color blanco.
+
+cursor:pointer;: Cambia el cursor del mouse cuando está sobre el elemento con ID "ir-arriba" a una mano (que generalmente se asocia con enlaces o elementos interactivos).
+
+position: fixed;: Esta propiedad establece que el elemento se posicionará de manera fija en la ventana del navegador. No se moverá a medida que se desplace la página.
+
+bottom:20px !important;: Establece una distancia de 20 píxeles entre el borde inferior del elemento y el borde inferior de la ventana del navegador. Al igual que en líneas anteriores, el !important le da prioridad.
+
+right:20px !important;: Establece una distancia de 20 píxeles entre el borde derecho del elemento y el borde derecho de la ventana del navegador. El !important también se aplica aquí.
+
+En resumen, este código CSS define un estilo para un elemento con el ID "ir-arriba" que se encuentra dentro de un elemento "footer". El elemento tiene un botón oculto con fondo verde claro y texto blanco. Cuando se muestra, el botón se fija en la parte inferior derecha de la ventana del navegador y muestra una mano al pasar el cursor sobre él. El botón también tiene un relleno de 10 píxeles alrededor del contenido y un tamaño de fuente de 40 píxeles.*/
+footer #ir-arriba {
+    display:none;
+    padding:10px !important;
+    background:#80b918;
+    font-size:40px !important;
+    color:#fff;
+    cursor:pointer;
+    position: fixed;
+    bottom:20px !important;
+    right:20px !important;
+}
+
+/*KEYFRAMES DE TRANCICIONES*/
+
+/*TRANSICION DE PRESENTACION*/
+
+/*@keyframes mover-abajo-arriba {: Esto define un conjunto de reglas de animación que se puede reutilizar con el nombre "mover-abajo-arriba".
+
+from {: Esta es la primera etapa de la animación, que indica cómo se verá el elemento al comienzo de la animación.
+
+transform: translatey(100px);: Esta propiedad de transformación translatey desplaza verticalmente el elemento hacia abajo en 100 píxeles.
+
+}: Cierra la regla para la primera etapa de la animación.
+
+to {: Esta es la segunda etapa de la animación, que indica cómo se verá el elemento al final de la animación.
+
+transform: translatey(0px);: Aquí, el elemento regresa a su posición original, es decir, no hay desplazamiento vertical (translatey) ya que el valor es 0 píxeles.*/
+
+@keyframes mover-abajo-arriba {
+    from {
+        transform: translatey(100px);
+    }
+    to {
+        transform: translatey(0px);
+    }
+}
+
+
+/*TRANSICION DE NOTICIAS*/
+
+/*@keyframes mover-izquierda-derecha {: Similar al primer bloque, esto define otro conjunto de reglas de animación con el nombre "mover-izquierda-derecha".
+
+from {: Define cómo se ve el elemento al comienzo de esta animación.
+
+transform: translatex(-100px);: Esta propiedad de transformación translatex desplaza horizontalmente el elemento hacia la izquierda en 100 píxeles.
+
+}: Cierra la regla para la primera etapa de la animación.
+
+to {: Define cómo se verá el elemento al final de esta animación.
+
+transform: translatex(0px);: Aquí, el elemento regresa a su posición original, es decir, no hay desplazamiento horizontal (translatex) ya que el valor es 0 píxeles.
+
+}: Cierra la regla para la segunda etapa de la animación.
+
+}: Cierra la regla @keyframes mover-izquierda-derecha.*/
+
+
+@keyframes mover-izquierda-derecha {
+    from {
+        transform: translatex(-100px);
+    }
+    to {
+        transform: translatex(0px);
+    }
+}
+
+
+@keyframes mover-derecha-izquierda {
+    from {
+        transform: translatex(100px);
+    }
+    to {
+        transform: translatex(0px);
+    }
+}
+
+/*-------------------Animación mensajes de error y/o exito  ------------------------------*/
+
+/* .alert {
+Este es un selector de clase. Está aplicando estilos a elementos que tengan la clase "alert". En HTML, puedes agregar esta clase a elementos como <div> para estilizarlos.
+
+display: none;
+Establece la propiedad CSS display en none, lo que significa que inicialmente los elementos con la clase "alert" estarán ocultos en la página.
+
+animation-duration: 1s;
+Define la duración de la animación en 1 segundo. Es decir, las animaciones aplicadas a los elementos con la clase "alert" tendrán una duración de 1 segundo.
+
+animation-fill-mode: forwards;
+Esto establece la propiedad animation-fill-mode en forwards. Cuando la animación finaliza, los estilos del último fotograma se mantienen en el elemento. En este caso, una vez que la animación termine, el elemento permanecerá con los estilos del último fotograma de la animación (visible en este caso).
+
+.alert.animated.fadeIn {
+Esta es una regla de estilo más específica. Se aplica a elementos que tienen tanto la clase "alert" como la clase "animated" y además la clase "fadeIn". Por lo tanto, esta regla de estilo se aplicará a elementos con la clase "alert" que también tengan las clases "animated" y "fadeIn".
+
+animation-name: fadeIn;
+Establece el nombre de la animación a "fadeIn". Esto indica qué animación se aplicará a los elementos que cumplan con la regla anterior.
+
+.alert.animated.fadeOut {
+Similar a la línea 6, esta regla de estilo se aplica a elementos que tienen la clase "alert", la clase "animated" y la clase "fadeOut".*/
+
+
+.alert {
+
+    display: none;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.alert.animated.fadeIn {
+    animation-name: fadeIn;
+}
+
+.alert.animated.fadeOut {
+    animation-name: fadeOut;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/*Muestra el mensaje por encima de los elementos*/
+.error-container {
+    position: absolute !important;
+
+}
+.form-container {
+    position: absolute;
+}
+
+/*-------------------------------------------------------Cards----------------------------------------------------------*/
+
+
+/*aca se controla la imagen del listado de huertas y cultivos  en el huerta_list  y cultvio_list*/
+.row .col-md-5 .bd-placeholder-img{
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+
+}
+.row .col-md-5 .imagen-container {
+    width: 100%;
+    height: 200px; /* Ajusta el tamaño deseado para las imágenes */
+    overflow: hidden;
+}
+
+.row .col-md-5 .imagen-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+
+/*aca se controla la imagen del listado de huertas y cultivos  en el index*/
+
+/*.row .col-md-6 .row-cols-1 .col .card .card-image: Esta es una regla de selección de CSS que se aplica a un elemento con la clase "card-image" dentro de otro elemento con la clase "card", que a su vez está dentro de un elemento con la clase "col", que está dentro de un elemento con la clase "row-cols-1", que a su vez está dentro de un elemento con la clase "col-md-6", y, finalmente, este último elemento debe estar dentro de un elemento con la clase "row". En resumen, es una regla bastante específica para seleccionar un elemento con la clase "card-image" dentro de una estructura específica de clases de anidamiento.
+
+{: Este es el inicio del bloque de declaración, donde se especifican las propiedades CSS y sus valores que se aplicarán a los elementos seleccionados anteriormente.
+
+width: 300px;: Establece el ancho del elemento con la clase "card-image" a 300 píxeles.
+
+height: 200px;: Establece la altura del elemento con la clase "card-image" a 200 píxeles.
+
+object-fit: cover;: Esta propiedad CSS controla cómo se ajusta el contenido del elemento con la clase "card-image" dentro de su caja. El valor "cover" hace que la imagen cubra completamente el área del elemento, sin distorsionarla, y recortando cualquier parte sobrante.
+
+max-width: 100%;: Esta propiedad asegura que el ancho máximo del elemento con la clase "card-image" no exceda el 100% del ancho de su contenedor. Esto es útil para asegurarse de que la imagen no se desborde si el contenedor es más pequeño que la imagen original.
+
+max-height: 100%;: Similar a la propiedad anterior, esta regla establece la altura máxima del elemento con la clase "card-image" para que no exceda el 100% de la altura de su contenedor.
+
+}: Este es el final del bloque de declaración, donde se detallan todas las propiedades y valores que se aplicarán al elemento seleccionado.
+
+En resumen, este código CSS se aplica a un elemento con la clase "card-image" que se encuentra dentro de una estructura específica de clases de anidamiento (.row .col-md-6 .row-cols-1 .col .card .card-image). Establece un ancho y una altura fija para el elemento, lo hace cubrir completamente su contenedor, y garantiza que no exceda el tamaño de su contenedor si este es más pequeño que la imagen original. Esto suele usarse para lograr un diseño de cuadrícula o mosaico de imágenes en una página web.*/
+
+
+.row .col-md-6 .row-cols-1 .col .card .card-image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+/*Para mostrar todos los elementos hijos a la misma altura en todas las cards*/
+#body-card-tamaño-pequeño {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#img-card-tamaño-pequeño {
+    height: 250px; /* altura de imagen fija para todas las cards */
+    object-fit: cover; /* para asegurarte de que la imagen se ajuste al tamaño que necesitas */
+}
+#card-tamaño-pequeño {
+    height: 420px !important; /* altura de las cards fija */
+}
+
+/* Para todas las cards, aplicamos color negro en los textos y que no tenga ninguna decoracion */
+.a-card {
+    text-decoration: none !important;
+    color: black;
+}
+/* Al pasar el cursor se subraya el texto del titulo */
+.a-subrayado:hover {
+    text-decoration: underline !important;
+}
+
+/* Al pasar el cursor se subraya el periodista en otro color */
+.card-votante:hover {
+    text-decoration: underline !important;
+    color: goldenrod;
+}
+
+
+
+/*-------------------------------------------------------Accordion cards panel admin----------------------------------------------------------*/
+
+/* button.accordion-button:not(.collapsed) {
+Esta línea se refiere a una regla de estilo que se aplica a los botones con la clase "accordion-button" que no tienen la clase "collapsed".
+
+button: Es el selector que indica que esta regla se aplicará a elementos de tipo "button".
+.accordion-button: Es un selector de clase que apunta a elementos con la clase "accordion-button".
+:not(.collapsed): Es un selector de negación que indica que esta regla se aplicará solo a elementos que no tienen la clase "collapsed".
+En resumen, esta primera línea selecciona los botones con la clase "accordion-button" que no tienen la clase "collapsed".
+
+{ background-color: transparent; }
+Esta línea establece la propiedad background-color de los botones seleccionados en "transparente". Esto significa que el fondo del botón será transparente, lo que puede ser útil para crear efectos visuales o permitir que el fondo de otros elementos se vea a través del botón.
+
+button.accordion-button:focus {
+Esta línea se refiere a una regla de estilo que se aplica a los botones con la clase "accordion-button" cuando están enfocados (es decir, cuando el usuario ha interactuado con el botón y lo ha seleccionado).
+
+{ outline: none;
+Aquí, la propiedad outline se establece en "none", lo que significa que se elimina el contorno (o borde resaltado) que generalmente se muestra alrededor de un elemento enfocado. Esto es útil para eliminar efectos visuales no deseados en algunos navegadores cuando un botón está enfocado.
+
+box-shadow: none; }
+La propiedad box-shadow también se establece en "none", lo que significa que se elimina cualquier sombra que se haya aplicado al botón cuando está enfocado. Esto se usa para asegurarse de que no haya ninguna sombra visible alrededor del botón cuando está enfocado.
+
+En resumen, el código CSS proporciona estilos para botones de tipo "button" con la clase "accordion-button", y realiza algunos ajustes visuales para los botones que no tienen la clase "collapsed", haciéndolos transparentes y eliminando contornos y sombras cuando están enfocados. Esto puede ser útil para mejorar la apariencia y la experiencia de usuario en un componente de acordeón.*/
+
+button.accordion-button:not(.collapsed) {
+    background-color: transparent;
+}
+
+button.accordion-button:focus {
+    outline: none;
+    box-shadow: none;
+
+}
+
+
+
+/*-------------------------------------------------------Texto cambiar foto perfil en perfil de usuario----------------------------------------------------------*/
+
+/*.custom-file-input: Esta es una clase CSS que se utiliza para estilizar un componente de entrada de archivo (<input type="file">) personalizado. La clase se aplicará al elemento HTML que desees estilizar de esta manera.
+
+position: relative;: Establece la posición del elemento como relativa. Esto significa que las propiedades de posicionamiento, como left y top, se aplicarán con respecto a la posición normal del elemento en el flujo del documento.
+
+display: inline-block;: Hace que el elemento se muestre como un bloque en línea. Esto permite que otros elementos se muestren en la misma línea que este elemento, pero aún así, se comporta como un bloque, lo que significa que puede tener ancho y altura.
+
+cursor: pointer;: Cambia el cursor del ratón a una mano con un ícono de dedo señalando. Esto indica que el elemento es interactivo y se puede hacer clic.
+
+color: blue;: Establece el color del texto dentro del elemento a azul.*/
+
+.custom-file-input {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: blue ;
+
+}
+
+/*.custom-file-input input[type="file"]: Esta es una regla de CSS que se aplica a un elemento <input type="file"> que se encuentre dentro de un elemento con la clase .custom-file-input. Es una regla anidada que se aplica solo a los elementos que cumplan con estos criterios.
+
+position: absolute;: Establece la posición del elemento como absoluta. Esto hace que el elemento se posicione en relación con su contenedor más cercano que tenga una posición distinta de "static" (por ejemplo, con position: relative;).
+
+left: 0;: Establece la posición izquierda del elemento como 0, lo que significa que estará alineado a la izquierda del contenedor que lo contiene.
+
+top: 0;: Establece la posición superior del elemento como 0, lo que significa que estará alineado en la parte superior del contenedor que lo contiene.
+
+opacity: 0;: Establece la opacidad del elemento como 0, lo que lo hace completamente transparente y, por lo tanto, invisible.
+
+width: 100%;: Establece el ancho del elemento al 100% del ancho de su contenedor.
+
+height: 100%;: Establece la altura del elemento al 100% de la altura de su contenedor.
+
+cursor: pointer;: Cambia el cursor del ratón a una mano con un ícono de dedo señalando. Esto también indica que el elemento es interactivo y se puede hacer click.*/
+
+/*En resumen, este código CSS se utiliza para estilizar un elemento de entrada de archivo (<input type="file">) 
+personalizado con la clase .custom-file-input. El texto dentro del elemento se mostrará en azul, 
+y el elemento actuará como un botón para seleccionar archivos. El archivo de entrada real está oculto
+y se ha hecho transparente (opacity: 0;) y se ha ajustado al tamaño del contenedor. Cuando se hace clic en el área visible del elemento, 
+también se activa el clic en el botón de entrada de archivo real debido a la superposición de ambos elementos.
+De esta manera, se logra un diseño personalizado para el botón de selección de archivo.*/
+
+.custom-file-input input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+
+/*Este código CSS está diseñado para aplicar estilos específicos cuando se utiliza el tema oscuro en un sitio web.
+Cada regla se aplica a elementos con atributos específicos que coinciden con el tema oscuro.*/
+
+/*[data-bs-theme=dark] .fs-4: Selecciona elementos con la clase .fs-4 dentro de un elemento que tenga el atributo data-bs-theme con el valor "dark". Estos elementos recibirán el siguiente estilo:
+
+color: #fff!important;: Se establece el color de texto en blanco (#fff) y se utiliza !important para darle prioridad sobre otras reglas de estilo.
+[data-bs-theme=dark] .croogla: Selecciona elementos con la clase .croogla dentro de un elemento que tenga el atributo data-bs-theme con el valor "dark". Estos elementos recibirán el siguiente estilo:
+
+color: #fff!important;: Se establece el color de texto en blanco (#fff) y se utiliza !important para darle prioridad sobre otras reglas de estilo.*/
+
+
+[data-bs-theme=dark] .fs-4{
+  color: #fff!important;
+  font-family: "croogla", Arial, sans-serif; 
+}
+[data-bs-theme=dark] .croogla{
+  color: #fff!important;
+  
+}
+
+
+/*[data-bs-theme=dark] #comentarios: Selecciona el elemento con el ID comentarios dentro de un elemento que tenga el atributo data-bs-theme con el valor "dark". Este elemento recibirá el siguiente estilo:
+
+background-color: #212529!important;: Se establece el color de fondo en #212529 (un tono oscuro) y se utiliza !important para darle prioridad sobre otras reglas de estilo.
+[data-bs-theme=dark] .card-body .mb-0: Selecciona elementos con la clase .mb-0 dentro de elementos con la clase .card-body dentro de un elemento que tenga el atributo data-bs-theme con el valor "dark". Estos elementos recibirán el siguiente estilo:
+
+color: #fff!important;: Se establece el color de texto en blanco (#fff) y se utiliza !important para darle prioridad sobre otras reglas de estilo.
+[data-bs-theme=dark] .card-body .pb-2: Selecciona elementos con la clase .pb-2 dentro de elementos con la clase .card-body dentro de un elemento que tenga el atributo data-bs-theme con el valor "dark". Estos elementos recibirán el siguiente estilo:
+
+color: #fff!important;: Se establece el color de texto en blanco (#fff) y se utiliza !important para darle prioridad sobre otras reglas de estilo.
+[data-bs-theme=dark] .card-footer .mb-0: Selecciona elementos con la clase .mb-0 dentro de elementos con la clase .card-footer dentro de un elemento que tenga el atributo data-bs-theme con el valor "dark". Estos elementos recibirán el siguiente estilo:
+
+color: #fff!important;: Se establece el color de texto en blanco (#fff) y se utiliza !important para darle prioridad sobre otras reglas de estilo.
+[data-bs-theme=dark] .card-body .fw-light: Selecciona elementos con la clase .fw-light dentro de elementos con la clase .card-body dentro de un elemento que tenga el atributo data-bs-theme con el valor "dark". Estos elementos recibirán el siguiente estilo:
+
+color: #fff!important;: Se establece el color de texto en blanco (#fff) y se utiliza !important para darle prioridad sobre otras reglas de estilo.
+[data-bs-theme=dark] .card-body .fw-bold: Selecciona elementos con la clase .fw-bold dentro de elementos con la clase .card-body dentro de un elemento que tenga el atributo data-bs-theme con el valor "dark". Estos elementos recibirán el siguiente estilo:
+
+color: #fff!important;: Se establece el color de texto en blanco (#fff) y se utiliza !important para darle prioridad sobre otras reglas de estilo.
+[data-bs-theme=dark] .card-footer: Selecciona elementos con la clase .card-footer dentro de un elemento que tenga el atributo data-bs-theme con el valor "dark". Estos elementos recibirán el siguiente estilo:
+
+background-color: #212529!important;: Se establece el color de fondo en #212529 (un tono oscuro) y se utiliza !important para darle prioridad sobre otras reglas de estilo.
+[data-bs-theme=dark] .container .row .col-md-12 .card hr: Selecciona elementos hr dentro de un elemento con la clase .card que esté contenido dentro de un elemento div con las clases .container, .row, y .col-md-12, todo dentro de un elemento que tenga el atributo data-bs-theme con el valor "dark". Estos elementos recibirán el siguiente estilo:
+
+text-decoration: underline !important;: Se subraya el texto del elemento hr, y se utiliza !important para darle prioridad sobre otras reglas de estilo.
+color: goldenrod;: El color del texto del elemento hr se establece en goldenrod (un tono dorado).
+[data-bs-theme=dark] body: Selecciona el elemento body cuando esté contenido dentro de un elemento que tenga el atributo data-bs-theme con el valor "dark". Este elemento recibirá el siguiente estilo:
+
+background-color: #2E2E2E !important;: Se establece el color de fondo del body en #2E2E2E (un tono más oscuro) y se utiliza !important para darle prioridad sobre otras reglas de estilo. */
+
+[data-bs-theme=dark] #comentarios{
+  background-color: #212529!important;
+}
+
+[data-bs-theme=dark] .card-body .mb-0{
+  color: #fff!important;
+}
+[data-bs-theme=dark] .card-body .pb-2{
+  color: #fff!important;
+}
+[data-bs-theme=dark] .card-footer .mb-0{
+  color: #fff!important;
+}
+[data-bs-theme=dark] .card-body .fw-light{
+  color: #fff!important;
+}
+[data-bs-theme=dark] .card-body .fw-bold{
+  color: #fff!important;
+}
+[data-bs-theme=dark] .card-footer {
+  background-color: #212529!important;
+}
+[data-bs-theme=dark] .container .row .col-md-12 .card hr{
+ text-decoration: underline !important;
+    color: goldenrod;
+}
+
+
+
+[data-bs-theme=dark] body {
+    background-color: #2E2E2E !important;
+}
+
+
+/*En resumen, este código CSS aplica estilos específicos para el tema oscuro, cambiando los colores de fondo y de texto para que se ajusten
+a un esquema de diseño más adecuado para entornos con poca iluminación. 
+La mayoría de los estilos aplican el color de texto en blanco para que el contenido sea legible en un fondo oscuro.*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

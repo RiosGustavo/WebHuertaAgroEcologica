@@ -4,35 +4,132 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
 <html xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/extras/spring-security"
-    data-bs-theme="light">
+      data-bs-theme="light">
 
-<head th:replace="/fragments/head :: head"> </head>
+  
+    <head  th:replace = "/fragments/head :: head"> </head>
 
-<body>
-    <!--en este header se encuentra el nav  <div class="hero"></div>-->
-    <header>
-        <nav th:replace="/fragments/navbar :: nav"></nav>
-    </header>
+    <body>
+        <!--en este header se encuentra el nav  <div class="hero"></div>-->
+        <header>
+            <nav th:replace="/fragments/navbar :: nav"></nav>
+        </header>
 
-    <!--PRESENTACION DE LA PAGINA-->
-    <div class="px-4 py-5 my-2 text-center" id="tituloPresentacion">
-        <h1 class="text-pre">HUERTA AGROECOLOGICA</h1>
-        <div class="col-lg-7 mx-auto">
-            <p class="lead my-2 mb-2 text-body">Bienvenidos:  Buscamos incentivas la práctica agroecológica, con el
-                fin de maximizar la producción, teniendo encuenta la agrobiodiversidad, los tipos de suelo, contextos
-                socioecológicos y la sustentabilidad alimentaria ya que atraves de la agroecologia se puede fomentar
-                la resiliencia ecologica y social de los sistemas productivos.
-                A través de esta aplicación brindaremos herramenta reales de difusión y generación  de conocimiento
-                práctico y conexión entre productores y consumidores.
-                
-                Únete a HuertaAgroecologica para fortalecer tu reputación como líder responsable y contribuir a un futuro más
-                verde.</p>
+        <!--PRESENTACION DE LA PAGINA-->
+        <div class="px-4 py-5 my-2 text-center" id="tituloPresentacion">
+            <h1 class="text-pre">HUERTA AGROECOLOGICA</h1>
+            <div class="col-lg-7 mx-auto">
+                <p class="lead my-2 mb-2 text-body">Bienvenidos:  Buscamos incentivas la práctica agroecológica, con el
+                    fin de maximizar la producción, teniendo encuenta la ag
+                    robiodiversidad, los tipos de suelo, contextos
+                    socioecológicos y la sustentabilidad alimentaria ya que atraves de la agroecologia se puede fomentar
+                    la resiliencia ecologica y social de los sistemas productivos.
+                    A través de esta aplicación brindaremos herramenta reales de difusión y generación  de conocimiento
+                    práctico y conexión entre productores y consumidores.
+
+                    Únete a HuertaAgroecologica para fortalecer tu reputación como líder responsable y contribuir a un futuro más
+                    verde.</p>
+
+            </div>
+        </div>
+
+
+        <!--CARD NOVEDADES-->
+        <hr class="featurette-divider">
+        <h1 class="text-pre text center">Novedades</h1>
+        <br><br>
+        <div class="container marketing">
+
+            <div class="row featurette huetaPost mb-3" th:each="noticia : ${noticias}">
+                <div class="col-md-7">
+                    <h1 class="featurette-heading fw-normal lh-1 text-center" th:text="${noticia.titulo}"></h1>
+                    <p class="lead" th:text="${noticia.descripcion}"></p>
+                    <a th:href="@{/noticia/noticia_one/__${noticia.idNoticia}__}">
+                        <button type="button" class="btn btn-outline-secondary btn-sm px-4">Ver mas</button>
+                    </a>
+                </div>
+                <div class="col-md-5">
+                    <img th:src="@{/imagen/noticia/__${noticia.idNoticia}__}"
+                         class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto mb-3" width="100"
+                         height="300" alt="">
+                </div>
+                <hr class="featurette-divider py-2">
+            </div>
+
+            <hr class="featurette-divider">
+
+            <!-- /END THE FEATURETTES -->
+
+            <!--HUERTAS, CULTIVOS Y PUBLICACIONES-->
 
         </div>
-    </div>
+
+        <div class="">
+            <div class="row ps-4 m-4">
+                <div class="col-md-6">
+                    <h3 class="text-camp text-center pb-4">Huertas</h3>
+                    <div class="row row-cols-1 row-cols-md-2 g-4" >
+                        <div class="col" th:each="huerta : ${huertas}" th:if="${huerta.altaBaja == true}">
+                            <div class="card">
+                                <img th:src="@{/imagen/huerta/__${huerta.idCampana}__}" class="card-img-top img-fluid mx-auto card-image" width="50" height="50" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${huerta.nombreHuerta}">Nombre Huerta</h5>
+                                    <p class="text-huertaList text-secondary" th:text="${'Fecha de Inicio: ' + huerta.fechaAlta}"><i></i></p>
+                                    <a th:href="@{/huerta/huerta_one/__${huerta.idHuerta}__}">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm px-4">Ver más</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <h3 class="text-camp text-center pb-4">Cultivos</h3>
+                    <div class="row row-cols-1 row-cols-md-2 g-4" >
+                        <div class="col" th:each="cultivo : ${cultivos}" th:if="${cultivo.altaBaja == true}">
+                            <div class="card">
+                                <img th:src="@{/imagen/cultivo/__${cultivo.idCultivo}__}" class="card-img-top img-fluid mx-auto card-image" width="50" height="50" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${cultivo.nombreCultivo}">Nombre Cultivo</h5>
+                                    <p class="text-cultivoList text-secondary" th:text="${'Fecha de Inicio: ' + cultivo.fechaAlta}"><i></i></p>
+                                    <a th:href="@{/cultivo/cultivo_one/__${cultivo.idCultivo}__}">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm px-4">Ver más</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+
+                    <div>
+                        <h4 class="fst-italic text-center">Publicaciones recientes</h4>
+
+                        <ul class="list-unstyled " th:each="publicacion : ${publicaciones}" th:if="${publicacion.altaBaja == true}">
+                            <li>
+                                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-4 link-body-emphasis text-decoration-none border-top" th:href= "@{/publicacion/publicacion_one/__${publicacion.idPublicacion}__} ">
+                                    <img th:src="@{/imagen/publicacion/__${publicacion.idPublicacion}__}" alt="" width="140px" height="90px">
+                                    <div class="col-lg-8">
+                                        <h6 class="mb-0" th:text="${publicacion.titulo}" >Titulo publicacion</h6>
+                                        <small class="text-body-secondary" th:text="${publicacion.fechaAlta}">fecha alta</small>
+                                        <h7 th:if="${publicacion.votante != null}" class="card-votante">Por <span  th:text="${publicacion.votante.nombreApellido}" class="fw-bold" ></span></h7>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer th:replace="/fragments/footer :: footer" ></footer>
+        <!-- SCRIPTS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="/js/eventos.js" type="text/javaScript"></script>
 
 
-    <!--CARD NOVEDADES-->
-</body>
+    </body>
 
 </html>

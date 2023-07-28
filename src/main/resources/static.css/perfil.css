@@ -7,3 +7,229 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : User
 */
 
+.card {
+    box-shadow: 0 0 2px 0 rgb(0 0 0 /10%);
+    margin-bottom: 24px;
+}
+
+/*.card: Es un selector de clase que aplica estilos a elementos HTML que tengan la clase "card". Probablemente se utilice para estilizar tarjetas o elementos similares.
+
+position: relative;: Establece la posición del elemento como "relativa" con respecto a su posición normal. Esto significa que se puede ajustar su posición usando propiedades como top, right, bottom y left.
+
+display: flex;: Hace que el elemento se comporte como un contenedor flexible. Esto permite utilizar las propiedades flex para controlar el diseño y alineación de los elementos hijos.
+
+flex-direction: column;: Esta propiedad define la dirección en la que se colocarán los elementos hijos dentro del contenedor flexible. En este caso, los elementos hijos se colocarán en una columna vertical.
+
+min-width: 0;: Establece el ancho mínimo del elemento en 0. Esto puede ser útil cuando se utilizan propiedades flex que podrían hacer que el contenido se desborde del contenedor.
+
+word-wrap: 0;: Esta propiedad está mal escrita, debería ser word-wrap: normal;. Controla cómo debe envolverse el texto dentro del elemento. Con el valor "normal", el texto se ajustará automáticamente dentro del ancho del elemento sin romper palabras.
+
+background-color: #fff;: Establece el color de fondo del elemento en blanco (#ffffff).
+
+background-clip: border-box;: Esta propiedad define cómo se debe recortar el fondo del elemento. Con el valor "border-box", el fondo se recorta hasta el borde del borde (border) del elemento.
+
+border: 0 solid #ecf2f5;: Establece un borde de grosor 0 (sin bordes) y color #ecf2f5 (un tono de gris muy claro). El borde en este caso no se muestra debido a su grosor 0.
+
+border-radius: 0.25rem;: Define el radio de las esquinas del elemento. En este caso, las esquinas se redondearán con un radio de 0.25rem (aproximadamente 4 píxeles).
+
+En resumen, este código CSS se utiliza para aplicar estilos a elementos con la clase "card", estableciendo un fondo blanco con bordes redondeados y ajustando el contenido para que se muestre en una columna vertical dentro del contenedor flexible.*/
+
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: 0;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid #ecf2f5;
+    border-radius:  0.25rem
+}
+/* este avatar es para mostrar la foto del perfil de usuario */
+.avatar-lg{
+    height: 4.5rem;
+    width: 4.5rem;
+}
+
+/*.rounded-circle: Esto es un selector de clase en CSS. Indica que se aplicará el estilo definido a todos los elementos que tengan la clase "rounded-circle".
+
+{: Esto marca el inicio del bloque de declaración de propiedades.
+
+border-radius: 50%!important;: Esta es una propiedad CSS que define el radio de las esquinas del elemento. En este caso, se establece en el 50% del tamaño del elemento en ambas dimensiones (ancho y alto). El !important es una declaración especial que le da prioridad a esta regla sobre cualquier otra regla que pudiera estar definiendo el mismo estilo para el mismo elemento. Si hay otros estilos que afectan al mismo elemento con la propiedad border-radius, esta regla prevalecerá debido al uso de !important.
+
+}: Esto marca el fin del bloque de declaración de propiedades.
+
+En resumen, este código CSS se aplica a cualquier elemento que tenga la clase "rounded-circle" y le da esquinas redondeadas haciéndolo un círculo perfecto. La propiedad border-radius establece el radio de las esquinas del elemento en el 50% de su tamaño, creando así un círculo. Y el !important asegura que esta regla tenga la máxima prioridad sobre cualquier otra regla que afecte al mismo elemento en caso de que exista alguna disputa de estilos.*/
+
+
+.rounded-circle{
+    border-radius: 50%!important;
+}
+
+
+/* miniatura de la imagen original */
+.img-thumbnall{
+    padding: 0.25rem;
+    background-color: #ecf2f5;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    height: auto;
+   
+}
+
+.avatar-sm{
+    height: 2.25rem;
+    width: 2.25rem;
+}
+
+
+
+.me-2{
+    margin-right: 0.75rem!important;
+}
+
+.avatar-md{
+    height: 3.5rem;
+    width: 3.5rem;
+}
+
+
+
+.bg-transparent{
+    --bs-bg-opacity: 1;
+    background-color: transparent!important;
+}
+
+.post-user-comment-box {
+    background-color: #f3f8fb;
+    margin: 0 -0.75rem;
+    padding: 1rem;
+    margin-top: 20px;
+       
+}
+
+/* .simplebar-wrapper: Esto es un selector de clase que apunta a elementos HTML que tienen la clase "simplebar-wrapper". Los selectores de clase se denotan con un punto "." antes del nombre de la clase.
+
+overflow: hidden;: Esta propiedad CSS se aplica al elemento seleccionado y controla cómo se muestra el contenido que se desborda del área visible del elemento. En este caso, el valor "hidden" indica que cualquier contenido que se desborde del elemento será ocultado, es decir, no será visible. Esto puede ser útil cuando se trabaja con contenedores que tienen contenido que debería permanecer oculto dentro de ellos.
+
+width: inherit;: La propiedad "width" establece el ancho del elemento seleccionado. El valor "inherit" hace que el elemento tome el mismo ancho que su elemento padre, es decir, hereda el ancho de su contenedor inmediato.
+
+height: inherit;: Similar a la propiedad "width", "height" establece la altura del elemento. El valor "inherit" hace que el elemento tome la misma altura que su elemento padre, heredando la altura del contenedor inmediato.
+
+max-width: inherit;: La propiedad "max-width" define el ancho máximo que puede tener un elemento. En este caso, el valor "inherit" hace que el ancho máximo del elemento sea igual al ancho máximo de su elemento padre.
+
+max-height: inherit;: Al igual que "max-width", "max-height" establece la altura máxima que puede tener el elemento seleccionado. Con el valor "inherit", la altura máxima del elemento será igual a la altura máxima de su elemento padre.
+
+En resumen, este bloque de CSS está diseñado para aplicar un conjunto de estilos a elementos HTML con la clase "simplebar-wrapper". Los estilos aseguran que el contenido dentro de estos elementos no se desborde visiblemente y que el ancho y la altura de los elementos sean iguales a los de su contenedor inmediato.
+
+*/
+
+.simplebar-wrapper{
+    overflow: hidden;
+    width: inherit;
+    height: inherit;
+    max-width: inherit;
+    max-height: inherit;
+    
+}
+
+/*box-sizing: inherit!important;: Esta regla establece el modelo de caja como "inherit" para el elemento. La propiedad box-sizing determina cómo se calculan el ancho y alto de un elemento, y "inherit" indica que el elemento heredará el modelo de caja de su elemento padre. El !important al final de la declaración significa que esta regla tiene prioridad sobre cualquier otra regla de box-sizing que pueda afectar al mismo elemento.
+
+height: 100%;: Establece la altura del elemento al 100% de la altura de su contenedor. Es decir, este elemento ocupará toda la altura disponible de su contenedor.
+
+width: 100%;: Establece el ancho del elemento al 100% del ancho de su contenedor. Esto hará que el elemento ocupe todo el ancho disponible en su contenedor.
+
+max-width: 1px;: Define el ancho máximo del elemento como 1 píxel. Esto asegura que el elemento no tenga un ancho mayor a 1 píxel, incluso si su contenedor es más amplio.
+
+position: relative;: Establece la posición del elemento como "relative" (relativa). Esto permite ajustar su posición con respecto a su posición original en el flujo del documento.
+
+float: left;: Aplica la propiedad float con el valor "left" (izquierda). Esto hace que el elemento se desplace hacia la izquierda y permita que otros elementos floten a su derecha.
+
+max-height: 1px;: Define la altura máxima del elemento como 1 píxel. De manera similar a max-width, esto garantiza que el elemento no tenga una altura mayor a 1 píxel.
+
+overflow: hidden;: Con esta propiedad se ocultan cualquier contenido que supere las dimensiones del elemento. En este caso, se ocultará cualquier contenido que supere el ancho o la altura de 1 píxel.
+
+z-index: -1;: Establece el índice de apilamiento (z-index) del elemento en -1. Los elementos con índices de apilamiento más bajos se colocan detrás de aquellos con índices más altos. Al tener un valor negativo, este elemento se colocará detrás de otros elementos del mismo contenedor.
+
+padding: 0;: Establece el relleno interno del elemento en 0 píxeles, eliminando cualquier espacio adicional dentro del elemento.
+
+margin: 0;: Establece los márgenes del elemento en 0 píxeles, eliminando cualquier espacio adicional alrededor del elemento.
+
+pointer-events: none;: Esta propiedad evita que el elemento responda a eventos del ratón, como clics o movimientos. Esto impide que los usuarios interactúen directamente con este elemento.
+
+flex-grow: inherit;: La propiedad flex-grow determina cómo un elemento se expande para llenar el espacio disponible en un contenedor flexible. El valor "inherit" hace que el elemento herede la propiedad flex-grow de su elemento padre.
+
+flex-shrink: 0;: La propiedad flex-shrink determina cómo un elemento se contrae cuando hay espacio insuficiente en un contenedor flexible. Establecerlo en 0 impide que el elemento se encoja.
+
+flex-basis: 0;: La propiedad flex-basis establece el tamaño inicial del elemento antes de que se distribuya el espacio disponible. Establecerlo en 0 asegura que el elemento tenga un tamaño inicial mínimo.
+
+En resumen, este código CSS define un elemento con propiedades que lo hacen un bloque invisible con dimensiones mínimas (ancho y alto de 1 píxel), sin contenido visible y sin interacción con el usuario. Puede ser parte de alguna solución específica, como el manejo de estilos para un componente especial o una solución para situaciones particulares en el diseño de una página web.*/
+
+.simplebar-height-auto-observer-wrapper{
+    box-sizing: inherit!important;
+    height: 100%;
+    width: 100%;
+    max-width: 1px;
+    position: relative;
+    float: left;
+    max-height: 1px;
+    overflow: hidden;
+    z-index: -1;
+    padding: 0;
+    margin:0;
+    pointer-events: none;
+    flex-grow: inherit;
+    flex-shrink: 0;
+    flex-basis: 0;
+    
+}
+
+.font-13{
+    font-size: 13px!important;
+}
+
+.btn-soft-info{
+    color:#45bbe0;
+    background-color: rgba(69,187,224,18);
+}
+
+
+/*.social-list-item: Esto es un selector de clase que se aplica a elementos HTML con la clase "social-list-item". Por ejemplo, si tienes un elemento <div class="social-list-item">, entonces este CSS se aplicará a ese elemento.
+
+height: 2rem;: Establece la altura del elemento con la clase ".social-list-item" en 2 rem (unidad de medida relativa que equivale al tamaño de la fuente del elemento raíz).
+
+width: 2rem;: Establece el ancho del elemento con la clase ".social-list-item" en 2 rem.
+
+line-height: calc(2rem - 2px);: Define la altura de línea del elemento. El valor se calcula como 2 rem menos 2 píxeles. La propiedad line-height también afecta al espaciado vertical entre las líneas de texto dentro del elemento, pero en este caso, como se está utilizando display: block;, que aplica a todo el elemento, no solo al texto, no veremos este efecto.
+
+display: block;: Hace que el elemento se muestre como un bloque (block-level element). Los elementos de bloque ocupan toda la anchura disponible y aparecen en una nueva línea por defecto. Esto significa que el elemento ocupará todo el ancho disponible y no permitirá que otros elementos se sitúen al lado de él.
+
+border: 2px solid #adb5bd;: Agrega un borde de 2 píxeles de ancho alrededor del elemento con un estilo sólido y un color #adb5bd (un tono de gris).
+
+color: #adb5bd;: Establece el color del contenido del elemento con la clase ".social-list-item" a #adb5bd, que es también el mismo color que se usa para el borde. Por lo tanto, el contenido del elemento y el borde serán del mismo color.
+
+En resumen, este código CSS crea un elemento con una altura y ancho de 2 rem, con un borde sólido de 2 píxeles de ancho y un color gris. El contenido del elemento también será gris debido a la propiedad color establecida. La altura de línea se ajusta para centrar el contenido verticalmente en el elemento. Al utilizar display: block;, el elemento ocupará todo el ancho disponible y aparecerá en una nueva línea.*/
+.social-list-item{
+    height: 2rem;
+    width: 2rem;
+    line-height: calc(2rem - 2px);
+    display: block;
+    border: 2px solid #adb5bd;
+    color: #adb5bd;
+    
+}
+
+.comment-area-box .comment-area-btn{
+    background-color: #f2f8fb;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-top: none;
+    border-radius: 0 0 0.2rem 0.2rem;
+    
+}
+
+
+
+
+

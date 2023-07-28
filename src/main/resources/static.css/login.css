@@ -1,0 +1,96 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 28/07/2023, 11:42:03 a. m.
+    Author     : User
+*/
+
+/*background: Especifica el fondo del elemento body. En este caso, se define un fondo con un degradado lineal que va de izquierda a derecha (to right). Los colores utilizados son #ffffff (blanco) y #80b918 (verde claro). El !important al final de esta regla significa que esta propiedad debe tener prioridad sobre cualquier otra regla de fondo para el body.
+
+.bg: Se aplica a elementos con la clase "bg". Define una imagen de fondo con la URL "../img/imagen-login5.jpg". El !important indica que esta regla debe tener prioridad.
+
+background-position: Alinea la imagen de fondo en el centro tanto horizontal como verticalmente. El !important indica que esta regla tiene prioridad.*/
+
+body {
+  background: #ffffff !important;
+  background: linear-gradient(to right, #ffffff, #80b918) !important;
+}
+
+.bg {
+  background-image: url(../img/imagen-login6.jpg) !important;
+  background-position: center center !important;
+}
+
+
+
+/*-------------------Animación mensajes de error y/o exito  ------------------------------*/
+
+
+/*display: none;, lo que los oculta.
+
+animation-duration: Establece la duración de la animación en 1 segundo.
+
+animation-fill-mode: Indica que el estado final de la animación debe mantenerse después de completarse.
+
+.alert.animated.fadeIn: Aplica la animación "fadeIn" a elementos con las clases "alert" y "animated".
+
+.alert.animated.fadeOut: Aplica la animación "fadeOut" a elementos con las clases "alert" y "animated".
+
+A continuación, se definen las animaciones "fadeIn" y "fadeOut":
+
+@keyframes fadeIn: Define una animación llamada "fadeIn".
+
+0%: Estado inicial de la animación, donde la opacidad es 0 (completamente transparente).
+
+100%: Estado final de la animación, donde la opacidad es 1 (completamente visible).
+
+@keyframes fadeOut: Define una animación llamada "fadeOut".
+
+0%: Estado inicial de la animación, donde la opacidad es 1 (completamente visible).
+
+100%: Estado final de la animación, donde la opacidad es 0 (completamente transparente).
+
+Por último, tenemos una regla para posicionar los mensajes de error y/o éxito:
+
+.error-container: Se aplica a elementos con la clase "error-container". Establece la posición de estos elementos como "absolute" para que puedan posicionarse de forma específica en relación con su elemento padre.*/
+
+.alert {
+
+    display: none;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.alert.animated.fadeIn {
+    animation-name: fadeIn;
+}
+
+.alert.animated.fadeOut {
+    animation-name: fadeOut;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+/*Muestra el mensaje por encima de los elementos*/
+.error-container {
+    position: absolute !important;
+    
+}
+
