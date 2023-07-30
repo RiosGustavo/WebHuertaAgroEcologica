@@ -147,6 +147,16 @@ footer .nav .item2 .link2 {
 }
 
 
+
+.cultivoPost.mover-izquierda-derecha {
+    animation: mover-derecha-izquierda 5s 1, forwards;
+}
+
+.cultivoPost.mover-derecha-izquierda {
+    animation: mover-izquierda-derecha 5s 1, forwards;
+}
+
+
 /*ACA SE CENTRA EL BOTON DE CARGAR MAS LISTAS*/
 
 #btn-cargar-mas {
