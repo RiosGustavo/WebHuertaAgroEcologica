@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 
 <!DOCTYPE html>
 <html  xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/extras/spring-security" data-bs-theme="light">
     <head  th:replace = "/fragments/head :: head"> </head>
+
 
     <header> 
         <nav th:replace= "/fragments/navbar :: nav"></nav>
@@ -18,40 +14,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="col-md-6 ">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="text-center">Crear Huerta</h3>
+                            <h3 class="text-center">Modificar huerta</h3>
                         </div>
                         <div class="card-body ">
                             <!-- Mensajes de error y exito -->
                             <div  th:replace = "/fragments/msjes-error-exito :: div"> </div>
-                            <form th:action="@{/huerta/registro}" method="POST" enctype="multipart/form-data">
-
+                            <form th:action="@{/huerta/modificar/__${huerta.idHuerta}__}" method="POST" enctype="multipart/form-data">
+                                <input hidden th:value="${huerta.idHuerta}"  name="idHuerta" />
                                 <div class="mb-3">
-
                                     <label for="nombreHuerta" class="form-label">Nombre Huerta</label>
-                                    <input type="titulo" class="form-control" name="nombreHuerta" th:value="${nombreHuerta}" />
+                                    <input type="titulo" class="form-control" name="nombreHuerta" th:value="${huerta.nombreHuerta}" />
                                 </div>
-                                
+
                                 <div class="mb-3">
                                     <label for="cuerpo" class="form-label">Cuerpo</label>
-                                    <textarea style="resize: none; height: 200px;" type="text" class="form-control" name="cuerpo" th:text="${cuerpo}"></textarea>
+                                    <textarea type="text" class="form-control" name="cuerpo" th:text="${huerta.cuerpo}" th:value="${huerta.cuerpo}"></textarea>
                                 </div>
+
+                                
 
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Seleccionar imagen</label>
                                     <input name="archivo" class="form-control" type="file">
-
                                 </div>
                                 <div class="d-grid mb-3">
                                     <button type="submit" class="btn btn-success">
-                                        Crear Huerta
+                                        Modificar
                                     </button>
+
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+      
         <!-- JS Boostrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 

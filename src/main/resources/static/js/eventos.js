@@ -1,4 +1,4 @@
-Postwindow.addEventListener('scroll', function() {
+window.addEventListener('scroll', function() {
     var elementos = document.querySelectorAll('.huertaPost');
     var alturaVentana = window.innerHeight;
   
@@ -39,24 +39,24 @@ $(document).ready(function(){
 // Función para establecer el tema en el localStorage
 const establecerTema = (tema) => {
   localStorage.setItem('tema', tema);
-}
+};
 
 // Función para obtener el tema del localStorage
 const obtenerTema = () => {
   return localStorage.getItem('tema');
-}
+};
 
 // Función para aplicar el tema oscuro
 const temaOscuro = () => {
   document.querySelector("html").setAttribute("data-bs-theme", "dark");
   document.querySelector("#dl-icon").setAttribute("class", "bi bi-sun-fill");
-}
+};
 
 // Función para aplicar el tema claro
 const temaClaro = () => {
   document.querySelector("html").setAttribute("data-bs-theme", "light");
   document.querySelector("#dl-icon").setAttribute("class", "bi bi-moon-fill");
-}
+};
 
 // Función para cambiar el tema
 const cambiarTema = () => {

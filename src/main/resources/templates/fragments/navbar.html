@@ -47,15 +47,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li sec:authorize="hasRole('ADM')"><a class="dropdown-item" th:href="@{/admin/dashboard}">Panel admin</a></li>
-                    <li sec:authorize="hasRole('EMP')"><a class="dropdown-item" th:href="@{/productor/panel-principal}">Panel principal</a></li>
-                    <li sec:authorize="hasRole('VOT')"><a class="dropdown-item" th:href="@{/consumidor/panel-principal}">Mis publicaciones</a></li>
+                    <li sec:authorize="hasRole('PRO')"><a class="dropdown-item" th:href="@{/productor/panel-principal}">Panel principal</a></li>
+                    <li sec:authorize="hasRole('CON')"><a class="dropdown-item" th:href="@{/consumidor/panel-principal}">Mis publicaciones</a></li>
                     <li sec:authorize="hasRole('BLO')"><a class="dropdown-item" th:href="@{/blogger/panel-principal}">Panel principal</a></li>
 
-                    <li sec:authorize="hasRole('VOT')"><a class="dropdown-item" th:href="@{/consumidor/__${session.usuariosession.id}__}">Perfil</a></li>
+                    <li sec:authorize="hasRole('CON')"><a class="dropdown-item" th:href="@{/consumidor/__${session.usuariosession.id}__}">Perfil</a></li>
                     
                     
-                    <li sec:authorize="hasRole('VOT')"><a class="dropdown-item" th:href="@{/consumidor/perfil}">Cuenta</a></li>
-                    <li sec:authorize="hasRole('EMP')"><a class="dropdown-item" th:href="@{/productor/perfil}">Perfil</a></li>
+                    <li sec:authorize="hasRole('CON')"><a class="dropdown-item" th:href="@{/consumidor/perfil}">Cuenta</a></li>
+                    <li sec:authorize="hasRole('PRO')"><a class="dropdown-item" th:href="@{/productor/perfil}">Perfil</a></li>
                     <li sec:authorize="hasRole('BLO')"><a class="dropdown-item" th:href="@{/blogger/perfil}">Perfil</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item text-danger" th:href="@{/logout}">Cerrar cesión</a></li>

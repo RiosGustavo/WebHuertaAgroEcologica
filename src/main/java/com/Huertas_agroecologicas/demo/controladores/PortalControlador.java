@@ -96,7 +96,7 @@ public class PortalControlador {
             modelo.put("error", "Usuario o contraseña invalidos");
         }
 
-        return "register.html";
+        return "login.html";
 
     }
 
