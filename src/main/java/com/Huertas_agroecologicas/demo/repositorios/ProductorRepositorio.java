@@ -27,7 +27,7 @@ public interface ProductorRepositorio extends JpaRepository<Productor, String> {
     public List<Cultivo> buscarCultivoPorProductor(@Param("id") String id);
     
     @Query("SELECT hu FROM Huerta hu  JOIN hu.productor pro WHERE pro.id = :id")
-    public List<Huerta> buscarHuertaPorProductor(@Param("id") String id);
+    public Huerta buscarHuertaPorProductor(@Param("id") String id);
 //
 //  
 

@@ -41,7 +41,7 @@ public interface HuertaRepositorio extends JpaRepository<Huerta, String> {
     public List<Huerta> buscarPorEstado();
 
     @Query("SELECT hu FROM Huerta hu WHERE hu.productor.id = :id")
-    public List<Huerta> huertasPorProductor(@Param("id") String id);
+    public Huerta huertaPorProductor(@Param("id") String id);
     
 
     

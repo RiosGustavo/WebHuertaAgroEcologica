@@ -175,12 +175,12 @@ public class HuertaServicio {
         }
     }
 
-    public List<Huerta> huertasPorProductor(String id) {
+    public Huerta huertasPorProductor(String id) {
 
-        List<Huerta> huertas = new ArrayList();
+        Huerta huerta = new Huerta();
 
-        huertas = huertaRepositorio.huertasPorProductor(id);
-        return huertas;
+        huerta = huertaRepositorio.huertaPorProductor(id);
+        return huerta;
     }
     
     

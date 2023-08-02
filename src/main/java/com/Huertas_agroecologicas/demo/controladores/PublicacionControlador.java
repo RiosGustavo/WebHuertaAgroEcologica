@@ -4,6 +4,7 @@
  */
 package com.Huertas_agroecologicas.demo.controladores;
 
+import com.Huertas_agroecologicas.demo.entiddes.Consumidor;
 import com.Huertas_agroecologicas.demo.entiddes.Publicacion;
 import com.Huertas_agroecologicas.demo.entiddes.Usuario;
 import com.Huertas_agroecologicas.demo.servicios.CultivoServicio;
@@ -167,7 +168,8 @@ public class PublicacionControlador {
 
     //-----------------------------MOTOR BUSQUEDA---------------------------------
     @GetMapping("/lista")
-    public String listadoPublicaciones(@RequestParam(required = false) String termino, @RequestParam(required = false) String estado, @RequestParam(required = false) String orden, ModelMap modelo) {
+    public String listadoPublicaciones(@RequestParam(required = false) String termino, 
+            @RequestParam(required = false) String estado, @RequestParam(required = false) String orden, ModelMap modelo, HttpSession session) {
 
         List<Publicacion> publicaciones = new ArrayList<>();
 
@@ -177,6 +179,14 @@ public class PublicacionControlador {
         } else {
             publicaciones = publicacionServicio.search2(estado, orden);
         }
+        
+         // Agregar las dos líneas de código para obtener las publicaciones relacionadas con huertas y cultivos
+    Usuario consumidor = (Usuario) session.getAttribute("usuariosession");
+    List<Publicacion> publicacionesHuertas = publicacionServicio.obtenerPublicacionesPorHuertasDeConsumidor((Consumidor) consumidor);
+    List<Publicacion> publicacionesCultivos = publicacionServicio.obtenerPublicacionesPorCultivosDeConsumidor((Consumidor) consumidor);
+
+        
+        
 
         if (publicaciones.isEmpty()) {
             publicaciones = publicaciones = publicacionServicio.publicacionPorFecha();

@@ -37,7 +37,7 @@ public class PublicacionServicio {
 
     @Autowired
     private PublicacionRepositorio publicacionRepositorio;
-    
+
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
 
@@ -49,54 +49,50 @@ public class PublicacionServicio {
 
     @Autowired
     private CultivoRepositorio cultivohaRepositorio;
-    
+
     @Autowired
     private ConsumidorRepositorio consumidorRepositorio;
 
     @Transactional
-    public void crearPublicacion(MultipartFile archivo, String titulo, String descripcion, String cuerpo, 
-            String youtubeUrl, Usuario usuario ,String idHuerta, String idCultivo) throws MiException, Exception {
+    public void crearPublicacion(MultipartFile archivo, String titulo, String descripcion, String cuerpo,
+            String youtubeUrl, Usuario usuario, String idHuerta, String idCultivo) throws MiException, Exception {
 
-        
         if (usuario.getRoles().equals("ROLE_ADM") || usuario.getRoles().equals("ROLE_PRO") || usuario.getRoles().equals("ROLE_CON")) {
-            
-            
-        Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
-        Optional<Cultivo> respuestaCultivo = cultivohaRepositorio.findById(idCultivo);
-        Optional<Usuario> respuestaUsuario = usuarioRepositorio.findById(usuario.getId());
-        
-        
-        
-        Publicacion publicacion = new Publicacion();
 
-        publicacion.setTitulo(titulo);
-        publicacion.setDescripcion(descripcion);
-        publicacion.setCuerpo(cuerpo);
-        publicacion.setFechaAlta(new Date());
-        publicacion.setAltaBaja(Boolean.TRUE);
+            Optional<Huerta> respuestaHuerta = huertaRepositorio.findById(idHuerta);
+            Optional<Cultivo> respuestaCultivo = cultivohaRepositorio.findById(idCultivo);
+            Optional<Usuario> respuestaUsuario = usuarioRepositorio.findById(usuario.getId());
 
-        Imagen imagen = imagenServicio.guardar(archivo);
+            Publicacion publicacion = new Publicacion();
 
-        publicacion.setImagen(imagen);
+            publicacion.setTitulo(titulo);
+            publicacion.setDescripcion(descripcion);
+            publicacion.setCuerpo(cuerpo);
+            publicacion.setFechaAlta(new Date());
+            publicacion.setAltaBaja(Boolean.TRUE);
 
-        /// ACA IMPLEMENTACMOS OBTENER EL ID DEL VIDEO DE YOUTUBE EL CUAL SERA AGREGADO A LA PUBLICACION
-        if (youtubeUrl != null) {
-            publicacion.setVideo(getEmbeddedYouTubeUrl(youtubeUrl));
-        }
+            Imagen imagen = imagenServicio.guardar(archivo);
 
-        if (respuestaHuerta.isPresent()) {
-            publicacion.setHuerta(respuestaHuerta.get());
-        }
-        if (respuestaCultivo.isPresent()) {
-            publicacion.setCultivo(respuestaCultivo.get());
-        }
-        
-        if (respuestaUsuario.isPresent()) {
-            publicacion.setUsuario(usuario);
-                    
-        }
-        
-        publicacionRepositorio.save(publicacion);
+            publicacion.setImagen(imagen);
+
+            /// ACA IMPLEMENTACMOS OBTENER EL ID DEL VIDEO DE YOUTUBE EL CUAL SERA AGREGADO A LA PUBLICACION
+            if (youtubeUrl != null) {
+                publicacion.setVideo(getEmbeddedYouTubeUrl(youtubeUrl));
+            }
+
+            if (respuestaHuerta.isPresent()) {
+                publicacion.setHuerta(respuestaHuerta.get());
+            }
+            if (respuestaCultivo.isPresent()) {
+                publicacion.setCultivo(respuestaCultivo.get());
+            }
+
+            if (respuestaUsuario.isPresent()) {
+                publicacion.setUsuario(usuario);
+
+            }
+
+            publicacionRepositorio.save(publicacion);
         }
     }
 
@@ -173,8 +169,8 @@ public class PublicacionServicio {
 
         return publicaciones;
     }
-    
-     @Transactional
+
+    @Transactional
     public List<Publicacion> publicacionesPorCultivoActivas(String idCultivo) {
         List<Publicacion> publicaciones = new ArrayList();
 
@@ -182,22 +178,22 @@ public class PublicacionServicio {
 
         return publicaciones;
     }
-    
-     @Transactional
+
+    @Transactional
     public List<Publicacion> listarPublicacionesActivas() {
         List<Publicacion> publicaciones = new ArrayList<>();
         publicaciones = publicacionRepositorio.listadoPublicacionesActivas();
         return publicaciones;
     }
-    
-     @Transactional
+
+    @Transactional
     public List<Publicacion> listarPublicaciones() {
         List<Publicacion> publicaciones = new ArrayList<>();
         publicaciones = publicacionRepositorio.findAll();
         return publicaciones;
     }
-    
-     @Transactional
+
+    @Transactional
     public List<Publicacion> publicacionPorTitulo(String titulo) {
         List<Publicacion> publicaciones = new ArrayList<>();
         publicaciones = publicacionRepositorio.buscarPorTitulo(titulo);
@@ -210,13 +206,20 @@ public class PublicacionServicio {
         publicaciones = publicacionRepositorio.findAllOrderByfecha_altaDesc();
         return publicaciones;
     }
-    
-    
-    
-    
+
+    @Transactional
+    public List<Publicacion> obtenerPublicacionesPorHuertasDeConsumidor(Consumidor consumidor) {
+        return publicacionRepositorio.buscarPorHuerta(consumidor.getId());
+
+    }
+
+    @Transactional
+    public List<Publicacion> obtenerPublicacionesPorCultivosDeConsumidor(Consumidor consumidor) {
+        return publicacionRepositorio.buscarPorCultivo(consumidor.getId());
+    }
+
     ///////////////////////////////////////}
-    
-     public List<Publicacion>  search(String termino, String estado, String orden) {
+    public List<Publicacion> search(String termino, String estado, String orden) {
 
         List<Publicacion> publicaciones = new ArrayList<>();
         publicaciones = publicacionRepositorio.search(termino, estado, orden);
@@ -227,21 +230,18 @@ public class PublicacionServicio {
 
         List<Publicacion> publicaciones = new ArrayList<>();
         publicaciones = publicacionRepositorio.search2(estado, orden);
-       return publicaciones;
+        return publicaciones;
     }
-    
-     public List<Publicacion>  search3(String termino, String estado, String orden) {
+
+    public List<Publicacion> search3(String termino, String estado, String orden) {
 
         List<Publicacion> publicaciones = new ArrayList<>();
         publicaciones = publicacionRepositorio.search3(termino, estado, orden);
         return publicaciones;
     }
-    
-        
-    
+
     //////////////////////////////////////////
-     
-      @Transactional
+    @Transactional
     public void darDeBajaPublicacion(String idPublicacion) throws Exception {
 
         Optional<Publicacion> respuesta = publicacionRepositorio.findById(idPublicacion);
@@ -266,8 +266,6 @@ public class PublicacionServicio {
         }
 
     }
-
-   
 
     private void validar(MultipartFile archivo, String titulo, String descripcion, String cuerpo) throws Exception {
         if (titulo.isEmpty() || titulo == null) {
