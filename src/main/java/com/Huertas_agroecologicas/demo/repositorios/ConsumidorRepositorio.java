@@ -5,6 +5,7 @@
 package com.Huertas_agroecologicas.demo.repositorios;
 
 import com.Huertas_agroecologicas.demo.entiddes.Consumidor;
+import com.Huertas_agroecologicas.demo.entiddes.Publicacion;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -31,6 +32,8 @@ public interface ConsumidorRepositorio extends JpaRepository<Consumidor,String> 
     @Query("SELECT consu FROM Consumidor consu WHERE (:estado IS NULL OR consu.altaBaja = CASE WHEN :estado = 'true' THEN 1 WHEN :estado = 'false' THEN 0 ELSE consu.altaBaja END) "
             + "ORDER BY CASE WHEN :orden = 'asc' THEN consu.fechaAlta END ASC, CASE WHEN :orden = 'desc' THEN consu.fechaAlta END DESC")
     public List<Consumidor> search2(@Param("estado") String estado, @Param("orden") String orden);
+    
+    
 
     ///Spring Data JPA detectará la relación @ManyToMany entre Consumidor y Cultivo y generará automáticamente la consulta para buscar los consumidores por el id del cultivo.
 //    
@@ -47,6 +50,11 @@ public interface ConsumidorRepositorio extends JpaRepository<Consumidor,String> 
     
     @Query("SELECT consu FROM Consumidor consu JOIN consu.huertas h WHERE h.idHuerta = :idHuerta ")
     public List<Consumidor> consumidoresPorHuerta(@Param("idHuerta") String idHuerta);
+    
+    
+     @Query("SELECT publicaciones FROM Consumidor consu WHERE consu.id = :id")
+    public List<Publicacion> litadoPublicacionesConsumidor(@Param("id") String id); 
+    
     
    
     

@@ -51,7 +51,7 @@ public class PublicacionControlador {
   
 
     @PreAuthorize("hasAnyRole('ROLE_ADM','ROLE_PRO','ROLE_CON')")
-    @GetMapping("/{idHuerta}/crearPublicacion")
+    @GetMapping("huerta/{idHuerta}/crearPublicacion")
     public String registrarPublicacionHuerta(@PathVariable String idHuerta, ModelMap modelo, HttpSession session) {
         if (session.getAttribute("usuariosession") == null || !((Usuario) session.getAttribute("usuariosession")).getAltaBaja()) {
             return "redirect:/huerta/panel-principal";
@@ -91,7 +91,7 @@ public class PublicacionControlador {
     
     
     @PreAuthorize("hasAnyRole('ROLE_ADM','ROLE_PRO','ROLE_CON')")
-    @GetMapping("/{idCultivo}/crearPublicacion")
+    @GetMapping("cultivo/{idCultivo}/crearPublicacion")
     public String registrarPublicacionCultivo(@PathVariable String idCultivo, ModelMap modelo, HttpSession session) {
         if (session.getAttribute("usuariosession") == null || !((Usuario) session.getAttribute("usuariosession")).getAltaBaja()) {
             return "redirect:/cultivo/panel-principal";

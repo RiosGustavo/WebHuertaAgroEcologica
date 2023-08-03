@@ -14,6 +14,7 @@ import com.Huertas_agroecologicas.demo.excepciones.MiException;
 import com.Huertas_agroecologicas.demo.repositorios.ConsumidorRepositorio;
 import com.Huertas_agroecologicas.demo.repositorios.CultivoRepositorio;
 import com.Huertas_agroecologicas.demo.repositorios.HuertaRepositorio;
+import com.Huertas_agroecologicas.demo.repositorios.PublicacionRepositorio;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,6 +40,9 @@ public class ConsumidorServicio {
 
     @Autowired
     private HuertaRepositorio huertaRepositorio;
+    
+    @Autowired
+    private PublicacionRepositorio publicacionRepositorio;
 
     @Autowired
     private ImagenServicio imagenServicio;
@@ -72,7 +76,7 @@ public class ConsumidorServicio {
             consumidor.setAltaBaja(Boolean.FALSE);
             consumidor.setFechaAlta(new Date());
             consumidor.setPassword(new BCryptPasswordEncoder().encode(password));
-            consumidor.setRoles(Rol.PRO);
+            consumidor.setRoles(Rol.CON);
 
             if (archivo.getSize() == 0) {
                 Imagen imagen = imagenServicio.obtenerImagenPorDefecto();
@@ -93,6 +97,10 @@ public class ConsumidorServicio {
     public void modificarConsumidor(MultipartFile archivo, String id,  String nombreConsumidor, String dni,
             String direccion) throws MiException, Exception {
 
+        
+        validarModificar(archivo, nombreConsumidor, dni, direccion);
+        
+        
         Optional<Consumidor> respuesta = consumidorRepositorio.findById(id);
                
 
@@ -100,7 +108,7 @@ public class ConsumidorServicio {
             throw new MiException("Debe ingrear un id del consumidor");
 
         }
-        validarModificar(archivo, nombreConsumidor, dni, direccion);
+        
 
         if (respuesta.isPresent()) {
 

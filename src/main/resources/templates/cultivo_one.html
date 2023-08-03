@@ -17,31 +17,30 @@
                                             La clase col-md-8 indica que la columna ocupará 8 de las 12 columnas disponibles en dispositivos medianos 
                                             (clase md) y más grandes.   -->
                 <!-- Título de la noticia -->
-                <h1 th:text="${huerta.nombreHuerta}" class="text-camp2 text-center"></h1>
+                <h1 th:text="${cultivo.nombreCultivo}" class="text-camp2 text-center"></h1>
                 <!--Se muestra un encabezado de nivel 1 (<h1>) con el nombre de la huerta. El texto se reemplazará por el valor de la 
                 variable huerta.nombreHuerta, que parece ser una variable proporcionada por el controlador de Spring Boot y resuelta por Thymeleaf. -->
                 
                 <hr class="my-4">  <!--Se agrega una línea horizontal para dividir visualmente los elementos en la página. -->
-                <div th:if="${huerta.productor != null}"                                        
+                <div th:if="${cultivo.productor != null}"                                       
                     style="display: flex; align-items: center; justify-content: space-between;">  
-                    <!--Esta línea condicional muestra el contenido dentro de este <div> solo si la variable huerta.productor no es nula. 
-                     La propiedad display: flex se utiliza para organizar los elementos hijos en una fila, align-items: 
-                     center alinea verticalmente los elementos y justify-content: space-between distribuye los elementos con un espacio entre ellos. -->
+                     <!-- Esta línea condicional muestra el contenido dentro de este <div> solo si la variable huerta.productor no es nula. 
+                      La propiedad display: flex se utiliza para organizar los elementos hijos en una fila, align-items: 
+                      center alinea verticalmente los elementos y justify-content: space-between distribuye los elementos con un espacio entre ellos. -->
                     <div style="display: flex; align-items: center;">
-                        <img th:src="@{/imagen/perfil/__${huerta.productor.id}__}" alt="Imagen de perfil"          
+                        <img th:src="@{/imagen/perfil/__${cultivo.productor.id}__}" alt="Imagen de perfil"          
                             class="rounded-circle img-fluid" style="width: 60px; height: 60px; margin-right: 10px;">
-                        <!--Esta etiqueta <img> carga una imagen del perfil del productor de la huerta. Utiliza una expresión Thymeleaf (@{/imagen/perfil/__${huerta.productor.id}__})
-                               para construir la ruta de la imagen basada en el ID del productor (huerta.productor.id). -->
+                            <!--Esta etiqueta <img> carga una imagen del perfil del productor de la huerta. Utiliza una expresión Thymeleaf (@{/imagen/perfil/__${huerta.productor.id}__})
+                                              para construir la ruta de la imagen basada en el ID del productor (huerta.productor.id). -->
                         <div style="display: flex; flex-direction: column;">
-                            <a th:href="@{/huerta/__${huerta.idHuerta}__}" class="text-muted a-card">
-                                <h7 class="card-periodista">Por <span th:text="${huerta.productor.nombreProductor}"    
+                            <a th:href="@{/cultivo/__${cultivo.idCultivo}__}" class="text-muted a-card">
+                                <h7 class="card-periodista">Por <span th:text="${cultivo.productor.nombreCultivo}"    
                                         class="fw-bold"></span></h7>
                             </a>
                             <!--Un enlace (<a>) que vincula a una página específica de la huerta (/huerta/{idHuerta}). 
                               El texto del enlace mostrará "Por {nombre del productor}" utilizando el nombre del productor obtenido de huerta.productornombreProductor. -->
-                            
                             <div>
-                                <h7 th:text="${huerta.productor.email}"></h7>  <!-- Muestra el correo electrónico del productor de la huerta utilizando 
+                                <h7 th:text="${cultivo.productor.email}"></h7>  <!-- Muestra el correo electrónico del productor de la huerta utilizando 
                                                                                la variable huerta.productor.email.-->
                             </div>
                             
@@ -54,7 +53,7 @@
                         data-bs-toggle="modal" data-bs-target="#registrate">Crear publicación</button>
 
                     <a sec:authorize="hasRole('CON')" th:if="${session.usuariosession.altaBaja == true}"
-                        th:href="@{/publicacion/huerta/__${huerta.idHuerta}__/crearPublicacion}" type="button"
+                        th:href="@{/publicacion/cultivo/__${cultivo.idCultivo}__/crearPublicacion}" type="button"
                         class="btn btn-success">Crear publicación</a>
                     
                     
@@ -64,21 +63,21 @@
                 </div>
                 <content th:replace="/fragments/modalRegistrate :: content"></content>
                 
-                <!--Aquí se muestra una imagen de la huerta actual, cuya ruta se construye utilizando 
+                <!--Aquí se muestra una imagen del cultivo actual, cuya ruta se construye utilizando 
                 el ID de la huerta (huerta.idHuerta) y se encuentra en la ruta /imagen/huerta/{idHuerta}. 
                 La imagen se muestra en el tamaño de 600px de ancho y 400px de alto con un efecto de sombra (shadow-lg). -->
                 <hr class="my-4">
                 <!-- Imagen de la publicacion -->
-                <img th:src="@{/imagen/huerta/__${huerta.idHuerta}__}" alt="Imagen de la Huerta"
+                <img th:src="@{/imagen/cultivo/__${cultivo.idCultivo}__}" alt="Imagen del Cultivo"
                     class="img-fluid mb-3 w-600 h-400 shadow-lg ">
 
                 <div class="d-flex mb-3">
-                    <p class="text-muted fw-bold">Fecha de publicación: <span th:text="${huerta.fechaAlta}"></span></p>
+                    <p class="text-muted fw-bold">Fecha de publicación: <span th:text="${cultivo.fechaAlta}"></span></p>
                 </div>
                 
                 <!--Muestra la fecha de publicación de la huerta actual, obtenida de huerta.fechaAlta. -->
 
-                <p th:text="${huerta.cuerpo}"></p>
+                <p th:text="${cultivo.descripcion}"></p>
                 
                 <!--Aquí se muestra el contenido de la huerta (huerta.cuerpo), que aparentemente es el contenido principal de la página. -->
 
@@ -95,7 +94,7 @@
             <h2 class="featurette fw-normal lh-1 text-secondary-emphasis">Todavía no hay publicaciones en esta campaña.
                 Anímate y empieza ahora</h2>
             <a sec:authorize="hasRole('CON')" th:if="${session.usuariosession.altaBaja == true}"
-                th:href="@{'/publicacion/huerta/' + ${huerta.idHuerta} + '/crearPublicacion'}" type="button"
+                th:href="@{'/publicacion/cultivo/' + ${cultivo.idCultivo} + '/crearPublicacion'}" type="button"
                 class="btn btn-success">Crear publicación</a>
             <button th:if="${session.usuariosession == null}" type="button" class="btn btn-success"
                 data-bs-toggle="modal" data-bs-target="#registrate">Crear publicación</button>
@@ -139,16 +138,16 @@
                         <div class="card-body p-4" id="comentarios">
                             <content th:if="${#lists.isEmpty(comentarios)}"
                                 sec:authorize="not(hasAnyRole('ROLE_ADM', 'ROLE_PRO'))">
-                                <h4 class="mb-0">Todavía no hay comentarios en esta Huerta</h4>
+                                <h4 class="mb-0">Todavía no hay comentarios en este cultivo</h4>
                                 <p class="fw-light pb-2"
-                                    th:text="'Sé el primero y dejá un comentario para la Huerta: '+${huerta.nombreHuerta}">
+                                    th:text="'Sé el primero y dejá un comentario para el cultivo: '+${cultivo.nombreCultivo}">
                                 </p>
                             </content>
                             <content th:if="${#lists.size(comentarios) > 0}"
                                 sec:authorize="not(hasAnyRole('ROLE_ADM', 'ROLE_PRO'))">
                                 <h4 class="mb-0">Comentarios recientes</h4>
                                 <p class="fw-light pb-2"
-                                    th:text="'Dejá un comentario para la HUERTA: '+${huerta.nombreHuerta}">
+                                    th:text="'Dejá un comentario para el Cultivo: '+${cultivo.nombreCultivo}">
                                 </p>
                             </content>
                             <content th:if="${#lists.size(comentarios) > 0}"
@@ -157,7 +156,7 @@
                             </content>
                             <content th:if="${#lists.isEmpty(comentarios)}"
                                 sec:authorize="hasAnyRole('ROLE_ADM', 'ROLE_PRO')">
-                                <h4 class="pb-2">Esta Huerta todavía no tiene comentarios</h4>
+                                <h4 class="pb-2">Este Cultivo todavía no tiene comentarios</h4>
                             </content>
                             <content th:each="comentario :${comentarios}" th:if="${comentario.altaBaja}">
                                 <div class="d-flex flex-start">
@@ -221,9 +220,9 @@
                                     class="rounded-circle shadow-1-strong me-3"
                                     th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="avatar" width="60"
                                     height="60" />
-                                <form th:action="@{/comentario/__${huerta.idHuerta}__/comentar}" method="POST"
+                                <form th:action="@{/comentario/__${cultivo.idCultivo}__/comentar}" method="POST"
                                     class="form-outline w-100">
-                                    <input hidden th:value="${huerta.idHuerta}" name="idHuerta" />
+                                    <input hidden th:value="${cultivo.idCultivo}" name="idHuerta" />
                                     <textarea name="mensaje" class="form-control" rows="4"
                                         style="background: #fff;"></textarea>
                                     <div th:if="${session.usuariosession != null}" class="float-end mt-2 pt-1">

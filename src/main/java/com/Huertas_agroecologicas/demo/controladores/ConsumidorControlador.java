@@ -7,10 +7,12 @@ package com.Huertas_agroecologicas.demo.controladores;
 import com.Huertas_agroecologicas.demo.entiddes.Consumidor;
 import com.Huertas_agroecologicas.demo.entiddes.Cultivo;
 import com.Huertas_agroecologicas.demo.entiddes.Huerta;
+import com.Huertas_agroecologicas.demo.entiddes.Publicacion;
 import com.Huertas_agroecologicas.demo.entiddes.Usuario;
 import com.Huertas_agroecologicas.demo.servicios.ConsumidorServicio;
 import com.Huertas_agroecologicas.demo.servicios.CultivoServicio;
 import com.Huertas_agroecologicas.demo.servicios.HuertaServicio;
+import com.Huertas_agroecologicas.demo.servicios.PublicacionServicio;
 import com.Huertas_agroecologicas.demo.servicios.UsuarioServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -45,7 +47,10 @@ public class ConsumidorControlador {
     @Autowired
     private CultivoServicio cultivoServicio;
     
-     @PreAuthorize("hasAnyRole('ROLE_CON')")
+    @Autowired
+    private PublicacionServicio publicacionServicio;
+    
+     @PreAuthorize("hasAnyRole('ROLE_ADM','ROLE_CON','ROLE_PRO')")
     @GetMapping("/perfil")
        public String perfil(ModelMap modelo, HttpSession session) {
        
@@ -56,7 +61,7 @@ public class ConsumidorControlador {
         return "perfil_consumidor.html";
     }
        
-       @PreAuthorize("hasAnyRole('ROLE_CON')")
+       @PreAuthorize("hasAnyRole('ROLE_ADM','ROLE_CON','ROLE_PRO')")
     @PostMapping("/perfil/{id}")
     public String modificacionPerfil(MultipartFile archivo, @PathVariable String id, @RequestParam String NombreConsumidor,
                 @RequestParam String dni, @RequestParam String direccion, ModelMap modelo, HttpSession session) {
@@ -73,13 +78,13 @@ public class ConsumidorControlador {
             modelo.put("exito", "datos actualizados correctamente");
             modelo.addAttribute("consumidor", consumidor);
             
-            return "perfil_consumidor.html";
+            return "perfil_usuario.html";
             
         } catch (Exception e) {
             modelo.addAttribute("consumidor", consumidor);
             modelo.put("error", e.getMessage());
             
-            return "perfil_consumidor.html";
+            return "perfil_usuario.html";
         }
 
     }
@@ -98,15 +103,21 @@ public class ConsumidorControlador {
         List<Huerta> huertas  = huertaServicio.huertasPorConsumidor(logueado.getId()); /// obtenemos las huertas asociadas al consumidor
 
 
-        /// CULTIVOS DEL PRODUCTOR
+        // CULTIVOS DEL PRODUCTOR
         
-//        if(huertas != null){
-//            
-//        List<Cultivo> cultivos = cultivoServicio.cultivosPorConsumidor(logueado.getId());/// obtenemos los cultivos asociadas al consumidor
-//        modelo.addAttribute("cultivos", cultivos);  /// agregamos los cultivos al modelo
-//        }
+        if(huertas != null){
+            
+        List<Cultivo> cultivos = cultivoServicio.cultivosPorConsumidor(logueado.getId());/// obtenemos los cultivos asociadas al consumidor
+        modelo.addAttribute("cultivos", cultivos);  /// agregamos los cultivos al modelo
+        }
+        
+        List<Publicacion> publicacionesPorCultivo = publicacionServicio.obtenerPublicacionesPorCultivosDeConsumidor(consumidor);
+        List<Publicacion> publicacionesPorHuerta = publicacionServicio.obtenerPublicacionesPorHuertasDeConsumidor(consumidor);
+        
         modelo.addAttribute("consumidor", consumidor);
         modelo.addAttribute("huertas", huertas); /// agregamos las huerta al modelo
+        modelo.addAttribute("publicacionesPorCultivo", publicacionesPorCultivo); /// agregamos las publicaciones por cultivo al modelo
+        modelo.addAttribute("publicacionesPorHuerta", publicacionesPorHuerta); /// agregamos las publicaciones por huerta al modelo
         
         return "panel_consumidor.html";
         
