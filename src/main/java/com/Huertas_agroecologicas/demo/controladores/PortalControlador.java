@@ -100,7 +100,7 @@ public class PortalControlador {
 
     }
 
-    @GetMapping("/registar")
+    @GetMapping("/registrar")
     public String registrar() {
         return "register.html";
 

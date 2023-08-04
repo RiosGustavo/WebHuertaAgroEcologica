@@ -1,107 +1,109 @@
-<body>
-    <nav th:replace="/fragments/navbar :: nav"></nav>
-    <!-- Usuarios -->
-    <div class="container my-2 ">
-        <!--  <div class="container my-2 ">: Un contenedor con clases CSS container y my-2, 
-            que proporciona un margen vertical de 2 unidades a los elementos contenidos en él.-->
+<html xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/extras/spring-security" data-bs-theme="light">
+    <head  th:replace = "/fragments/head :: head"> </head>
+    <body>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+        <!-- Usuarios -->
+        <div class="container my-2 ">
+            <!--  <div class="container my-2 ">: Un contenedor con clases CSS container y my-2, 
+                que proporciona un margen vertical de 2 unidades a los elementos contenidos en él.-->
 
-        <h1 class="display-6 mt-4">Bloggers</h1>
-        <!-- <h1 class="display-6 mt-4">Bloggers</h1>: Un encabezado de nivel 1 con clase CSS display-6 
-            y margen superior de 4 unidades. Esto mostrará "Bloggers" en un tamaño más grande y con margen superior.-->
-        <hr class="my-4">
-        <!--  <hr class="my-4">: Un elemento horizontal (<hr>) con margen vertical de 4 unidades, 
-            utilizado para crear una línea divisoria.-->
-    </div>
-    <div class="container my-5">
-        <!-- <div class="container my-5">: Otro contenedor con margen vertical de 5 unidades, utilizado para separar el contenido.-->
-        <div class="row">
-            <!-- <div class="row">: Una fila de elementos. Bootstrap utiliza un sistema de 12 columnas para organizar el contenido 
-                en una página, y las filas son utilizadas para agrupar elementos en una misma línea.-->
-            <div class="col-8 offset-2">
-                <!-- <div class="col-8 offset-2">: Una columna que ocupará 8 unidades del sistema de 12 columnas,
-                     centrada horizontalmente utilizando offset-2, lo que da un margen de 2 unidades en el lado izquierdo 
-                     para centrar el contenido.-->
+            <h1 class="display-6 mt-4">Bloggers</h1>
+            <!-- <h1 class="display-6 mt-4">Bloggers</h1>: Un encabezado de nivel 1 con clase CSS display-6 
+                y margen superior de 4 unidades. Esto mostrará "Bloggers" en un tamaño más grande y con margen superior.-->
+            <hr class="my-4">
+            <!--  <hr class="my-4">: Un elemento horizontal (<hr>) con margen vertical de 4 unidades, 
+                utilizado para crear una línea divisoria.-->
+        </div>
+        <div class="container my-5">
+            <!-- <div class="container my-5">: Otro contenedor con margen vertical de 5 unidades, utilizado para separar el contenido.-->
+            <div class="row">
+                <!-- <div class="row">: Una fila de elementos. Bootstrap utiliza un sistema de 12 columnas para organizar el contenido 
+                    en una página, y las filas son utilizadas para agrupar elementos en una misma línea.-->
+                <div class="col-8 offset-2">
+                    <!-- <div class="col-8 offset-2">: Una columna que ocupará 8 unidades del sistema de 12 columnas,
+                         centrada horizontalmente utilizando offset-2, lo que da un margen de 2 unidades en el lado izquierdo 
+                         para centrar el contenido.-->
 
-                <div class="mb-3 d-flex justify-content-center">
-                    <h3>Buscar</h3>
-                </div>
-                <div class="mb-1 text-center">
-                    <small th:if="${error != null}" th:text="${error}" class="text-danger"></small>
-                </div>
-                <form th:action="@{/admin/bloggers}" method="get" class="d-flex">
-                    <!-- : Un formulario con un atributo th:action que establece la URL a la que se enviarán los datos del formulario.
-                         Utiliza el método GET para enviar los datos. class="d-flex" aplica el estilo display: flex para que los elementos
-                          del formulario se alineen horizontalmente.-->
-
-                    <div class="input-group">
-                        <div class="dropdown shadow">
-                            <select name="estado" class="form-select" aria-label="Estado">
-                                <option selected>Estado</option>
-                                <option value="true" th:selected="${estado == 'true'}">Activo</option>
-                                <option value="false" th:selected="${estado == 'false'}">Inactivo</option>
-                            </select>
-                        </div>
-                        <div class="dropdown shadow">
-                            <select name="orden" th:selected="${orden}" class="form-select" aria-label="Orden">
-                                <option selected>Orden</option>
-                                <option value="desc" th:selected="${orden == 'desc'}">Recientes</option>
-                                <option value="asc" th:selected="${orden == 'asc'}">Antiguos</option>
-                            </select>
-                        </div>
-
-                        <input name="termino" type="text" class="form-control shadow ms-2" id="nombre"
-                            placeholder="¿Que desea buscar?">
-                        <button type="submit" class="btn btn-light shadow"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
+                    <div class="mb-3 d-flex justify-content-center">
+                        <h3>Buscar</h3>
                     </div>
-                </form>
+                    <div class="mb-1 text-center">
+                        <small th:if="${error != null}" th:text="${error}" class="text-danger"></small>
+                    </div>
+                    <form th:action="@{/admin/bloggers}" method="get" class="d-flex">
+                        <!-- : Un formulario con un atributo th:action que establece la URL a la que se enviarán los datos del formulario.
+                             Utiliza el método GET para enviar los datos. class="d-flex" aplica el estilo display: flex para que los elementos
+                              del formulario se alineen horizontalmente.-->
+
+                        <div class="input-group">
+                            <div class="dropdown shadow">
+                                <select name="estado" class="form-select" aria-label="Estado">
+                                    <option selected>Estado</option>
+                                    <option value="true" th:selected="${estado == 'true'}">Activo</option>
+                                    <option value="false" th:selected="${estado == 'false'}">Inactivo</option>
+                                </select>
+                            </div>
+                            <div class="dropdown shadow">
+                                <select name="orden" th:selected="${orden}" class="form-select" aria-label="Orden">
+                                    <option selected>Orden</option>
+                                    <option value="desc" th:selected="${orden == 'desc'}">Recientes</option>
+                                    <option value="asc" th:selected="${orden == 'asc'}">Antiguos</option>
+                                </select>
+                            </div>
+
+                            <input name="termino" type="text" class="form-control shadow ms-2" id="nombre"
+                                   placeholder="¿Que desea buscar?">
+                            <button type="submit" class="btn btn-light shadow"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Usuarios -->
-    <div class="container my-5">
-        <table class="table table-success">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre y apellido</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Fecha de alta</th>
-                    <th scope="col">DNI</th>
-                    <th scope="col">Dirección</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody th:each="blogger: ${bloggers}">
-                <tr class="table-light">
-                    <th scope="row" th:text="${blogger.id}"></th>
-                    <td th:text="${blogger.nombreApellido}"></td>
-                    <td th:text="${blogger.email}"></td>
-                    <td th:text="${blogger.fechaAlta}"></td>
-                    <td th:text="${blogger.dni}"></td>
-                    <td th:text="${blogger.direccion}"></td>
-                    <td th:if="${blogger.altaBaja == true}" th:text="Activo" class="text-success fw-bold"></td>
-                    <td th:if="${blogger.altaBaja == false}" th:text="Inactivo" class="text-danger fw-bold"></td>
-                    <td>
-                        <div class="dropdown">
+        <!-- Usuarios -->
+        <div class="container my-5">
+            <table class="table table-success">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre y apellido</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Fecha de alta</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody th:each="blogger: ${bloggers}">
+                    <tr class="table-light">
+                        <th scope="row" th:text="${blogger.id}"></th>
+                        <td th:text="${blogger.nombreApellido}"></td>
+                        <td th:text="${blogger.email}"></td>
+                        <td th:text="${blogger.fechaAlta}"></td>
+                        <td th:text="${blogger.dni}"></td>
+                        <td th:text="${blogger.direccion}"></td>
+                        <td th:if="${blogger.altaBaja == true}" th:text="Activo" class="text-success fw-bold"></td>
+                        <td th:if="${blogger.altaBaja == false}" th:text="Inactivo" class="text-danger fw-bold"></td>
+                        <td>
+                            <div class="dropdown">
 
-                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Acciones
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li th:if="${blogger.altaBaja == false}"><a th:href="@{/blogger/alta/__${blogger.id}__}"
-                                        type="button" class="dropdown-item text-success">Dar de alta</a></li>
-                                <li th:if="${blogger.altaBaja == true}"><a th:href="@{/blogger/baja/__${blogger.id}__}"
-                                        type="button" class="dropdown-item text-warning">Dar de baja</a></li>
-                                <li><a type="button" data-bs-toggle="modal"
-                                        th:data-bs-target="'#cambiarRol-' + ${blogger.id}"
-                                        class="dropdown-item text-primary">Cambiar a consumidor</a></li>  <!--- data-bs-toggle="modal": Este atributo especial de Bootstrap indica que el elemento debe activar un modal cuando se hace clic en él.-->
-                                <!-- Este es el enlace que activa el modal para cambiar el rol. Al hacer clic en el enlace "Cambiar a Consumidor", se mostrará el modal.-->
-                                <li><a type="button" data-bs-toggle="modal"
-                                        th:data-bs-target="'#exampleModal-' + ${blogger.id}"
-                                        class="dropdown-item text-danger fw-bold">Eliminar</a></li>
+                                <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Acciones
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li th:if="${blogger.altaBaja == false}"><a th:href="@{/blogger/alta/__${blogger.id}__}"
+                                                                                type="button" class="dropdown-item text-success">Dar de alta</a></li>
+                                    <li th:if="${blogger.altaBaja == true}"><a th:href="@{/blogger/baja/__${blogger.id}__}"
+                                                                               type="button" class="dropdown-item text-warning">Dar de baja</a></li>
+                                    <li><a type="button" data-bs-toggle="modal"
+                                           th:data-bs-target="'#cambiarRol-' + ${blogger.id}"
+                                           class="dropdown-item text-primary">Cambiar a consumidor</a></li>  <!--- data-bs-toggle="modal": Este atributo especial de Bootstrap indica que el elemento debe activar un modal cuando se hace clic en él.-->
+                                    <!-- Este es el enlace que activa el modal para cambiar el rol. Al hacer clic en el enlace "Cambiar a Consumidor", se mostrará el modal.-->
+                                    <li><a type="button" data-bs-toggle="modal"
+                                           th:data-bs-target="'#exampleModal-' + ${blogger.id}"
+                                           class="dropdown-item text-danger fw-bold">Eliminar</a></li>
                                     <!--  th:data-bs-target="'#cambiarRol-' + ${blogger.id}": 
                                         Aquí es donde ocurre la magia para activar el modal específico para cada blogger.
                                          Este atributo se encarga de especificar el destino (target) del modal que se va a activar.
@@ -110,99 +112,99 @@
                                            que dará como resultado algo como "cambiarRol-1", "cambiarRol-2", etc. 
                                            Esto asegura que cada enlace esté asociado al modal correcto.-->
 
-                                <!--  Este es el enlace que activa el modal. Al hacer clic en el enlace "Eliminar", se mostrará el modal  -->
-                            </ul>
-                        </div>
+                                    <!--  Este es el enlace que activa el modal. Al hacer clic en el enlace "Eliminar", se mostrará el modal  -->
+                                </ul>
+                            </div>
 
-                    </td>
-                    <!-- Modal confirmacion eliminar -->
-                    <!-- Aquí definimos el modal en sí. Utilizamos el atributo th:id para que el id del modal sea único 
-                        para cada blogger. El atributo tabindex="-1" indica que el modal no es accesible mediante la tecla TAB hasta que se active. -->
-                    <div class="modal fade" th:id="'exampleModal-' + ${blogger.id}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar usuario</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        </td>
+                        <!-- Modal confirmacion eliminar -->
+                        <!-- Aquí definimos el modal en sí. Utilizamos el atributo th:id para que el id del modal sea único 
+                            para cada blogger. El atributo tabindex="-1" indica que el modal no es accesible mediante la tecla TAB hasta que se active. -->
+                <div class="modal fade" th:id="'exampleModal-' + ${blogger.id}" tabindex="-1"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar usuario</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
-                                    <!-- : Este botón es la "X" en la esquina superior derecha del modal, que permite cerrar el modal sin realizar ninguna acción.-->
-                                </div>
-                                <div class="modal-body text-center">
+                                <!-- : Este botón es la "X" en la esquina superior derecha del modal, que permite cerrar el modal sin realizar ninguna acción.-->
+                            </div>
+                            <div class="modal-body text-center">
 
-                                    <p>A continuación va a eliminar al usuario <span class="fw-bold"
-                                            th:text="${blogger.nombreApellido}"></span>
-                                        <p />
-                                    <p class="fw-bold text-danger">¿Está seguro que quiere eliminar a este usuario?
-                                        <p />
+                                <p>A continuación va a eliminar al usuario <span class="fw-bold"
+                                                                                 th:text="${blogger.nombreApellido}"></span>
+                                <p />
+                                <p class="fw-bold text-danger">¿Está seguro que quiere eliminar a este usuario?
+                                <p />
 
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Cancelar</button>
-                                    <a th:href="@{/admin/eliminar/__${blogger.id}__}" type="button"
-                                        class="btn btn-outline-danger ">Sí, eliminar</a>
-                                    <!--  Este es el botón "Sí, eliminar" dentro del modal. Al hacer clic en este botón, se ejecutará la acción definida en la URL @{/admin/eliminar/__${blogger.id}__}-->
-                                </div>
+                                <a th:href="@{/admin/eliminar/__${blogger.id}__}" type="button"
+                                   class="btn btn-outline-danger ">Sí, eliminar</a>
+                                <!--  Este es el botón "Sí, eliminar" dentro del modal. Al hacer clic en este botón, se ejecutará la acción definida en la URL @{/admin/eliminar/__${blogger.id}__}-->
                             </div>
                         </div>
                     </div>
-                    <!-- Modal confirmacion rol blogger a consumidor -->
-                    <!-- los modales se crean utilizando la etiqueta <div> con la clase "modal"
-                     crea el contenedor del modal. La clase "modal" indica que es un modal 
-                     y la clase "fade" agrega un efecto de desvanecimiento al mostrar y ocultar el modal-->
+                </div>
+                <!-- Modal confirmacion rol blogger a consumidor -->
+                <!-- los modales se crean utilizando la etiqueta <div> con la clase "modal"
+                 crea el contenedor del modal. La clase "modal" indica que es un modal 
+                 y la clase "fade" agrega un efecto de desvanecimiento al mostrar y ocultar el modal-->
 
-                    <!-- Aquí definimos el modal en sí para cambiar el rol. Al igual que en el modal anterior, 
-                usamos el atributo th:id para que el id del modal sea único para cada blogger.-->
-                    <div class="modal fade" th:id="'cambiarRol-' + ${blogger.id}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">  <!--Define el cuadro que contiene el contenido del modal. -->
-                            <div class="modal-content">  <!--Define el contenido del modal, que consta de un encabezado, cuerpo y pie. -->
-                                <div class="modal-header">  <!-- En el encabezado del modal (<div class="modal-header">), se muestra el título del modal ("Cambiar rol") y el botón de cierre ("X").-->
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar a consumidor</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                <!-- Aquí definimos el modal en sí para cambiar el rol. Al igual que en el modal anterior, 
+            usamos el atributo th:id para que el id del modal sea único para cada blogger.-->
+                <div class="modal fade" th:id="'cambiarRol-' + ${blogger.id}" tabindex="-1"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">  <!--Define el cuadro que contiene el contenido del modal. -->
+                        <div class="modal-content">  <!--Define el contenido del modal, que consta de un encabezado, cuerpo y pie. -->
+                            <div class="modal-header">  <!-- En el encabezado del modal (<div class="modal-header">), se muestra el título del modal ("Cambiar rol") y el botón de cierre ("X").-->
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar a consumidor</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
-                                    <!-- Este botón es la "X" en la esquina superior derecha del modal, que permite cerrar el modal sin realizar ninguna acción.-->
-                                </div>
-                                <div class="modal-body text-center">
-                                    <!-- Contenido del modal -->
-                                    <!-- Aquí se muestra el mensaje y los detalles del cambio de rol 
-                                    En el cuerpo del modal (<div class="modal-body text-center">), 
-                                        se muestra el contenido del modal, que en este caso es el mensaje y los detalles del cambio de rol.-->
+                                <!-- Este botón es la "X" en la esquina superior derecha del modal, que permite cerrar el modal sin realizar ninguna acción.-->
+                            </div>
+                            <div class="modal-body text-center">
+                                <!-- Contenido del modal -->
+                                <!-- Aquí se muestra el mensaje y los detalles del cambio de rol 
+                                En el cuerpo del modal (<div class="modal-body text-center">), 
+                                    se muestra el contenido del modal, que en este caso es el mensaje y los detalles del cambio de rol.-->
 
-                                    <p>A continuación va a cambiar el Rol de <span class="fw-bold"
-                                            th:text="${blogger.nombreApellido}"></span> a <span
-                                            class="fw-bold text-primary">'CONSUMIDOR'</span>
-                                        <p />
-                                    <p>Dicho rol retira los permisos como <span class="fw-bold ">crear noticias,
-                                            modificarlas y/o eliminarlas y otorga permisos como crear publicaciones,
-                                            votar y hacer comentarios.</span>
-                                        <p />
-                                    <p class="fw-bold text-primary">¿Está seguro que desea convertir a este blogger en
-                                        un Consumidor?
-                                        <p />
+                                <p>A continuación va a cambiar el Rol de <span class="fw-bold"
+                                                                               th:text="${blogger.nombreApellido}"></span> a <span
+                                                                               class="fw-bold text-primary">'CONSUMIDOR'</span>
+                                <p />
+                                <p>Dicho rol retira los permisos como <span class="fw-bold ">crear noticias,
+                                        modificarlas y/o eliminarlas y otorga permisos como crear publicaciones,
+                                        votar y hacer comentarios.</span>
+                                <p />
+                                <p class="fw-bold text-primary">¿Está seguro que desea convertir a este blogger en
+                                    un Consumidor?
+                                <p />
 
-                                </div>
-                                <div class="modal-footer"> <!--  En el pie del modal (<div class="modal-footer">), se colocan los botones que permiten al usuario confirmar o cancelar el cambio de rol.-->
-                                    <!-- Botones del modal -->
-                                    <!-- Aquí se definen los botones para aceptar o cancelar el cambio de rol -->
-                                    <button type="button" class="btn btn-secondary"
+                            </div>
+                            <div class="modal-footer"> <!--  En el pie del modal (<div class="modal-footer">), se colocan los botones que permiten al usuario confirmar o cancelar el cambio de rol.-->
+                                <!-- Botones del modal -->
+                                <!-- Aquí se definen los botones para aceptar o cancelar el cambio de rol -->
+                                <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Cancelar</button>
-                                    <a th:href="@{/admin/rolConsumidor/__${blogger.id}__}" type="button"
-                                        class="btn btn-outline-primary ">Sí, cambiar a consumidor</a>
-                                </div>
+                                <a th:href="@{/admin/rolConsumidor/__${blogger.id}__}" type="button"
+                                   class="btn btn-outline-primary ">Sí, cambiar a consumidor</a>
                             </div>
                         </div>
                     </div>
+                </div>
                 </tr>
-            </tbody>
-        </table>
-    </div>
-    <!-- JS Boostrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+                </tbody>
+            </table>
+        </div>
+        <!-- JS Boostrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <script src="/js/eventos.js" type="text/javaScript"></script>
-</body>
+        <script src="/js/eventos.js" type="text/javaScript"></script>
+    </body>
 
 </html>
