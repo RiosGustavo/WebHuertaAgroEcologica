@@ -58,7 +58,7 @@ public class ConsumidorControlador {
         Consumidor consumidor = consumidorServicio.getOne(usuario.getId());
         modelo.addAttribute("consumidor", consumidor);
        
-        return "perfil_consumidor.html";
+        return "perfil_usuario.html";
     }
        
        @PreAuthorize("hasAnyRole('ROLE_ADM','ROLE_CON','ROLE_PRO')")

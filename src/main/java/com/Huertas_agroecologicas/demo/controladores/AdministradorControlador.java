@@ -91,7 +91,7 @@ public class AdministradorControlador {
 
         modelo.addAttribute("consumidores", consumidores);
 
-        return "consumidores_list.html";
+        return "consumidor_list.html";
 
     }
 
