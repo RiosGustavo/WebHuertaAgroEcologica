@@ -136,7 +136,7 @@ public class NoticiaControlador {
             noticias = noticiaRepositorio.findAllOrderByfecha_altaDesc();
         }
 
-        modelo.addAttribute("notiicas", noticias);
+        modelo.addAttribute("noticias", noticias);
 
         return "noticia_list.html";
 
