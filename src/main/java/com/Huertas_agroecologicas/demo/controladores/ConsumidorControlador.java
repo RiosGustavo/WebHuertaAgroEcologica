@@ -4,11 +4,13 @@
  */
 package com.Huertas_agroecologicas.demo.controladores;
 
+import com.Huertas_agroecologicas.demo.entiddes.Comentario;
 import com.Huertas_agroecologicas.demo.entiddes.Consumidor;
 import com.Huertas_agroecologicas.demo.entiddes.Cultivo;
 import com.Huertas_agroecologicas.demo.entiddes.Huerta;
 import com.Huertas_agroecologicas.demo.entiddes.Publicacion;
 import com.Huertas_agroecologicas.demo.entiddes.Usuario;
+import com.Huertas_agroecologicas.demo.servicios.ComentarioServicio;
 import com.Huertas_agroecologicas.demo.servicios.ConsumidorServicio;
 import com.Huertas_agroecologicas.demo.servicios.CultivoServicio;
 import com.Huertas_agroecologicas.demo.servicios.HuertaServicio;
@@ -50,6 +52,10 @@ public class ConsumidorControlador {
     @Autowired
     private PublicacionServicio publicacionServicio;
     
+    @Autowired
+    private ComentarioServicio comentarioServicio;
+    
+    
      @PreAuthorize("hasAnyRole('ROLE_ADM','ROLE_CON','ROLE_PRO')")
     @GetMapping("/perfil")
        public String perfil(ModelMap modelo, HttpSession session) {
@@ -61,7 +67,7 @@ public class ConsumidorControlador {
         return "perfil_usuario.html";
     }
        
-       @PreAuthorize("hasAnyRole('ROLE_ADM','ROLE_CON','ROLE_PRO')")
+       @PreAuthorize("hasAnyRole('ROLE_CON')")
     @PostMapping("/perfil/{id}")
     public String modificacionPerfil(MultipartFile archivo, @PathVariable String id, @RequestParam String NombreConsumidor,
                 @RequestParam String dni, @RequestParam String direccion, ModelMap modelo, HttpSession session) {
@@ -90,7 +96,7 @@ public class ConsumidorControlador {
     }
     
      ////PANEL CONSUMIDOR
-    @PreAuthorize("hasAnyRole('ROLE_CON')")
+    @PreAuthorize("hasAnyRole('ROLE_ADM','ROLE_CON','ROLE_PRO')")
     @GetMapping("/panel-principal")
     public String panelConsumidor(ModelMap modelo, HttpSession session ){
         
@@ -149,6 +155,29 @@ public class ConsumidorControlador {
         }
         return "redirect:/admin/consumidores";
         
+    }
+    
+    @GetMapping("/listar")
+    public String listar() throws Exception {
+        consumidorServicio.listarConsumidores();
+        
+        return "publicacion_list.html";
+    }
+
+    @GetMapping("/{id}")
+    public String perfilPublicoVotante(@PathVariable String id,ModelMap modelo, HttpSession session) {
+        
+        Consumidor consumidor = consumidorServicio.getOne(id);
+        List<Publicacion> publicacionesHuerta = publicacionServicio.obtenerPublicacionesPorHuertasDeConsumidor(consumidor);
+        List<Publicacion> publicacionesCultivo = publicacionServicio.obtenerPublicacionesPorCultivosDeConsumidor(consumidor);
+                      
+        List<Comentario> comentarios = comentarioServicio.comentariosPorConsumidor(consumidor);
+                
+        modelo.addAttribute("consumidor", consumidor);
+        modelo.addAttribute("publicacionesHuerta", publicacionesHuerta);
+        modelo.addAttribute("publicacionesCultivo", publicacionesCultivo);
+        modelo.addAttribute("comentarios", comentarios);
+        return "perfil_publico_consumidor.html";
     }
     
     

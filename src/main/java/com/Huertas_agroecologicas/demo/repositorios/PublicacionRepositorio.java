@@ -39,10 +39,10 @@ public interface PublicacionRepositorio extends JpaRepository<Publicacion, Strin
     public List<Publicacion> publicacionesActivasPorCultivo(@Param("idCultivo") String idCultivo);
 
     // falta implemntar el la siguiente linea en el servicio
-    @Query("SELECT pu FROM Publicacion pu WHERE pu.huerta.idHuerta = :idHuertaa")
+    @Query("SELECT pu FROM Publicacion pu WHERE pu.huerta.idHuerta = :idHuerta")
     public List<Publicacion> buscarPorHuerta(@Param("idHuerta") String idHuerta);
 
-    @Query("SELECT pu FROM Publicacion pu WHERE pu.cultivo.idCultivo = idCultivo")
+    @Query("SELECT pu FROM Publicacion pu WHERE pu.cultivo.idCultivo =:idCultivo")
     public List<Publicacion> buscarPorCultivo(@Param("idCultivo") String idCultivo);
 
     //////////////////////////////////////

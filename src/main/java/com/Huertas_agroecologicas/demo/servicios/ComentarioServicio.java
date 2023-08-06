@@ -93,11 +93,10 @@ public class ComentarioServicio {
        return comentarios;
    }
    
-   public List<Comentario> comentariosPorConsumidor(String idConsumidor){
-       List<Comentario> comentarios = new ArrayList();
+   public List<Comentario> comentariosPorConsumidor(Consumidor consumidor){
        
-       comentarios = comentarioRepositorio.comentariosPorConsumidor(idConsumidor);
-       return comentarios;
+             
+       return comentarioRepositorio.comentariosPorConsumidor(consumidor.getId());
    }
    
    
