@@ -48,11 +48,11 @@ public class ProductorControlador {
     @PreAuthorize("hasAnyRole('ROLE_PRO')")
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
-       
+
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         Productor productor = productorServicio.getOne(usuario.getId());
         modelo.addAttribute("productor", productor);
-       
+
         return "perfil_productor.html";
     }
 
@@ -63,76 +63,74 @@ public class ProductorControlador {
 
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         Productor productor = productorServicio.getOne(usuario.getId());
-        
+
         try {
             productorServicio.modificarProductor(archivo, id, NombreProductor, dni, direccion);
             modelo.put("exito", "datos actualizados correctamente");
             modelo.addAttribute("productor", productor);
-            
+
             return "perfil_productor.html";
         } catch (Exception e) {
             modelo.addAttribute("productor", productor);
             modelo.put("error", e.getMessage());
-            
+
             return "perfil_productor.html";
         }
 
     }
-    
-    ////PANEL PRODUCTOR
+
     @PreAuthorize("hasAnyRole('ROLE_PRO')")
     @GetMapping("/panel-principal")
-    public String panelProductor(ModelMap modelo, HttpSession session ){
-        
-        /// PRODUCTOR
+    public String panelProductor(ModelMap modelo, HttpSession session) {
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         Usuario usuario = usuarioServicio.getOne(logueado.getId());
         Productor productor = productorServicio.getOne(logueado.getId());
-        
-        /// HUERTA DEL PROCUTOR
-        Huerta huerta =productor.getHuerta(); /// obtenemos la huerta asociada al productor
 
+        // Obtener la huerta del productor
+        Huerta huerta = productor.getHuerta();
 
-        /// CULTIVOS DEL PRODUCTOR
-        
-        if(huerta != null){
-            
-        List<Cultivo> cultivos = cultivoServicio.cultivosPorHuerta(huerta.getIdHuerta());
-        modelo.addAttribute("cultivos", cultivos);
+        if (huerta == null) {
+            // Si no hay huerta, se mostrará el botón "Crear Huerta"
+            modelo.addAttribute("puedeCrearHuerta", true);
+        } else {
+            // Si hay huerta, se mostrará el botón "Crear Cultivo"
+            modelo.addAttribute("puedeCrearCultivo", true);
+
+            // Obtener los cultivos de la huerta
+            List<Cultivo> cultivos = cultivoServicio.cultivosPorHuerta(huerta.getIdHuerta());
+            modelo.addAttribute("cultivos", cultivos);
         }
+
         modelo.addAttribute("productor", productor);
-        modelo.addAttribute("huerta", huerta); /// agregamos al huerta al modelo
-        
+        modelo.addAttribute("huerta", huerta);
+
         return "panel_productor.html";
-        
     }
-    
+
     /// DAR DE BAJA AL PRODUCTOR
     @GetMapping("/baja/{id}")
-    public String darBajaProductor(@PathVariable String id){
-        
+    public String darBajaProductor(@PathVariable String id) {
+
         try {
             productorServicio.darDeBajaProductor(id);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return "redirect:/admin/productores";
-        
+
     }
-    
-     /// DAR DE ALTA AL PRODUCTOR
+
+    /// DAR DE ALTA AL PRODUCTOR
     @GetMapping("/alta/{id}")
-    public String darAltaProductor(@PathVariable String id){
-        
+    public String darAltaProductor(@PathVariable String id) {
+
         try {
             productorServicio.darDeAltaProductor(id);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return "redirect:/admin/productores";
-        
+
     }
-    
-    
 
 }

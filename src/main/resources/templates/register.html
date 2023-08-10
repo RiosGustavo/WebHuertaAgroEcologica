@@ -67,7 +67,7 @@
 
                                 <option selected>Usuario/Productor...</option>
                                 <option value="consumidor" th:selected="${rol == 'consumidor'}">Usuario</option>
-                                <option value="productor" th:selected="${rol == 'productor'}">Empresa</option>
+                                <option value="productor" th:selected="${rol == 'productor'}">Productor</option>
 
                             </select>
                         </div>
@@ -121,11 +121,11 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label text-center" >DNI (sin puntos ni guiones)</label>
-                    <input name="dni" type="text" class="form-control shadow" >
+                    <input name="dniProductor" type="text" class="form-control shadow" >
                 </div>
                 <div class="mb-3">
                     <label  class="form-label text-center" >Dirección</label>
-                    <input name="direccionEmpresa" type="text" class="form-control shadow" >
+                    <input name="direccionProductor" type="text" class="form-control shadow" >
                 </div>
                
                 <div class="d-grid mb-3">

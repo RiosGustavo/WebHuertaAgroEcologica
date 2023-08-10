@@ -17,7 +17,7 @@
                         <small th:if="${error != null}" th:text="${error}" class="text-danger"></small>
                     </div>
                     <form th:action="@{/admin/productores}" method="get" class="d-flex">
-                        
+
                         <div class="input-group">
                             <div class="dropdown shadow">
                                 <select name="estado"  class="form-select" aria-label="Estado">
@@ -54,7 +54,7 @@
                         <th scope="col">Fecha de alta</th>
                         <th scope="col">dni</th>
                         <th scope="col">Direccion</th>
-                       
+
 
 
                         <th scope="col">Estado</th>
@@ -63,14 +63,14 @@
                 </thead>
                 <tbody th:each="productor : ${productores}">
                     <tr class="table-light">
-
+                        <th scope="row" th:text="${productor.id}"></th>
                         <td th:text="${productor.nombreProductor}"></td>
                         <td><img th:src="@{/imagen/perfil/__${productor.id}__}" alt="Imagen de perfil" class="rounded-circle img-fluid" style="width: 40px; height: 40px;"></td>
                         <td th:text="${productor.email}"></td>
                         <td th:text="${productor.fechaAlta}"></td>
                         <td th:text="${productor.dni}"></td>
-                        <td th:text="${empresa.direccion}"></td>
-                       
+                        <td th:text="${productor.direccion}"></td>
+
 
                         <td th:if="${productor.altaBaja == true}" th:text="Activo" class="text-success fw-bold"></td>
                         <td th:if="${productor.altaBaja == false}" th:text="Inactivo" class="text-danger fw-bold"></td>

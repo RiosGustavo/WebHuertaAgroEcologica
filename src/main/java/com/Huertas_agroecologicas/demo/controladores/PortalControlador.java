@@ -124,7 +124,7 @@ public class PortalControlador {
             return "register.html";
 
         } catch (Exception e) {
-            modelo.put("error", e.getMessage());
+            modelo.put("error", "Error al Registrar el usuario: " + e.getMessage());
             modelo.put("email", email);
             return " register.html";
         }

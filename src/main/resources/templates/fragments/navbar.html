@@ -15,10 +15,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto" >
                 <li sec:authorize="hasRole('ADM')" class="nav-item fw-bold">
-                    <a class="nav-link" th:href="@{/admin/consumidor}" >Consumidores</a>
+                    <a class="nav-link" th:href="@{/admin/consumidores}" >Consumidores</a>
                 </li>
                 <li sec:authorize="hasRole('ADM')" class="nav-item fw-bold">
-                    <a class="nav-link" th:href="@{/admin/productor}" >Productores</a>
+                    <a class="nav-link" th:href="@{/admin/productores}" >Productores</a>
                 </li>
                 <li sec:authorize="hasRole('ADM')" class="nav-item fw-bold">
                     <a class="nav-link" th:href="@{/admin/bloggers}" >Blogger</a>
@@ -49,14 +49,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <li sec:authorize="hasRole('ADM')"><a class="dropdown-item" th:href="@{/admin/dashboard}">Panel admin</a></li>
                     <li sec:authorize="hasRole('PRO')"><a class="dropdown-item" th:href="@{/productor/panel-principal}">Panel principal</a></li>
                     <li sec:authorize="hasRole('CON')"><a class="dropdown-item" th:href="@{/consumidor/panel-principal}">Mis publicaciones</a></li>
-                    <li sec:authorize="hasRole('BLO')"><a class="dropdown-item" th:href="@{/blogger/panel-principal}">Panel principal</a></li>
+                    <li sec:authorize="hasRole('BLOG')"><a class="dropdown-item" th:href="@{/blogger/panel-principal}">Panel principal</a></li>
 
                     <li sec:authorize="hasRole('CON')"><a class="dropdown-item" th:href="@{/consumidor/__${session.usuariosession.id}__}">Perfil</a></li>
                     
                     
                     <li sec:authorize="hasRole('CON')"><a class="dropdown-item" th:href="@{/consumidor/perfil}">Cuenta</a></li>
                     <li sec:authorize="hasRole('PRO')"><a class="dropdown-item" th:href="@{/productor/perfil}">Perfil</a></li>
-                    <li sec:authorize="hasRole('BLO')"><a class="dropdown-item" th:href="@{/blogger/perfil}">Perfil</a></li>
+                    <li sec:authorize="hasRole('BLOG')"><a class="dropdown-item" th:href="@{/blogger/perfil}">Perfil</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item text-danger" th:href="@{/logout}">Cerrar cesión</a></li>
                 </ul>

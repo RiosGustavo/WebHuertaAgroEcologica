@@ -96,7 +96,7 @@ public class ConsumidorControlador {
     }
     
      ////PANEL CONSUMIDOR
-    @PreAuthorize("hasAnyRole('ROLE_ADM','ROLE_CON','ROLE_PRO')")
+    @PreAuthorize("hasAnyRole('ROLE_CON')")
     @GetMapping("/panel-principal")
     public String panelConsumidor(ModelMap modelo, HttpSession session ){
         

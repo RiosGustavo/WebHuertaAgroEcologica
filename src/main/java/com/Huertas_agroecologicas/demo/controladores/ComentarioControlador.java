@@ -39,18 +39,18 @@ public class ComentarioControlador {
     @Autowired
     private UsuarioServicio usuarioServicio;
     
-    @PostMapping("/{idHuerta}/comentar")
-    public String comentarHuerta(@PathVariable String IdHuerta, @PathVariable String IdCultivo, @RequestParam() String mensaje, ModelMap modelo, HttpSession session) throws Exception{
+    @PostMapping("/huerta/{idHuerta}/comentar")
+    public String comentarHuerta(@PathVariable String idHuerta, @PathVariable String idCultivo, @RequestParam() String mensaje, ModelMap modelo, HttpSession session) throws Exception{
         
         try {
             Usuario logueado = (Usuario) session.getAttribute("usuariosession");
             
-            comentarioServicio.crearComentario(IdHuerta, IdCultivo, logueado.getId(), mensaje);
+            comentarioServicio.crearComentario(idHuerta, idCultivo, logueado.getId(), mensaje);
             modelo.put("exito", "Comentario creado exitosamente!");
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
-            modelo.put("huerta", huertaServicio.getOne(IdHuerta));
-            modelo.put("cultivo", cultivoServicio.getOne(IdCultivo));
+            modelo.put("huerta", huertaServicio.getOne(idHuerta));
+            modelo.put("cultivo", cultivoServicio.getOne(idCultivo));
             modelo.put("mensaje", mensaje);
         }
         
@@ -59,18 +59,18 @@ public class ComentarioControlador {
     }
     
     
-     @PostMapping("/{idCultivo}/comentar")
-    public String comentarCultivo(@PathVariable String IdHuerta, @PathVariable String IdCultivo, @RequestParam() String mensaje, ModelMap modelo, HttpSession session) throws Exception{
+     @PostMapping("/cultivo/{idCultivo}/comentar")
+    public String comentarCultivo(@PathVariable String idHuerta, @PathVariable String idCultivo, @RequestParam() String mensaje, ModelMap modelo, HttpSession session) throws Exception{
         
         try {
             Usuario logueado = (Usuario) session.getAttribute("usuariosession");
             
-            comentarioServicio.crearComentario(IdHuerta, IdCultivo, logueado.getId(), mensaje);
+            comentarioServicio.crearComentario(idHuerta, idCultivo, logueado.getId(), mensaje);
             modelo.put("exito", "Comentario creado exitosamente!");
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
-            modelo.put("huerta", huertaServicio.getOne(IdHuerta));
-            modelo.put("cultivo", cultivoServicio.getOne(IdCultivo));
+            modelo.put("huerta", huertaServicio.getOne(idHuerta));
+            modelo.put("cultivo", cultivoServicio.getOne(idCultivo));
             modelo.put("mensaje", mensaje);
         }
         

@@ -51,7 +51,7 @@ public class Comentario {
     
     @ManyToOne
     @JoinColumn(name = "id")
-    private Usuario Usuario;
+    private Usuario usuario;
     
     
     @ManyToOne

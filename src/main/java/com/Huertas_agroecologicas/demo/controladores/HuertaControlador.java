@@ -135,7 +135,7 @@ public class HuertaControlador {
         return "redirect:/huerta/lista";
     }
 
-    @GetMapping("huerta_one/idHuerta")
+    @GetMapping("huerta_one/{idHuerta}")
     public String mostarDetalleHuerta(@PathVariable String idHuerta, ModelMap modelo, HttpSession session) {
 
         try {

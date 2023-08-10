@@ -71,7 +71,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="row row-cols-1 row-cols-md-2 g-4" >
                         <div class="col" th:each="huerta : ${huertas}" th:if="${huerta.altaBaja == true}">
                             <div class="card">
-                                <img th:src="@{/imagen/huerta/__${huerta.idCampana}__}" class="card-img-top img-fluid mx-auto card-image" width="50" height="50" alt="...">
+                                <img th:src="@{/imagen/huerta/__${huerta.idHuerta}__}" class="card-img-top img-fluid mx-auto card-image" width="50" height="50" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title" th:text="${huerta.nombreHuerta}">Nombre Huerta</h5>
                                     <p class="text-huertaList text-secondary" th:text="${'Fecha de Inicio: ' + huerta.fechaAlta}"><i></i></p>
